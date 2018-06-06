@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 namespace Arcomage.Entities
 {
     [Serializable]
-    class Card
+    public class Card
     {
-        public string Name { get; }
-        public string Description { get; }
-        public int BrickCost { get; }
-        public int GemCost { get; }
-        public int RecruitCost { get; }
-        public string Colour { get; }
-        public bool IsPlayAgain { get; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public int BrickCost { get; set; }
+        public int GemCost { get; set; }
+        public int RecruitCost { get; set; }
+        public string Colour { get; set; }
+        public bool IsPlayAgain { get; set; }
+       // public abstract void UseMethod();
+        
     }
 }
