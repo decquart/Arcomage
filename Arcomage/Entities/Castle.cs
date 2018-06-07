@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Entities
 {
-    class Castle : IBuilding
+    public class Castle : IBuilding
     {
         public int Height { get; set; }
+        public Wall Wall{ get; set; }
 
         public int Bricks { get; set; }
         public int Gems { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Entities
 {
-    class Deck
+    public class Deck
     {
         public ICollection<Card> Cards { get; set; }
         public Deck()

@@ -1,5 +1,6 @@
 ﻿using Arcomage.Entities;
 using Arcomage.Interfaces;
+using Arcomage.Services;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,9 +14,9 @@ namespace Arcomage.Data
         {
             currentUsers = new List<User>
             {
-                new User { Id = 1, Email = "asasaaawe", Name = "Bob" },
-                new User { Id = 1, Email = "pqwoeapfk", Name = "Petro" },
-                new User { Id = 1, Email = ",NANdlkasljd", Name = "Ivan" }
+                new User { Id = 1, Email = "asasaaawe", Name = "Bob", Castle = new DefaultCastleInitializer().Set() },
+                new User { Id = 1, Email = "pqwoeapfk", Name = "Petro", Castle = new DefaultCastleInitializer().Set() },
+                new User { Id = 1, Email = ",NANdlkasljd", Name = "Ivan", Castle = new DefaultCastleInitializer().Set() }
             };
         }
         
