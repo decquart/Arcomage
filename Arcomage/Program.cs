@@ -14,15 +14,6 @@ namespace Arcomage
     {
         static void Main(string[] args)
         {
-
-            var cards = CardSerializator.
-
-
-            foreach (var c in cards)
-            {
-                Console.WriteLine("name: {0}, description: {1}, colour: {2}", c.Name, c.Description, c.Colour);
-                Console.WriteLine("/n/n");
-            }
             Console.ReadLine();
         }
     }
