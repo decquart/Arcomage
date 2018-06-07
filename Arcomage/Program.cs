@@ -1,4 +1,5 @@
 ﻿using Arcomage.Entities;
+using Arcomage.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -14,7 +15,7 @@ namespace Arcomage
         static void Main(string[] args)
         {
 
-            List<Card> cards = JsonConvert.DeserializeObject<List<Card>>(File.ReadAllText("Configs/Cards.json"));
+            var cards = CardSerializator.
 
 
             foreach (var c in cards)
