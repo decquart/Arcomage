@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Entities
 {
-    class User
+    public class User
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public ICollection<Card> Hand;
+        public User()
+        {
+            Hand = new List<Card>();
+        }
     }
 }
