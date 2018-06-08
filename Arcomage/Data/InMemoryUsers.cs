@@ -15,8 +15,8 @@ namespace Arcomage.Data
             currentUsers = new List<User>
             {
                 new User { Id = 1, Email = "asasaaawe", Name = "Bob", Castle = new DefaultCastleInitializer().Set() },
-                new User { Id = 1, Email = "pqwoeapfk", Name = "Petro", Castle = new DefaultCastleInitializer().Set() },
-                new User { Id = 1, Email = ",NANdlkasljd", Name = "Ivan", Castle = new DefaultCastleInitializer().Set() }
+                new User { Id = 2, Email = "pqwoeapfk", Name = "Petro", Castle = new DefaultCastleInitializer().Set() },
+                new User { Id = 3, Email = ",NANdlkasljd", Name = "Ivan", Castle = new DefaultCastleInitializer().Set() }
             };
         }
         
@@ -27,7 +27,7 @@ namespace Arcomage.Data
 
         public IEnumerable<User> GetAll()
         {
-            return currentUsers.OrderBy(u => u.Name);
+            return currentUsers.OrderBy(u => u.Id);
         }
     }
 }

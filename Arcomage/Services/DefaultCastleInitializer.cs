@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Services
 {
-     class DefaultCastleInitializer
+     public class DefaultCastleInitializer
     {
-        private Castle castle;
+        private Castle castle = new Castle();
+        private Wall wall = new Wall();
         public Castle Set()
         {
             castle.Height = 20;
+            castle.Wall = wall;
             castle.Wall.Height = 5;
 
             castle.Bricks = 5;
@@ -21,7 +23,7 @@ namespace Arcomage.Services
 
             castle.Quarry = 2;
             castle.Magic = 2;
-            castle.Recruits = 2;
+            castle.Dungeon = 2;
 
             return castle;
         }
