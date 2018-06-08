@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Entities
 {
-    delegate void PlayFunction(int userId, int amount);
+    public delegate void PlayFunction(int userId, int amount);
 
     [Serializable]
     public class Card
@@ -18,6 +18,6 @@ namespace Arcomage.Entities
         public int RecruitCost { get; set; }
         public string Colour { get; set; }
         public bool IsPlayAgain { get; set; }
-        PlayFunction del;        
+        public PlayFunction Del { get; set; }        
     }
 }
