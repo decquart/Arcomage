@@ -11,7 +11,7 @@ namespace Arcomage.Services
 {
     public static class CardSerializator
     {
-        public static ICollection<Card> GetCardsFromJson()
+        public static List<Card> GetCardsFromJson()
         {            
             return JsonConvert.DeserializeObject<List<Card>>(File.ReadAllText("Configs/Cards.json"));
         }

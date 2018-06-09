@@ -16,7 +16,7 @@ namespace Arcomage.Data
             {
                 new User { Id = 1, Email = "asasaaawe", Name = "Bob", Castle = new DefaultCastleInitializer().Set() },
                 new User { Id = 2, Email = "pqwoeapfk", Name = "Petro", Castle = new DefaultCastleInitializer().Set() },
-                new User { Id = 3, Email = ",NANdlkasljd", Name = "Ivan", Castle = new DefaultCastleInitializer().Set() }
+                new User { Id = 3, Email = "NANdlkasljd", Name = "Ivan", Castle = new DefaultCastleInitializer().Set() }
             };
         }
         
