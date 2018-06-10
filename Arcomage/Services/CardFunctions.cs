@@ -1,4 +1,5 @@
-﻿using Arcomage.Interfaces;
+﻿using Arcomage.Entities;
+using Arcomage.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,120 +10,109 @@ namespace Arcomage.Services
 {
     class CardFunctions
     {
-        private readonly IUserData _user;
-        public CardFunctions(IUserData user)
+        private readonly Players _players;
+        public CardFunctions(Players players)
         {
-            _user = user;
+            _players = players;
         }
 
-        public void Damage(int userId, int amount)
+        public void Damage(int amount)
         {
-            var player = _user.Get(userId);
-
-            if (player == null)
+            if (_players == null)
             {
                 throw new NullReferenceException();
             }
 
-            if (player.Castle.Wall.Height >= amount)
-                player.Castle.Wall.Height -= amount;
+            if (_players.EnemyPlayer.Castle.Wall.Height >= amount)
+                _players.EnemyPlayer.Castle.Wall.Height -= amount;
             else
             {
-                var oldWallHeight = player.Castle.Wall.Height;
-                var oldCastleHeight = player.Castle.Height;
-                if (player.Castle.Wall.Height > 0)
-                    player.Castle.Wall.Height = 0;
+                var oldWallHeight = _players.EnemyPlayer.Castle.Wall.Height;
+                var oldCastleHeight = _players.EnemyPlayer.Castle.Height;
+                if (_players.EnemyPlayer.Castle.Wall.Height > 0)
+                    _players.EnemyPlayer.Castle.Wall.Height = 0;
 
-                player.Castle.Height -= (amount - oldWallHeight);
+                _players.EnemyPlayer.Castle.Height -= (amount - oldWallHeight);
             }            
         }
 
-        public void AddWall(int userId, int amount)
+        public void AddWall(int amount)
         {
-            var player = _user.Get(userId);
-
-            if (player == null)
+            if (_players == null)
             {
                 throw new NullReferenceException();
             }
 
-            player.Castle.Wall.Height += amount;
+            _players.CurrentPlayer.Castle.Wall.Height += amount;
         }
 
-        public void AddMagic(int userId, int amount)
+        public void AddMagic(int amount)
         {
-            var player = _user.Get(userId);
-
-            if (player == null)
+            if (_players == null)
             {
                 throw new NullReferenceException();
             }
 
-            player.Castle.Magic += amount;
+            _players.CurrentPlayer.Castle.Magic += amount;
         }
 
-        public void AddDungeon(int userId, int amount)
+        public void AddDungeon(int amount)
         {
-            var player = _user.Get(userId);
-
-            if (player == null)
+            if (_players == null)
             {
                 throw new NullReferenceException();
             }
 
-            player.Castle.Dungeon += amount;
+            _players.CurrentPlayer.Castle.Dungeon += amount;
         }
 
-        public void AddQuarry(int userId, int amount)
+        public void AddQuarry(int amount)
         {
-            var player = _user.Get(userId);
-
-            if (player == null)
+            if (_players.CurrentPlayer == null)
             {
                 throw new NullReferenceException();
             }
 
-            player.Castle.Quarry += amount;
+            _players.CurrentPlayer.Castle.Quarry += amount;
         }
 
-        public void AddBricks(int userId, int amount)
+        public void AddBricks(int amount)
         {
-            var player = _user.Get(userId);
-
-            if (player == null)
+            if (_players == null)
             {
                 throw new NullReferenceException();
             }
 
-            player.Castle.Bricks += amount;
+            _players.CurrentPlayer.Castle.Bricks += amount;
         }
 
-        public void AddGems(int userId, int amount)
+        public void AddGems(int amount)
         {
-            var player = _user.Get(userId);
-
-            if (player == null)
+            if (_players == null)
             {
                 throw new NullReferenceException();
             }
 
-            player.Castle.Gems += amount;
+            _players.CurrentPlayer.Castle.Gems += amount;
         }
 
-        public void AddRecruits(int userId, int amount)
+        public void AddRecruits(int amount)
         {
-            var player = _user.Get(userId);
-
-            if (player == null)
+            if (_players == null)
             {
                 throw new NullReferenceException();
             }
 
-            player.Castle.Recruits += amount;
+            _players.CurrentPlayer.Castle.Recruits += amount;
         }
 
-
-
-
+        public void AddCastle(int amount)
+        {
+            if (_players == null)
+            {
+                throw new NullReferenceException();
+            }
+            _players.CurrentPlayer.Castle.Height += amount;
+        }
     }
 }
