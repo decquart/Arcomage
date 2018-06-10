@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Entities
 {
-    public delegate void PlayFunction(int userId, int amount);
+    public delegate void PlayFunction(int amount);
 
     [Serializable]
     public class Card

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Arcomage.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Entities
 {
-    class Game
+    public class Game
     {
+        public Players Players { get; set; }
 
+        public void Run()
+        {
+            var cardDelInit = new CardDelegateInitializator(this.Players);
+        }
     }
 }

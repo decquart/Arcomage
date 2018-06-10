@@ -25,8 +25,8 @@ namespace Arcomage.Entities
             var length = 3; 
             for (int i = 0; i < length; i++)
             {
-                GiveCard(players.FirstPlayer);
-                GiveCard(players.SecondPlayer);
+                GiveCard(players.CurrentPlayer);
+                GiveCard(players.EnemyPlayer);
             }
 
         }

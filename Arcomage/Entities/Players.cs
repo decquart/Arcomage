@@ -8,7 +8,7 @@ namespace Arcomage.Entities
 {
     public class Players
     {
-        public User FirstPlayer { get; set; }
-        public User SecondPlayer { get; set; }
+        public User CurrentPlayer { get; set; }
+        public User EnemyPlayer { get; set; }
     }
 }

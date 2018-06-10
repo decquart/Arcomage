@@ -6,7 +6,10 @@
     "GemCost": "0",
     "RecruitCost": "0",
     "Colour": "Red",
-    "IsPlayAgain": "false"
+    "IsPlayAgain": "false",
+    "Methods": [ "AddQuarry" ],
+    "Arguments": [1]
+
   },
   {
     "Name": "Spell Weavers",
@@ -15,7 +18,9 @@
     "GemCost": "3",
     "RecruitCost": "0",
     "Colour": "Blue",
-    "IsPlayAgain": "false"
+    "IsPlayAgain": "false",
+    "Methods": [ "AddMagic", "ADDMAGIC" ],
+    "Arguments": [1, 818]
   },
   {
     "Name": "Minotaur",
@@ -24,7 +29,9 @@
     "GemCost": "0",
     "RecruitCost": "3",
     "Colour": "Green",
-    "IsPlayAgain": "false"
+    "IsPlayAgain": "false",
+    "Methods": [ "AddDungeon" ],
+    "Arguments": [1]
   },
   {
     "Name": "Big Wall",
@@ -33,7 +40,9 @@
     "GemCost": "0",
     "RecruitCost": "0",
     "Colour": "Red",
-    "IsPlayAgain": "false"
+    "IsPlayAgain": "false",
+    "Methods": [ "AddWall" ],
+    "Arguments": [6]
   },
   {
     "Name": "Sapphire",
@@ -42,7 +51,9 @@
     "GemCost": "10",
     "RecruitCost": "0",
     "Colour": "Blue",
-    "IsPlayAgain": "false"
+    "IsPlayAgain": "false",
+    "Methods": [ "AddCastle" ],
+    "Arguments": [11]
   },
   {
     "Name": "Slasher",
@@ -51,6 +62,8 @@
     "GemCost": "0",
     "RecruitCost": "5",
     "Colour": "Green",
-    "IsPlayAgain": "false"
+    "IsPlayAgain": "false",
+    "Methods": [ "Damage" ],
+    "Arguments": [ 6 ]
   }
 ]
