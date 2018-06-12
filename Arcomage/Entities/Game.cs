@@ -1,4 +1,5 @@
-﻿using Arcomage.Services;
+﻿using Arcomage.Interfaces;
+using Arcomage.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,24 @@ namespace Arcomage.Entities
     public class Game
     {
         public Players Players { get; set; }
+        public Deck CurrentDeck { get; set; }
+        private IUserData _users;       
 
+        public Game(IUserData users)
+        {
+            _users = users;
+            Players = new Players();            
+        }
+
+        public void Initialize()
+        {
+            Players.CurrentPlayer = _users.Get(1);
+            Players.EnemyPlayer = _users.Get(2);
+            CurrentDeck = new DeckInitializer(this).Set();
+        }
         public void Run()
         {
-            var cardDelInit = new CardDelegateInitializator(this.Players);
+
         }
     }
 }
