@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Interfaces
 {
-    interface IUserData
+    public interface IUserData
     {
         IEnumerable<User> GetAll();
         User Get(int id);

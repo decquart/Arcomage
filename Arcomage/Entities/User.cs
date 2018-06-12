@@ -12,7 +12,7 @@ namespace Arcomage.Entities
         public string Name { get; set; }
         public string Email { get; set; }
         public Castle Castle { get; set; }
-        public ICollection<Card> Hand;
+        public List<Card> Hand;
         public User()
         {
             Hand = new List<Card>();
