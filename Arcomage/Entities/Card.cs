@@ -18,6 +18,8 @@ namespace Arcomage.Entities
         public int RecruitCost { get; set; }
         public string Colour { get; set; }
         public bool IsPlayAgain { get; set; }
-        public PlayFunction Del { get; set; }        
+        public PlayFunction Del { get; set; }
+        public string Method { get; set; }
+        public int Argument { get; set; }
     }
 }
