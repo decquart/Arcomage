@@ -7,8 +7,8 @@
     "RecruitCost": "0",
     "Colour": "Red",
     "IsPlayAgain": "false",
-    "Methods": [ "AddQuarry" ],
-    "Arguments": [1]
+    "Method":  "AddQuarry" ,
+    "Argument": 1
 
   },
   {
@@ -19,8 +19,8 @@
     "RecruitCost": "0",
     "Colour": "Blue",
     "IsPlayAgain": "false",
-    "Methods": [ "AddMagic", "ADDMAGIC" ],
-    "Arguments": [1, 818]
+    "Method":  "AddMagic" ,
+    "Argument": 1
   },
   {
     "Name": "Minotaur",
@@ -30,8 +30,8 @@
     "RecruitCost": "3",
     "Colour": "Green",
     "IsPlayAgain": "false",
-    "Methods": [ "AddDungeon" ],
-    "Arguments": [1]
+    "Method": "AddDungeon" ,
+    "Argument": 1
   },
   {
     "Name": "Big Wall",
@@ -41,8 +41,8 @@
     "RecruitCost": "0",
     "Colour": "Red",
     "IsPlayAgain": "false",
-    "Methods": [ "AddWall" ],
-    "Arguments": [6]
+    "Method": "AddWall",
+    "Argument": 6
   },
   {
     "Name": "Sapphire",
@@ -52,8 +52,8 @@
     "RecruitCost": "0",
     "Colour": "Blue",
     "IsPlayAgain": "false",
-    "Methods": [ "AddCastle" ],
-    "Arguments": [11]
+    "Method": "AddCastle",
+    "Argument": 11
   },
   {
     "Name": "Slasher",
@@ -63,7 +63,7 @@
     "RecruitCost": "5",
     "Colour": "Green",
     "IsPlayAgain": "false",
-    "Methods": [ "Damage" ],
-    "Arguments": [ 6 ]
+    "Method": "Damage" ,
+    "Argument": 6 
   }
 ]
