@@ -15,10 +15,13 @@ namespace DAL.Repositories
     {
 
         private ApplicationContext db;
-
         private UserManager userManager;
         private HighScoreRepository highScore;
-       
+
+        public UnitOfWork(string connectionString)
+        {
+            db = new ApplicationContext(connectionString);
+        }
 
         public UserManager Users
         {
@@ -45,7 +48,7 @@ namespace DAL.Repositories
             }
         }
 
-        public IRepository<HighScore, int> Messages
+        public IRepository<HighScore, int> HighScores
         {
             get
             {

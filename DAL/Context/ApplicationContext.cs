@@ -10,7 +10,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 namespace Arcomage.Context
 {
     public class ApplicationContext : IdentityDbContext<User>
-    {  
+    {
+        public DbSet<HighScore> HighScore { get; set; }
         public ApplicationContext(string connectionString) : base(connectionString)
         {
             

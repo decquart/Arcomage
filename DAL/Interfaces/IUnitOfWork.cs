@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
-        IRepository<HighScore, int> Messages { get; }
+        IRepository<HighScore, int> HighScores { get; }
         UserManager Users { get; }
         Task SaveAsync();
         void Save();
