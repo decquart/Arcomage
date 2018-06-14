@@ -22,7 +22,7 @@ namespace Arcomage.Entities
         public void Deal(Players players)
         {
             //amount of cards, which player'll be have, should to change hardcode value!!!
-            var length = 3; 
+            var length = 6; 
             for (int i = 0; i < length; i++)
             {
                 GiveCard(players.CurrentPlayer);
@@ -31,7 +31,7 @@ namespace Arcomage.Entities
 
         }
 
-        public void GiveCard(User player)
+        public void GiveCard(UserDTO player)
         {
             var card = Cards.FirstOrDefault();
             if(card != null)
@@ -40,6 +40,13 @@ namespace Arcomage.Entities
                 Cards.Remove(card);
             }
         }
+
+        public void PushCard(Card card)
+        {
+            if (card == null)
+                return;
+            Cards.Add(card);
+        }        
 
 
         /*
