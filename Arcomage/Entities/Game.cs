@@ -26,9 +26,19 @@ namespace Arcomage.Entities
             Players.EnemyPlayer = _users.Get(2);
             CurrentDeck = new DeckInitializer(this).Set();
         }
+
         public void Run()
         {
-
+            Initialize();
+            CurrentDeck.Shuffle();
+            CurrentDeck.Deal(Players);
+            while (true)
+            {               
+                var card = Players.CurrentPlayer.Hand.FirstOrDefault();
+                card.Del(card.Argument);
+                var player = Players.CurrentPlayer;
+                Console.ReadLine();
+            }
         }
     }
 }

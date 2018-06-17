@@ -51,8 +51,6 @@ namespace Arcomage.Services
                 //    }
                 //}
             }
-
-            Console.ReadLine();
         }
 
 

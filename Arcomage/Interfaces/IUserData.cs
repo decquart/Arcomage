@@ -9,7 +9,7 @@ namespace Arcomage.Interfaces
 {
     public interface IUserData
     {
-        IEnumerable<User> GetAll();
-        User Get(int id);
+        IEnumerable<UserDTO> GetAll();
+        UserDTO Get(string id);
     }
 }

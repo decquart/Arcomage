@@ -8,24 +8,24 @@ namespace Arcomage.Data
 {
     public class InMemoryUsers : IUserData
     {
-        List<User> currentUsers;
+        List<UserDTO> currentUsers;
 
         public InMemoryUsers()
         {
-            currentUsers = new List<User>
+            currentUsers = new List<UserDTO>
             {
-                new User { Id = 1, Email = "asasaaawe", Name = "Bob", Castle = new DefaultCastleInitializer().Set() },
-                new User { Id = 2, Email = "pqwoeapfk", Name = "Petro", Castle = new DefaultCastleInitializer().Set() },
-                new User { Id = 3, Email = "NANdlkasljd", Name = "Ivan", Castle = new DefaultCastleInitializer().Set() }
+                new UserDTO { Id = "1", Email = "asasaaawe", Name = "Bob", Castle = new DefaultCastleInitializer().Set() },
+                new UserDTO { Id = "2", Email = "pqwoeapfk", Name = "Petro", Castle = new DefaultCastleInitializer().Set() },
+                new UserDTO { Id = "3", Email = "NANdlkasljd", Name = "Ivan", Castle = new DefaultCastleInitializer().Set() }
             };
         }
         
-        public User Get(int id)
+        public UserDTO Get(string id)
         {
             return currentUsers.FirstOrDefault(u => u.Id == id);
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<UserDTO> GetAll()
         {
             return currentUsers.OrderBy(u => u.Id);
         }

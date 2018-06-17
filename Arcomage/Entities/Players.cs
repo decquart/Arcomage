@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Arcomage.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,14 @@ namespace Arcomage.Entities
 {
     public class Players
     {
-        public User CurrentPlayer { get; set; }
-        public User EnemyPlayer { get; set; }
+        public UserDTO CurrentPlayer { get; set; }
+        public UserDTO EnemyPlayer { get; set; }
+
+        public void UpdatePlayerInfo()
+        {
+
+        }
     }
+
+   
 }
