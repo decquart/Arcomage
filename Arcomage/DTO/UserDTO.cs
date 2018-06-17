@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace Arcomage.Entities
 {
-    public class User
+    public class UserDTO
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
+
+        public int Victories { get; set; }
+        public int Defeats { get; set; }
+
         public Castle Castle { get; set; }
         public List<Card> Hand;
-        public User()
+        public UserDTO()
         {
             Hand = new List<Card>();
         }
