@@ -1,0 +1,17 @@
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\Web.deps.json
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\Web.runtimeconfig.json
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\Web.runtimeconfig.dev.json
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\Web.dll
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\Web.pdb
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\Arcomage.exe
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\DAL.dll
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\Arcomage.pdb
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\Arcomage.exe.config
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\DAL.pdb
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\DAL.dll.config
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\obj\Debug\netcoreapp2.0\Web.csprojResolveAssemblyReference.cache
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\obj\Debug\netcoreapp2.0\Web.csproj.CoreCompileInputs.cache
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\obj\Debug\netcoreapp2.0\Web.AssemblyInfoInputs.cache
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\obj\Debug\netcoreapp2.0\Web.AssemblyInfo.cs
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\obj\Debug\netcoreapp2.0\Web.dll
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\obj\Debug\netcoreapp2.0\Web.pdb
