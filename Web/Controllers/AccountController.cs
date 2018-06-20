@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arcomage.DTO;
 using Arcomage.Entities;
 using Arcomage.Interfaces;
 using AutoMapper;
@@ -18,10 +19,10 @@ namespace Web.Controllers
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
 
-        public AccountController(IUserService userService, IMapper mapper)
+        public AccountController(IUserService userService)
         {
             _userService = userService;
-            _mapper = mapper;
+           // _mapper = mapper;
         }
 
         //public async Task<IActionResult> Register(RegisterModel model)

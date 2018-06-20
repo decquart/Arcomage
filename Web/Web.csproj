@@ -6,13 +6,9 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.0" />
-    <PackageReference Include="EntityFramework" Version="6.1.0" />
-    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.1" />
-    <PackageReference Include="Microsoft.AspNet.Identity.EntityFramework" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNet.Identity.Owin" Version="2.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
-    <PackageReference Include="Ninject" Version="3.3.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,11 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Arcomage\Arcomage.csproj" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\Arcomage\Arcomage.csproj" />
+    <ProjectReference Include="..\DIContainer\DIContainer.csproj" />
   </ItemGroup>
 
 </Project>

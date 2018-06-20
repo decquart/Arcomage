@@ -15,3 +15,9 @@ C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\obj\Debug\netcoreapp2.0\W
 C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\obj\Debug\netcoreapp2.0\Web.AssemblyInfo.cs
 C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\obj\Debug\netcoreapp2.0\Web.dll
 C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\obj\Debug\netcoreapp2.0\Web.pdb
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\DIContainer.dll
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\DIContainer.pdb
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\Microsoft.AspNet.Identity.Core.dll
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\Microsoft.AspNet.Identity.Core.xml
+C:\Users\decqu\Dropbox\workspace\C#\eleks\Arcomage\Web\bin\Debug\netcoreapp2.0\Microsoft.AspNet.Identity.EntityFramework.xml

@@ -1,15 +1,10 @@
-﻿using Arcomage.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Arcomage.Services;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Arcomage.Services.Arcomage.Services;
 
 namespace Arcomage.Services
 {
-   public class DeckInitializer
+    public class DeckInitializer
     {
         private Deck _deck = new Deck();
         private CardBehavior cardBehavior;
@@ -29,7 +24,7 @@ namespace Arcomage.Services
         public void DelegateInitialize(List<Card> cardList)
         {
             var concertedCardDictionary = ConcertedCardDictionary();
-            
+
             // it'll be explain later )
             foreach (var card in cardList)
             {
@@ -37,7 +32,7 @@ namespace Arcomage.Services
                 {
                     if (card.Method == keyVal.Key)
                         card.Del += keyVal.Value;
-                }             
+                }
 
 
                 //foreach (var methodstring in jsonItem)

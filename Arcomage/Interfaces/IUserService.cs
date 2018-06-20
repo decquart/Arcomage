@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Arcomage.DTO;
+using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Arcomage.Entities;
-using Microsoft.AspNet.Identity;
-
 
 namespace Arcomage.Interfaces
 {

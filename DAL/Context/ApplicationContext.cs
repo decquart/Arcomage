@@ -1,20 +1,18 @@
-﻿using System;
+﻿using DAL.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
-using DAL.Entities;
-using Microsoft.AspNet.Identity.EntityFramework;
+ 
 
-namespace Arcomage.Context
-{
+namespace DAL.Context
+{    
     public class ApplicationContext : IdentityDbContext<User>
     {
-        public DbSet<HighScore> HighScore { get; set; }
-        public ApplicationContext(string connectionString) : base(connectionString)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
-            
-        }        
-    }
+
+        }
+    }    
 }

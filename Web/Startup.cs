@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using Arcomage.Infrastructure;
 using Arcomage.Interfaces;
 using Arcomage.Services;
+using DIContainer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Ninject;
-using Ninject.Modules;
-using Web.Models;
-using Ninject.Modules;
-using Web.Util;
 
 namespace Web
 {
@@ -29,21 +21,27 @@ namespace Web
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddScoped<IUserService, UserService>();
+            services.Load(Configuration.GetConnectionString("DefultConnection"));
 
-            NinjectModule module = new NinjectRegistrations();
-            NinjectModule serviceModule = new ServiceModule("DefaultConnection");
-            var container = new StandardKernel(module, serviceModule);
-            return container;
+
+            // NinjectModule module = new NinjectRegistrations();
+            // NinjectModule serviceModule = new ServiceModule(Configuration.GetConnectionString("DefaultConnection"));
+            // var  container = new StandardKernel(module, serviceModule);
+
+            //// var Kernel = new KernelConfiguration(module, serviceModule);
+
+            // return container;
 
             //services.AddScoped<IUserService, UserService>();
             //services.AddScoped<ServiceModule>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory logger)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {

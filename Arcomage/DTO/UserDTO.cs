@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Arcomage.Entities;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Arcomage.Entities
+namespace Arcomage.DTO
 {
     public class UserDTO
     {
@@ -14,13 +13,6 @@ namespace Arcomage.Entities
         public string Password { get; set; }
 
         public int Victories { get; set; }
-        public int Defeats { get; set; }
-
-        public Castle Castle { get; set; }
-        public List<Card> Hand;
-        public UserDTO()
-        {
-            Hand = new List<Card>();
-        }
+        public int Defeats { get; set; }        
     }
 }

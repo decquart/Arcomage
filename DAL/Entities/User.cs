@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,12 +14,14 @@ namespace DAL.Entities
         [MaxLength(25)]
         public string Name { get; set; }
 
-        public  HighScore HighScore { get; set; }
+        public int Victories { get; set; }
+        public int Defeats { get; set; }
 
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
-        {
-            return await manager.CreateIdentityAsync(this, authenticationType);
-        }
+
+        //public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
+        //{
+        //    return await manager.CreateIdentityAsync(this, authenticationType);
+        //}
     }
 }

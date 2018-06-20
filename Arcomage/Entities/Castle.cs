@@ -1,17 +1,14 @@
 ﻿using Arcomage.Interfaces;
-using Arcomage.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Arcomage.Entities
 {
     public class Castle : IBuilding
     {
         public int Height { get; set; }
-        public Wall Wall{ get; set; }
+        public int Wall { get; set; }
 
         //resource
         public int Bricks { get; set; }
@@ -34,9 +31,8 @@ namespace Arcomage.Entities
             if (Gems < 0) Gems = 0;
             if (Recruits < 0) Recruits = 0;
 
-            if (Wall.Height < 0)
-                Wall.Height = 0;
+            if (Wall < 0)
+                Wall = 0;
         }
     }
 }
- 

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Arcomage.DTO;
+using Arcomage.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Arcomage.Entities
+namespace Arcomage1.Entities
 {
     public class Deck
     {
@@ -22,7 +23,7 @@ namespace Arcomage.Entities
         public void Deal(Players players)
         {
             //amount of cards, which player'll be have, should to change hardcode value!!!
-            var length = 6; 
+            var length = 6;
             for (int i = 0; i < length; i++)
             {
                 GiveCard(players.CurrentPlayer);
@@ -31,10 +32,10 @@ namespace Arcomage.Entities
 
         }
 
-        public void GiveCard(UserDTO player)
+        public void GiveCard(ArcomageUserDTO player)
         {
             var card = Cards.FirstOrDefault();
-            if(card != null)
+            if (card != null)
             {
                 player.Hand.Add(card);
                 Cards.Remove(card);
@@ -46,7 +47,7 @@ namespace Arcomage.Entities
             if (card == null)
                 return;
             Cards.Add(card);
-        }        
+        }
 
 
         /*

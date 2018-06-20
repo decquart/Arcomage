@@ -1,13 +1,10 @@
-﻿using Arcomage.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Arcomage.Services
 {
-     public class DefaultCastleInitializer
+    public class DefaultCastleInitializer
     {
         private Castle castle = new Castle();
         private Wall wall = new Wall();
@@ -27,6 +24,5 @@ namespace Arcomage.Services
 
             return castle;
         }
-
     }
 }

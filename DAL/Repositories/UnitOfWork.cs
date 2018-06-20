@@ -1,11 +1,10 @@
-﻿using Arcomage.Context;
+﻿using DAL.Context;
 using DAL.Entities;
 using DAL.Interfaces;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,48 +14,50 @@ namespace DAL.Repositories
     {
 
         private ApplicationContext db;
-        private UserManager userManager;
-        private HighScoreRepository highScore;
+        //private UserManager userManager;
+        //private HighScoreRepository highScore;
 
         public UnitOfWork(string connectionString)
         {
-            db = new ApplicationContext(connectionString);
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
+            var option = optionsBuilder.UseSqlServer(connectionString).Options;
+            db = new ApplicationContext(option);
         }
 
-        public UserManager Users
-        {
-            get
-            {
-                if (userManager == null)
-                    userManager = new UserManager(db)
-                    {
-                        UserValidator = new UserValidator<User>(userManager)
-                        {
-                            AllowOnlyAlphanumericUserNames = false,
-                            RequireUniqueEmail = true
-                        },
-                        PasswordValidator = new PasswordValidator
-                        {
-                            RequiredLength = 6,
-                            RequireNonLetterOrDigit = false,
-                            RequireDigit = false,
-                            RequireLowercase = true,
-                            RequireUppercase = false,
-                        }
-                    };
-                return userManager;
-            }
-        }
+        //public UserManager Users
+        //{
+        //    get
+        //    {
+        //        if (userManager == null)
+        //            userManager = new UserManager(db);
+        //        //{
+        //        //    UserValidator = new UserValidator<User>(userManager)
+        //        //    {
+        //        //        AllowOnlyAlphanumericUserNames = false,
+        //        //        RequireUniqueEmail = true
+        //        //    },
+        //        //    PasswordValidator = new PasswordValidator
+        //        //    {
+        //        //        RequiredLength = 6,
+        //        //        RequireNonLetterOrDigit = false,
+        //        //        RequireDigit = false,
+        //        //        RequireLowercase = true,
+        //        //        RequireUppercase = false,
+        //        //    }
+        //        //};
+        //        return userManager;
+        //    }
+        //}
 
-        public IRepository<HighScore, int> HighScores
-        {
-            get
-            {
-                if (highScore == null)
-                    highScore = new HighScoreRepository(db);
-                return highScore;
-            }
-        }
+        //public IRepository<HighScore, int> HighScores
+        //{
+        //    get
+        //    {
+        //        if (highScore == null)
+        //            highScore = new HighScoreRepository(db);
+        //        return highScore;
+        //    }
+        //}
 
         public void Save()
         {

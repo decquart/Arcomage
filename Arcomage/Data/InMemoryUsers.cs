@@ -1,8 +1,6 @@
-﻿using Arcomage.Entities;
-using Arcomage.Interfaces;
-using Arcomage.Services;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 
 namespace Arcomage.Data
 {
@@ -19,7 +17,7 @@ namespace Arcomage.Data
                 new UserDTO { Id = "3", Email = "NANdlkasljd", Name = "Ivan", Castle = new DefaultCastleInitializer().Set() }
             };
         }
-        
+
         public UserDTO Get(string id)
         {
             return currentUsers.FirstOrDefault(u => u.Id == id);
