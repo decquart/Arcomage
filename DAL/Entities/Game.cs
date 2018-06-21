@@ -1,21 +1,23 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    public class User : IdentityUser
-    {        
+    public class Game
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
         [Required]
-        [MaxLength(25)]
+        [MaxLength(50)]
         public string Name { get; set; }
 
         public ICollection<Score> Scores { get; set; }
-             = new List<Score>();
+                 = new List<Score>();
+
     }
 }
