@@ -1,11 +1,8 @@
 ﻿using DAL.Context;
 using DAL.Entities;
 using DAL.Interfaces;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.Repositories
@@ -14,50 +11,33 @@ namespace DAL.Repositories
     {
 
         private ApplicationContext db;
-        //private UserManager userManager;
-        //private HighScoreRepository highScore;
+        private GameRepository gameRepository;
+        private ScoreRepository scoreRepository;
 
-        public UnitOfWork(string connectionString)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
-            var option = optionsBuilder.UseSqlServer(connectionString).Options;
-            db = new ApplicationContext(option);
+        public UnitOfWork(DbContextOptions options)
+        {           
+            db = new ApplicationContext(options);
         }
 
-        //public UserManager Users
-        //{
-        //    get
-        //    {
-        //        if (userManager == null)
-        //            userManager = new UserManager(db);
-        //        //{
-        //        //    UserValidator = new UserValidator<User>(userManager)
-        //        //    {
-        //        //        AllowOnlyAlphanumericUserNames = false,
-        //        //        RequireUniqueEmail = true
-        //        //    },
-        //        //    PasswordValidator = new PasswordValidator
-        //        //    {
-        //        //        RequiredLength = 6,
-        //        //        RequireNonLetterOrDigit = false,
-        //        //        RequireDigit = false,
-        //        //        RequireLowercase = true,
-        //        //        RequireUppercase = false,
-        //        //    }
-        //        //};
-        //        return userManager;
-        //    }
-        //}
+        public IRepository<Game> Games
+        {
+            get
+            {
+                if (gameRepository == null)
+                    gameRepository = new GameRepository(db);
+                return gameRepository;
+            }
+        }
 
-        //public IRepository<HighScore, int> HighScores
-        //{
-        //    get
-        //    {
-        //        if (highScore == null)
-        //            highScore = new HighScoreRepository(db);
-        //        return highScore;
-        //    }
-        //}
+        public IRepository<Score> Scores
+        {
+            get
+            {
+                if (scoreRepository == null)
+                    scoreRepository = new ScoreRepository(db);
+                return scoreRepository;
+            }
+        }
 
         public void Save()
         {

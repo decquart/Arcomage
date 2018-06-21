@@ -1,4 +1,5 @@
-﻿using DAL.Repositories;
+﻿using DAL.Entities;
+using DAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,8 @@ namespace DAL.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         //UserManager Users { get; }
+        IRepository<Game> Games { get; }
+        IRepository<Score > Scores { get; }
         Task SaveAsync();
         void Save();
     }
