@@ -10,9 +10,20 @@ namespace DAL.Context
 {    
     public class ApplicationContext : IdentityDbContext<User>
     {
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        public DbSet<Game> Games { get; set; }
+        public DbSet<Score> Scores { get; set; }
+
+        public ApplicationContext(DbContextOptions options) : base(options)
         {
 
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            // Customize the ASP.NET Identity model and override the defaults if needed.
+            // For example, you can rename the ASP.NET Identity table names and more.
+            // Add your customizations after calling base.OnModelCreating(builder);
         }
     }    
 }
