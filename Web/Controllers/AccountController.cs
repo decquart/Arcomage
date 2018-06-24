@@ -1,51 +1,71 @@
-﻿using System;
+﻿using AutoMapper;
+using BLL.DTO;
+using DAL.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Arcomage.DTO;
-using Arcomage.Entities;
-using Arcomage.Interfaces;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Web.Models;
 
-namespace Web.Controllers 
+namespace WEB.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/Account")]
-    public class AccountController : Controller
-    {
-        private readonly IUserService _userService;
-        private readonly IMapper _mapper;
-
-        public AccountController(IUserService userService)
+   
+        [AllowAnonymous]
+        [Produces("application/json")]
+        [Route("api/Account")]
+        public class AccountController : Controller
         {
-            _userService = userService;
-           // _mapper = mapper;
-        }
+            private readonly UserManager<User> _userManager;
+            private readonly SignInManager<User> _signInManager;
+            private readonly IMapper _mapper;
 
-        //public async Task<IActionResult> Register(RegisterModel model)
-        //{
-        //    return Ok();
-        //}
+            public AccountController(UserManager<User> userManager, IMapper mapper, SignInManager<User> signInManager)
+            {
+                _userManager = userManager;
+                _signInManager = signInManager;
+                _mapper = mapper;
+            }
 
-        [Route("")]
+            //public async Task<IActionResult> Register(RegisterModel model)
+            //{
+            //    return Ok();
+            //}
+
+
+
+            [Route("")]
+            [HttpGet]
+            public IActionResult GetAll()
+            {
+                try
+                {
+                User.Identity.GetUserId();
+                //var usersDTO = _userManager.;
+                //    if (usersDTO.ToList().Count == 0)
+                //        throw new Exception("Users not found");
+                //    //var users = _mapper.Map<IEnumerable<UserDTO>, List<UserModel>>(usersDTO);
+                    return Ok();
+                }
+                catch (Exception e)
+                {
+                    return BadRequest(e.ToString());
+                }
+            }
+
         [HttpGet]
-        public IActionResult GetAll()
+        [Route("create")]
+        public IActionResult Register()
         {
-            try
-            {
-                var usersDTO = _userService.GetUsers();
-                if (usersDTO.ToList().Count == 0)
-                    throw new Exception("Users not found");
-                var users = _mapper.Map<IEnumerable<UserDTO>, List<UserModel>>(usersDTO);
-                return Json(users);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.ToString());
-            }
+            //if (user == null)
+            //    return BadRequest();
+
+           var user =  _userManager.CreateAsync(new User { UserName = "testt", Email = "decquart@gmail.com" });
+
+           
+            return Ok();
         }
     }
+    
 }
