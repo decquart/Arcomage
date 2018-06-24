@@ -1,5 +1,4 @@
 ﻿using DAL.Entities;
-using DAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +10,7 @@ namespace DAL.Interfaces
     {
         //UserManager Users { get; }
         IRepository<Game> Games { get; }
-        IRepository<Score > Scores { get; }
+        IRepository<Score> Scores { get; }
         Task SaveAsync();
         void Save();
     }

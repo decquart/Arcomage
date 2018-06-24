@@ -1,15 +1,17 @@
-﻿
-using Arcomage.Infrastructure;
-using Arcomage.Interfaces;
-using Arcomage.Services;
-using DIContainer;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using BLL.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Web
+namespace WEB
 {
     public class Startup
     {
@@ -23,21 +25,16 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-            services.AddScoped<IUserService, UserService>();
-            services.Load(Configuration.GetConnectionString("DefultConnection"));
+            //services.Configure<CookiePolicyOptions>(options =>
+            //{
+            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+            //    options.CheckConsentNeeded = context => true;
+            //    options.MinimumSameSitePolicy = SameSiteMode.None;
+            //});
+            var connStr = Configuration.GetConnectionString("DefaultConnection");            
+            services.Load(connStr);
 
-
-            // NinjectModule module = new NinjectRegistrations();
-            // NinjectModule serviceModule = new ServiceModule(Configuration.GetConnectionString("DefaultConnection"));
-            // var  container = new StandardKernel(module, serviceModule);
-
-            //// var Kernel = new KernelConfiguration(module, serviceModule);
-
-            // return container;
-
-            //services.AddScoped<IUserService, UserService>();
-            //services.AddScoped<ServiceModule>();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,20 +42,19 @@ namespace Web
         {
             if (env.IsDevelopment())
             {
-                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
             }
-
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
+            }
 
             app.UseAuthentication();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
-
+            app.UseMvc();
         }
     }
 }
