@@ -4,18 +4,17 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
- 
 
 namespace DAL.Context
-{    
+{
     public class ApplicationContext : IdentityDbContext<User>
     {
         public DbSet<Game> Games { get; set; }
         public DbSet<Score> Scores { get; set; }
 
-        public ApplicationContext(DbContextOptions options) : base(options)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
-
+            Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -25,5 +24,5 @@ namespace DAL.Context
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
-    }    
+    }
 }
