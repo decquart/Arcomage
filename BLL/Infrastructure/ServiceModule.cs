@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using BLL.DTO;
+using BLL.Interfaces;
+using BLL.Services;
 using DAL.Context;
 using DAL.Entities;
 using DAL.Interfaces;
@@ -18,7 +20,7 @@ namespace BLL.Infrastructure
         {
             services.AddDbContext<ApplicationContext>(opt => opt.UseSqlServer(connStr));
 
-            //var optionsBuilder = 
+            services.AddTransient<IGameService, GameService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddIdentity<User, IdentityRole>()
@@ -28,6 +30,8 @@ namespace BLL.Infrastructure
             var mapperConfiguration = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<User, UserDTO>();
+                cfg.CreateMap<Game, GameDto>();
+                cfg.CreateMap<Score, ScoreDto>();
                // cfg.CreateMap<User, ArcomageUserDTO>();
 
             });
