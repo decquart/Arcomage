@@ -3,20 +3,21 @@ using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-
         private ApplicationContext db;
         private GameRepository gameRepository;
         private ScoreRepository scoreRepository;
 
-        public UnitOfWork(DbContextOptions options)
-        {           
-            db = new ApplicationContext(options);
+        public UnitOfWork(ApplicationContext options)
+        {
+            db = options;
         }
 
         public IRepository<Game> Games
