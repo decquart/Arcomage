@@ -41,7 +41,6 @@ namespace WEB.Controllers
             {
                 try
                 {
-                User.Identity.GetUserId();
                 //var usersDTO = _userManager.;
                 //    if (usersDTO.ToList().Count == 0)
                 //        throw new Exception("Users not found");
