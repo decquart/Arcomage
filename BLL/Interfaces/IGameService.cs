@@ -6,8 +6,12 @@ using System.Text;
 
 namespace BLL.Interfaces
 {
-    interface IGameService
+    public interface IGameService
     {
+        //create
+        void CreateGame(GameDto game);
+
+        //read
         IEnumerable<GameDto> GetGameList();
         GameDto Get(int gameId);
     }

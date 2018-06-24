@@ -20,6 +20,16 @@ namespace BLL.Services
             _mapper = mapper;
         }
 
+        public void CreateGame(GameDto game)
+        {
+            if (game == null)
+                throw new Exception ( "Game is not valid" );
+            var _game = _mapper.Map<GameDto, Game>(game);
+            _db.Games.Create(_game);
+            _db.Save();
+            
+        }
+
         public GameDto Get(int gameId)
         {
             var game = _db.Games.Get(gameId);
