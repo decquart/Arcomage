@@ -32,7 +32,11 @@ namespace WEB
             //    options.MinimumSameSitePolicy = SameSiteMode.None;
             //});
             var connStr = Configuration.GetConnectionString("DefaultConnection");            
-            services.Load(connStr);
+
+            services.LoadMapperConfiguration().
+                LoadServicesConfiguration().
+                LoadIdentityConfiguration().
+                LoadContextConfiguration(connStr);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
