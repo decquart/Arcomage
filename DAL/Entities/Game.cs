@@ -15,6 +15,10 @@ namespace DAL.Entities
         [MaxLength(50)]
         public string Name { get; set; }
 
+        [Required]
+        [MaxLength(500)]
+        public string Description { get; set; }
+
         public virtual ICollection<Score> Scores { get; set; }
                  = new List<Score>();
 
