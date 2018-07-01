@@ -32,7 +32,7 @@ namespace BLL.Services
             _userManager = userManager;
             _signInManager = signInManager;
         }
-               
+
 
         public IEnumerable<UserDTO> GetUsers()
         {
@@ -44,32 +44,48 @@ namespace BLL.Services
         {
             var user = _mapper.Map<UserDTO, User>(userDTO);
             user.UserName = userDTO.Email;
-            var res = await _userManager.CreateAsync(user, userDTO.Password); 
+            var res = await _userManager.CreateAsync(user, userDTO.Password);
 
             if (res.Succeeded)
-            {            
+            {
                 await _signInManager.SignInAsync(user, false);
                 var test = user;
                 return IdentityResult.Success;
             }
             return IdentityResult.Failed();
         }
-        
+
         public async Task<IdentityResult> Login(UserDTO userDTO)
         {
-            var result = 
+            var result =
                 await _signInManager.PasswordSignInAsync(userDTO.Email, userDTO.Password, false, false);
-           
+
             if (result.Succeeded)
                 return IdentityResult.Success;
 
             return IdentityResult.Failed();
-        }      
+        }
 
         public async Task<IdentityResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return IdentityResult.Success;
+        }
+
+        public async Task<User> GetUserById(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                throw new Exception($"User with id {userId} does not exist!");
+            return user;
+        }
+
+        public async Task<User> GetUserByEmail(string userEmail)
+        {
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            if (user == null)
+                throw new Exception($"User with email {userEmail} does not exist!");
+            return user;
         }
     }
 }

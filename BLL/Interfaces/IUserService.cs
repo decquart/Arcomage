@@ -1,4 +1,5 @@
 ﻿using BLL.DTO;
+using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,9 +14,10 @@ namespace BLL.Interfaces
         Task<IdentityResult> Logout();
 
         //read
-        //UserDTO GetUserById(int userId);
-        //UserDTO GetUserByName(string userName);
+        Task<User> GetUserById(string userId);
+        Task<User> GetUserByEmail(string userEmail);
         IEnumerable<UserDTO> GetUsers();
+
 
         ////update
         //bool UpdateUserInformation(UserDTO userDTO);
