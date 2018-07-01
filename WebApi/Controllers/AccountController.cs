@@ -29,13 +29,7 @@ namespace WebApi.Controllers
             _userService = userService;
         }
 
-        //public async Task<IActionResult> Register(RegisterModel model)
-        //{
-        //    return Ok();
-        //}
-
-
-
+       
         [Route("")]
         [HttpGet]
         public IActionResult GetAll()
@@ -45,7 +39,6 @@ namespace WebApi.Controllers
                 var users = _userService.GetUsers();
                 if (users.ToList().Count == 0)
                     throw new Exception("Users not found");
-                //var users = _mapper.Map<IEnumerable<UserDTO>, List<UserModel>>(usersDTO);
                 return Ok(users);
             }
             catch (Exception e)
@@ -62,11 +55,43 @@ namespace WebApi.Controllers
                 return BadRequest();
             var usr = new UserDTO { Email = user.Email, Password = user.Password, Name = user.Email };
             var result = _userService.Register(usr).GetAwaiter().GetResult();
-
+            
             if (result == null)
                 return BadRequest();
 
+            var test = User.Identity.IsAuthenticated; //TODO: test = false, but result - ok
+
             return Ok();
         }
+
+
+        [HttpPost]
+        [Route("login")]
+        public IActionResult LogIn([FromBody] RegisterModel user)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();            
+
+            var usr = new UserDTO { Email = user.Email, Password = user.Password, Name = user.Email };
+            var result = _userService.Login(usr).GetAwaiter().GetResult();
+
+            var test = User.Identity.IsAuthenticated; //TODO: test = false, but result - ok
+
+            if (result == null)
+                return BadRequest();
+            
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("logout")]
+        public async Task<IActionResult> LogOut()
+        {
+            var result = await _userService.Logout();
+            if (!result.Succeeded)
+                return BadRequest();
+            return Ok(result);
+        }
+
     }
 }

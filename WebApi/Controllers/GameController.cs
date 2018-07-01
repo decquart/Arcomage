@@ -4,14 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using BLL.DTO;
 using BLL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Game")]
     [ApiController]
-    public class GameController : ControllerBase
+    public class GameController : Controller
     {
         private readonly IGameService _gameService;
 
@@ -20,11 +21,10 @@ namespace WebApi.Controllers
             _gameService = gameService;
         }
 
-        [HttpGet]
-        [Route("{id}")]
-        public IActionResult Get([FromRoute] long gameId)
+        [HttpGet("{id}")]
+        public IActionResult Get(int id) 
         {
-            var game = _gameService.Get((int)gameId);
+            var game = _gameService.Get(id);
 
             if (game == null)
                 return NotFound();
@@ -34,7 +34,7 @@ namespace WebApi.Controllers
 
         [HttpGet]
         [Route("")]
-        public IActionResult GetAll()
+        public IActionResult Get()
         {
             var games = _gameService.GetGameList();
 
