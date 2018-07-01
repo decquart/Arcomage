@@ -3,9 +3,11 @@ using BLL.DTO;
 using BLL.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,8 +23,8 @@ namespace BLL.Services
 
 
         public UserService(IMapper mapper,
-                            IUnitOfWork db, 
-                            UserManager<User> userManager, 
+                            IUnitOfWork db,
+                            UserManager<User> userManager,
                             SignInManager<User> signInManager)
         {
             _mapper = mapper;
@@ -30,32 +32,44 @@ namespace BLL.Services
             _userManager = userManager;
             _signInManager = signInManager;
         }
+               
+
+        public IEnumerable<UserDTO> GetUsers()
+        {
+            var users = _userManager.Users;
+            return _mapper.Map<IEnumerable<User>, List<UserDTO>>(users);
+        }
 
         public async Task<IdentityResult> Register(UserDTO userDTO)
         {
-            var usr = _mapper.Map<UserDTO, User>(userDTO);
+            var user = _mapper.Map<UserDTO, User>(userDTO);
+            user.UserName = userDTO.Email;
+            var res = await _userManager.CreateAsync(user, userDTO.Password); 
 
-           var res = _userManager.CreateAsync(usr);
+            if (res.Succeeded)
+            {            
+                await _signInManager.SignInAsync(user, false);
+                var test = user;
+                return IdentityResult.Success;
+            }
+            return IdentityResult.Failed();
+        }
+        
+        public async Task<IdentityResult> Login(UserDTO userDTO)
+        {
+            var result = 
+                await _signInManager.PasswordSignInAsync(userDTO.Email, userDTO.Password, false, false);
+           
+            if (result.Succeeded)
+                return IdentityResult.Success;
 
-            await _db.SaveAsync();
+            return IdentityResult.Failed();
+        }      
 
-            if (res == null)
-                return IdentityResult.Failed();
-
+        public async Task<IdentityResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
             return IdentityResult.Success;
-            //var user = await _db.Users.FindByEmailAsync(userDTO.Email);
-            //if (user == null)
-            //{
-            //    user = new User
-            //    {
-            //        Name = userDTO.Name
-            //    };
-            //    await _db.Users.CreateAsync(user, userDTO.Password);
-            //    await _db.SaveAsync();
-            //    return IdentityResult.Success;
-            //}
-            //else
-            //    return IdentityResult.Failed($"User with {userDTO.Email} email have already exist");
         }
     }
 }
