@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.DTO;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,8 +7,13 @@ namespace BLL.Interfaces
 {
     public interface IScoreService
     {
-        void AddScore(int userId, int gameId, int value);
+        //create
+        bool AddScore(string userId, int gameId, int value);
 
-        
+        //read
+        IEnumerable<ScoreDtoWithEmail> GetScoresByGame(int gameId);
+
+
+
     }
 }
