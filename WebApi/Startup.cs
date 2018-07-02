@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BLL.Infrastructure;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -32,6 +34,8 @@ namespace WebApi
             //    options.CheckConsentNeeded = context => true;
             //    options.MinimumSameSitePolicy = SameSiteMode.None;
             //});
+           
+
             var connStr = Configuration.GetConnectionString("DefaultConnection");
 
             services.LoadMapperConfiguration().
@@ -56,7 +60,6 @@ namespace WebApi
 
             app.UseAuthentication();
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
             app.UseMvc();
         }
     }

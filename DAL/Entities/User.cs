@@ -7,8 +7,7 @@ using System.Text;
 namespace DAL.Entities
 {
     public class User : IdentityUser
-    {
-       
+    {     
         [Required]
         [MaxLength(25)]
         public string Name { get; set; }

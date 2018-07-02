@@ -60,7 +60,7 @@ namespace BLL.Services
              u => u.Id, 
              (s, u) => new ScoreDtoWithEmail { Id = s.Id, Value = s.Value, Email = u.Email });
 
-            return joinedScore.ToList();
+            return joinedScore.OrderByDescending(s => s.Value).ToList();
         }
     }
 }

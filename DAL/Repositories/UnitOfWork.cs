@@ -67,6 +67,5 @@ namespace DAL.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
     }
 }
