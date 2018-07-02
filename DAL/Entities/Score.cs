@@ -17,10 +17,8 @@ namespace DAL.Entities
         public virtual Game Game { get; set; }
         public int GameId { get; set; }
 
-        [ForeignKey("UserId")]
+        [ForeignKey("AspNetUserId")]
         public virtual User User { get; set; }
-        public string UserId { get; set; }
-
-
+        public string AspNetUserId { get; set; }
     }
 }
