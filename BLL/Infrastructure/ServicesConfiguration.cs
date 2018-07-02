@@ -13,8 +13,10 @@ namespace BLL.Infrastructure
     {
         public static IServiceCollection LoadServicesConfiguration(this IServiceCollection services)
         {
-            services.AddTransient<IGameService, GameService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IScoreService, ScoreService>();
+            services.AddTransient<IGameService, GameService>();
+            services.AddTransient<IUserService, UserService>();
             return services;
         }
     }
