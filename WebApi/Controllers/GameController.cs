@@ -15,10 +15,12 @@ namespace WebApi.Controllers
     public class GameController : Controller
     {
         private readonly IGameService _gameService;
+        private readonly IScoreService _scoreService;
 
-        public GameController(IGameService gameService)
+        public GameController(IGameService gameService, IScoreService scoreService)
         {
             _gameService = gameService;
+            _scoreService = scoreService;
         }
 
         [HttpGet("{id}")]
@@ -54,6 +56,24 @@ namespace WebApi.Controllers
             _gameService.CreateGame(game);
 
             return Ok();
+        }
+
+        //api/game/scores/1
+        [HttpGet]
+        [Route("scores/{id}")]
+        public IActionResult GetScoresByGame(int id)
+        {
+            try
+            {
+                var scores = _scoreService.GetScoresByGame(id);
+
+                return Ok(scores);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+            }
+           
         }
     }
 }
