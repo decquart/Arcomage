@@ -62,5 +62,40 @@ namespace BLL.Services
 
             return joinedScore.OrderByDescending(s => s.Value).ToList();
         }
+       
+
+        public IEnumerable<ScoreDtoWithEmail> GetTotalAverageScore()
+        {
+            var scores = _db.Scores.GetAll();
+            var users = _userManager.Users;
+
+            IEnumerable<ScoreDtoWithEmail> joinedScore = scores.Join(users,
+            s => s.AspNetUserId,
+            u => u.Id,
+            (s, u) => new ScoreDtoWithEmail { Id = s.Id, Value = s.Value, Email = u.Email });
+
+            var grpuped = joinedScore.GroupBy(s => s.Email);
+
+
+            var newUniqAverageScoreEmail = new List<ScoreDtoWithEmail>();
+            foreach (var gr in grpuped)
+            {
+                newUniqAverageScoreEmail.Add(gr.FirstOrDefault());
+            }
+
+            int count = 0;
+            foreach (var gr in grpuped)
+            {
+                int sumScore = 0;
+                foreach (var scr in gr)
+                {
+                    sumScore += scr.Value;
+                }
+                newUniqAverageScoreEmail[count].Value = sumScore;
+                count++;
+            }
+
+            return newUniqAverageScoreEmail;            
+        }
     }
 }

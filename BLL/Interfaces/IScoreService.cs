@@ -12,7 +12,9 @@ namespace BLL.Interfaces
 
         //read
         IEnumerable<ScoreDtoWithEmail> GetScoresByGame(int gameId);
+        IEnumerable<ScoreDtoWithEmail> GetTotalAverageScore();
 
+        //delete
 
 
     }
