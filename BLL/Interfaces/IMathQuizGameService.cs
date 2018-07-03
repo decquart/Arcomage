@@ -6,7 +6,7 @@ namespace BLL.Interfaces
 {
     public interface IMathQuizGameService
     {
-        string GenerateQuestion();
+        void GenerateQuestion();
         bool CheckAnswer(int userAnswer);
 
     }

@@ -12,6 +12,9 @@ namespace BLL.Services
         private readonly IUnitOfWork _db;
         private int CorrectAnswer { get; set; }
         private readonly Random _rnd;
+        private int firstNumber;
+        private int secondNumber;
+        private string problem;
 
         public MathQuizGameService(IUnitOfWork db)
         {
@@ -21,27 +24,43 @@ namespace BLL.Services
 
         public bool CheckAnswer(int userAnswer)
         {
-            if (userAnswer != CorrectAnswer)
-                return false;
-            return true;
+            return userAnswer != CorrectAnswer;
         }
 
-        public string GenerateQuestion()
+        public void GenerateQuestion()
         {
-            var firstNumber = _rnd.Next(1, 100);
-            var secondNumber = _rnd.Next(1, 100) % firstNumber;
-            var newRnd = _rnd.Next(1, 3);
+            firstNumber = _rnd.Next(1, 100);
+            secondNumber = _rnd.Next(1, 100) % firstNumber;
+            var operationRnd = _rnd.Next(1, 3);
 
-            if (newRnd == 1)
+            MathOp((Operation)operationRnd);
+        }
+
+        private void MathOp(Operation op)
+        {
+            switch (op)
             {
-                CorrectAnswer = firstNumber + secondNumber;
-                return $"{firstNumber} + {secondNumber} = ?";
+                case Operation.Add:
+                    CorrectAnswer = firstNumber + secondNumber;
+                    problem = $"{firstNumber} + {secondNumber} = ?";
+                    break;
+
+                case Operation.Subtract:
+                    CorrectAnswer = firstNumber - secondNumber;
+                    problem = $"{firstNumber} - {secondNumber} = ?";
+                    break;
             }
-            else
-            {
-                CorrectAnswer = firstNumber - secondNumber;
-                return $"{firstNumber} - {secondNumber} = ?";
-            }
-        }        
+        }
+
+        public override string ToString()
+        {
+            return problem.ToString();
+        }
+
+        enum Operation
+        {
+            Add = 1,
+            Subtract
+        }
     }
 }
