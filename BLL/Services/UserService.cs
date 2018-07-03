@@ -49,7 +49,6 @@ namespace BLL.Services
             if (res.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                var test = user;
                 return IdentityResult.Success;
             }
             return IdentityResult.Failed();
@@ -87,5 +86,6 @@ namespace BLL.Services
                 throw new Exception($"User with email {userEmail} does not exist!");
             return user;
         }
+
     }
 }
