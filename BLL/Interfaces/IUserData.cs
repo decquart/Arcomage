@@ -7,7 +7,7 @@ namespace BLL.Interfaces
 {
     public interface IUserData
     {
-        IEnumerable<UserDTO> GetAll();
-        UserDTO Get(string id);
+        IEnumerable<ArcomageUserDTO> GetAll();
+        ArcomageUserDTO Get(string id);
     }
 }

@@ -10,11 +10,11 @@ namespace BLL.Data
 {
     public class InMemoryUsers : IUserData
     {
-        List<UserDTO> currentUsers;
+        List<ArcomageUserDTO> currentUsers;
 
         public InMemoryUsers()
         {
-            currentUsers = new List<UserDTO>
+            currentUsers = new List<ArcomageUserDTO>
             {
                 new ArcomageUserDTO { Id = "1", Email = "asasaaawe", Name = "Bob", Castle = new DefaultCastleInitializer().Set() },
                 new ArcomageUserDTO { Id = "2", Email = "pqwoeapfk", Name = "Petro", Castle = new DefaultCastleInitializer().Set() },
@@ -22,12 +22,12 @@ namespace BLL.Data
             };
         }
 
-        public UserDTO Get(string id)
+        public ArcomageUserDTO Get(string id)
         {
             return currentUsers.FirstOrDefault(u => u.Id == id);
         }
 
-        public IEnumerable<UserDTO> GetAll()
+        public IEnumerable<ArcomageUserDTO> GetAll()
         {
             return currentUsers.OrderBy(u => u.Id);
         }
