@@ -18,7 +18,6 @@ namespace BLL.Services
         private readonly IUnitOfWork _db;
         private readonly IMapper _mapper;
 
-
         public ScoreService(UserManager<User> userManager, IUnitOfWork db, IMapper mapper)
         {
             _userManager = userManager;
@@ -30,12 +29,12 @@ namespace BLL.Services
         {
             var user = _userManager.FindByIdAsync(_userId);
             if (user == null)
-                throw new Exception($"User with id {_userId} does not exist!");
+                throw new ArgumentException($"User with id {_userId} does not exist!");
 
             var game = _db.Games.Get(_gameId);
 
             if (game == null)
-                throw new Exception($"Game {_gameId} not found");
+                throw new ArgumentException($"Game {_gameId} not found");
 
             var score = new Score() { Value = _value, GameId = _gameId, AspNetUserId = _userId };
             game.Scores.Add(score);
@@ -49,7 +48,7 @@ namespace BLL.Services
         {
             var game = _db.Games.Get(gameId);
             if (game == null)
-                throw new Exception($"Game {gameId} not found");
+                throw new ArgumentException($"Game {gameId} not found");
 
             var scores = _db.Scores.Find(c => c.GameId.Equals(gameId));
             var usersIQuer = _userManager.Users;
@@ -61,8 +60,7 @@ namespace BLL.Services
              (s, u) => new ScoreDtoWithEmail { Id = s.Id, Value = s.Value, Email = u.Email });
 
             return joinedScore.OrderByDescending(s => s.Value).ToList();
-        }
-       
+        }       
 
         public IEnumerable<ScoreDtoWithEmail> GetTotalAverageScore()
         {
