@@ -1,0 +1,69 @@
+﻿[
+  {
+    "Name": "Miners",
+    "Description": "+1 Qarry",
+    "BrickCost": "3",
+    "GemCost": "0",
+    "RecruitCost": "0",
+    "Colour": "Red",
+    "IsPlayAgain": "false",
+    "Method": "AddQuarry",
+    "Argument": 1
+
+  },
+  {
+    "Name": "Spell Weavers",
+    "Description": "+1 Magic",
+    "BrickCost": "0",
+    "GemCost": "3",
+    "RecruitCost": "0",
+    "Colour": "Blue",
+    "IsPlayAgain": "false",
+    "Method": "AddMagic",
+    "Argument": 1
+  },
+  {
+    "Name": "Minotaur",
+    "Description": "+1 Dungeon",
+    "BrickCost": "0",
+    "GemCost": "0",
+    "RecruitCost": "3",
+    "Colour": "Green",
+    "IsPlayAgain": "false",
+    "Method": "AddDungeon",
+    "Argument": 1
+  },
+  {
+    "Name": "Big Wall",
+    "Description": "+6 Wall",
+    "BrickCost": "5",
+    "GemCost": "0",
+    "RecruitCost": "0",
+    "Colour": "Red",
+    "IsPlayAgain": "false",
+    "Method": "AddWall",
+    "Argument": 6
+  },
+  {
+    "Name": "Sapphire",
+    "Description": "+11 Tower",
+    "BrickCost": "0",
+    "GemCost": "10",
+    "RecruitCost": "0",
+    "Colour": "Blue",
+    "IsPlayAgain": "false",
+    "Method": "AddCastle",
+    "Argument": 11
+  },
+  {
+    "Name": "Slasher",
+    "Description": "6 Damage",
+    "BrickCost": "0",
+    "GemCost": "0",
+    "RecruitCost": "5",
+    "Colour": "Green",
+    "IsPlayAgain": "false",
+    "Method": "Damage",
+    "Argument": 6
+  }
+]
