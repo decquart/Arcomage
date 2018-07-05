@@ -16,7 +16,7 @@ namespace WebApi.Controllers
     [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountController : Controller
     {     
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
@@ -47,14 +47,14 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Route("create")]
-        public IActionResult Register([FromBody] RegisterModel user)
+        public async Task<IActionResult> Register([FromBody] RegisterModel user)
         {   
             try
             {
                 if (!ModelState.IsValid)
                     return BadRequest();
                 var usr = new UserDTO { Email = user.Email, Password = user.Password, Name = user.Email };
-                var result = _userService.Register(usr).GetAwaiter().GetResult();
+                var result = await _userService.Register(usr);
 
                 if (result == null)
                     return BadRequest();
@@ -70,7 +70,7 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Route("login")]
-        public IActionResult LogIn([FromBody] RegisterModel user)
+        public async Task<IActionResult> LogIn([FromBody] RegisterModel user)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace WebApi.Controllers
                     return BadRequest();
 
                 var usr = new UserDTO { Email = user.Email, Password = user.Password, Name = user.Email };
-                var result = _userService.Login(usr).GetAwaiter().GetResult();
+                var result = await _userService.Login(usr);
 
                 if (result == null)
                     return BadRequest();
@@ -95,10 +95,17 @@ namespace WebApi.Controllers
         [Route("logout")]
         public async Task<IActionResult> LogOut()
         {
-            var result = await _userService.Logout();
-            if (!result.Succeeded)
-                return BadRequest();
-            return Ok(result);
+            try
+            {
+                var result = await _userService.Logout();
+                if (!result.Succeeded)
+                    return BadRequest();
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+            }           
         }
 
     }

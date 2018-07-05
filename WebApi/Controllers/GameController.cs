@@ -7,6 +7,7 @@ using BLL.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
 
 namespace WebApi.Controllers
 {
@@ -24,38 +25,59 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id) 
+        public IActionResult Get(int id)
         {
-            var game = _gameService.Get(id);
+            try
+            {
+                var game = _gameService.Get(id);
 
-            if (game == null)
-                return NotFound();
+                if (game == null)
+                    return NotFound();
 
-            return Ok(game);
+                return Ok(game);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+            }
         }
 
         [HttpGet]
         [Route("")]
         public IActionResult Get()
         {
-            var games = _gameService.GetGameList();
+            try
+            {
+                var games = _gameService.GetGameList();
 
-            if (games.Count().Equals(0))
-                return NotFound();
+                if (games.Count().Equals(0))
+                    return NotFound();
 
-            return Ok(games);
+                return Ok(games);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+            }
         }
 
         [HttpPost]
         [Route("create")]
         public IActionResult Create([FromBody] GameDto game)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest();
 
-            _gameService.CreateGame(game);
+                _gameService.CreateGame(game);
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+            }
         }
 
         //api/game/scores/1
@@ -73,7 +95,8 @@ namespace WebApi.Controllers
             {
                 return BadRequest(e.ToString());
             }
-           
         }
+
+
     }
 }

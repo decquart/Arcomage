@@ -24,7 +24,15 @@ namespace WebApi.Controllers
         [Route("")]
         public IActionResult Get()
         {
-            return Ok();
+            try
+            {
+                var scores = _scoreService.GetTotalAverageScore();
+                return Ok(scores);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+            }
         }
 
         [HttpPost]
@@ -37,13 +45,12 @@ namespace WebApi.Controllers
                     return BadRequest();
 
                 _scoreService.AddScore(scoreModel.UserId, scoreModel.GameId, scoreModel.Value);
+                return Ok();
             }
             catch (Exception e)
             {
                 return BadRequest(e.ToString());
-            }
-           
-            return Ok();
+            }           
         }
     }
 } 
