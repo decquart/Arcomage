@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BLL.Interfaces
+namespace BLL.Interfaces.ArcomageGameInterfaces
 {
     public interface IDeckService
     {
