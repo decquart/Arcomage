@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace BLL.Services
+namespace BLL.Helper
 {
     public class CardInitializer
     {
@@ -14,11 +14,6 @@ namespace BLL.Services
             var cards = JsonConvert.DeserializeObject<List<Card>>(File.ReadAllText("Configs/Cards.json"));
 
             return cards;
-        }
-
-        private void CardDelegateInitialize()
-        {
-
         }
     }
 }
