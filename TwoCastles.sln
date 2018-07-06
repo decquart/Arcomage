@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoCastles", "TwoCastles\TwoCastles.csproj", "{EB0B913F-1084-4AB0-AD90-2099DDCAF84E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoCastles", "TwoCastles\TwoCastles.csproj", "{EB0B913F-1084-4AB0-AD90-2099DDCAF84E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoCastles.Entities", "TwoCastles.Entities\TwoCastles.Entities.csproj", "{6AE47F28-1294-41C2-899F-AD0446B72D92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EB0B913F-1084-4AB0-AD90-2099DDCAF84E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB0B913F-1084-4AB0-AD90-2099DDCAF84E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB0B913F-1084-4AB0-AD90-2099DDCAF84E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AE47F28-1294-41C2-899F-AD0446B72D92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AE47F28-1294-41C2-899F-AD0446B72D92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AE47F28-1294-41C2-899F-AD0446B72D92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AE47F28-1294-41C2-899F-AD0446B72D92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
