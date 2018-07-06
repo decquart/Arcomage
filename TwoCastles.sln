@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoCastles", "TwoCastles\Tw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoCastles.Entities", "TwoCastles.Entities\TwoCastles.Entities.csproj", "{6AE47F28-1294-41C2-899F-AD0446B72D92}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoCastles.GameLogic", "TwoCastles.GameLogic\TwoCastles.GameLogic.csproj", "{4F88F6E2-11E2-4110-AED6-BC6F977AF6B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6AE47F28-1294-41C2-899F-AD0446B72D92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AE47F28-1294-41C2-899F-AD0446B72D92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AE47F28-1294-41C2-899F-AD0446B72D92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F88F6E2-11E2-4110-AED6-BC6F977AF6B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F88F6E2-11E2-4110-AED6-BC6F977AF6B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F88F6E2-11E2-4110-AED6-BC6F977AF6B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F88F6E2-11E2-4110-AED6-BC6F977AF6B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
