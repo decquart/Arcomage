@@ -2,14 +2,15 @@
 
 namespace TwoCastles.Entities
 {
-    public abstract class Player
+    public class Player
     {
         public Castle Castle { get; set; }
         public List<Card> Hand;
 
-        protected Player()
+        public Player()
         {
             Hand = new List<Card>();
         }
+        
     }
 }
