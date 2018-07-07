@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using Newtonsoft.Json;
 using TwoCastles.Entities;
 
-namespace TwoCastles.GameLogic.Helpers
+namespace TwoCastles.Data.Helper
 {
-    public class CardInitializer
+    public class JsonParser
     {
         public List<Card> GetCardsFromJson()
         {
