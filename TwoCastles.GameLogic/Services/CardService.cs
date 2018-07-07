@@ -49,7 +49,7 @@ namespace TwoCastles.GameLogic.Services
                     AddCastle(card.Argument, currentPlayer);
                     break;
                 case "Damage":
-                    Damage(card.Argument, currentPlayer);
+                    Damage(card.Argument, oppPlayer);
                     break;
                 case "AddBricks":
                     AddBricks(card.Argument, currentPlayer);
