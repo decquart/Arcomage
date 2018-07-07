@@ -13,6 +13,12 @@ namespace TwoCastles.Data.Repositories
             return InMemoryStore.GetGame();
         }
 
+        public Game GetNewGame()
+        {
+            return InMemoryStore.GetNewGame();
+        }
+
+
         public bool Update(Game game)
         {
             return InMemoryStore.Update(game);
