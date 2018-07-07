@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TwoCastles.Data\TwoCastles.Data.csproj" />
     <ProjectReference Include="..\TwoCastles.Entities\TwoCastles.Entities.csproj" />
   </ItemGroup>
 

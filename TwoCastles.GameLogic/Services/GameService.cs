@@ -31,15 +31,15 @@ namespace TwoCastles.GameLogic.Services
 
 
         // TODO Change this method
-        public string CheckWinner()
+        public string CheckWinner(Game game)
         {
-            if (_game.FirstPlayer.Castle.Height >= 50 ||
-                _game.SecondPlayer.Castle.Height <= 0)
-                return _game.FirstPlayer.Id;
+            if (game.FirstPlayer.Castle.Height >= 50 ||
+                game.SecondPlayer.Castle.Height <= 0)
+                return game.FirstPlayer.Id;
 
-            else if (_game.SecondPlayer.Castle.Height >= 50 ||
-                     _game.FirstPlayer.Castle.Height <= 0)
-                return _game.SecondPlayer.Id;
+            else if (game.SecondPlayer.Castle.Height >= 50 ||
+                     game.FirstPlayer.Castle.Height <= 0)
+                return game.SecondPlayer.Id;
 
             return string.Empty;
         }

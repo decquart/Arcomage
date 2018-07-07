@@ -9,18 +9,16 @@ namespace TwoCastles.GameLogic.Services
 {
     public class DeckService : IDeckService
     {
-        private readonly Game _game;
         private static Random rnd;
-        public DeckService(Game game)
+        public DeckService()
         {
-            _game = game;
             rnd = new Random();
         }
 
-        public void Deal()
+        public void Deal(Game game)
         {
-            var firstUser = _game.FirstPlayer;
-            var secondUser = _game.SecondPlayer;
+            var firstUser = game.FirstPlayer;
+            var secondUser = game.SecondPlayer;
 
             if (firstUser == null || secondUser == null)
                 throw new ArgumentException($"Player is not valid");
@@ -30,40 +28,40 @@ namespace TwoCastles.GameLogic.Services
             var length = 6;
             for (int i = 0; i < length; i++)
             {
-                GiveCardToPlayer(firstUser);
-                GiveCardToPlayer(secondUser);
+                GiveCardToPlayer(game, firstUser);
+                GiveCardToPlayer(game, secondUser);
             }
         }
 
-        public void GiveCardToPlayer(Player player)
+        public void GiveCardToPlayer(Game game, Player player)
         {
-            var card = _game.CurrentDeck.Cards.FirstOrDefault();
+            var card = game.CurrentDeck.Cards.FirstOrDefault();
             //if (card != null)
             //    throw new ArgumentException("Deck doesn't have enought cards");
             if (card != null)
             {
-                _game.CurrentDeck.Cards.Remove(card);
+                game.CurrentDeck.Cards.Remove(card);
                 player.Hand.Add(card);
             }
         }
 
-        public void PushCard(Card card)
+        public void PushCard(Game game, Card card)
         {
             if (card == null)
                 throw new ArgumentException("Card is not valid");
-            _game.CurrentDeck.Cards.Add(card);
+            game.CurrentDeck.Cards.Add(card);
         }
 
-        public void Shuffle()
+        public void Shuffle(Game game)
         {
-            int n = _game.CurrentDeck.Cards.Count;
+            int n = game.CurrentDeck.Cards.Count;
             while (n > 1)
             {
                 n--;
                 int k = rnd.Next(n + 1);
-                Card value = _game.CurrentDeck.Cards[k];
-                _game.CurrentDeck.Cards[k] = _game.CurrentDeck.Cards[n];
-                _game.CurrentDeck.Cards[n] = value;
+                Card value = game.CurrentDeck.Cards[k];
+                game.CurrentDeck.Cards[k] = game.CurrentDeck.Cards[n];
+                game.CurrentDeck.Cards[n] = value;
             }
         }
     }
