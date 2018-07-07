@@ -5,11 +5,13 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoCastles", "TwoCastles\TwoCastles.csproj", "{EB0B913F-1084-4AB0-AD90-2099DDCAF84E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoCastles.Entities", "TwoCastles.Entities\TwoCastles.Entities.csproj", "{6AE47F28-1294-41C2-899F-AD0446B72D92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoCastles.Entities", "TwoCastles.Entities\TwoCastles.Entities.csproj", "{6AE47F28-1294-41C2-899F-AD0446B72D92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoCastles.GameLogic", "TwoCastles.GameLogic\TwoCastles.GameLogic.csproj", "{4F88F6E2-11E2-4110-AED6-BC6F977AF6B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoCastles.GameLogic", "TwoCastles.GameLogic\TwoCastles.GameLogic.csproj", "{4F88F6E2-11E2-4110-AED6-BC6F977AF6B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoCastles.Data", "TwoCastles.Data\TwoCastles.Data.csproj", "{9A7DDB2C-80BB-4BA1-B04A-4A09115533D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoCastles.Data", "TwoCastles.Data\TwoCastles.Data.csproj", "{9A7DDB2C-80BB-4BA1-B04A-4A09115533D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoCastles.Web", "TwoCastles.Web\TwoCastles.Web.csproj", "{F3CA469C-165A-4550-A03B-1C252EAF6D82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{9A7DDB2C-80BB-4BA1-B04A-4A09115533D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A7DDB2C-80BB-4BA1-B04A-4A09115533D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A7DDB2C-80BB-4BA1-B04A-4A09115533D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3CA469C-165A-4550-A03B-1C252EAF6D82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3CA469C-165A-4550-A03B-1C252EAF6D82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3CA469C-165A-4550-A03B-1C252EAF6D82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3CA469C-165A-4550-A03B-1C252EAF6D82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
