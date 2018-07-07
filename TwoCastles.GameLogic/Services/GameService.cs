@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TwoCastles.Data.Interfaces;
 using TwoCastles.Entities;
+using TwoCastles.GameLogic.Interfaces;
 
 namespace TwoCastles.GameLogic.Services
 {
-    public class GameService
+    public class GameService : IGameService
     {
-        private readonly Game _game;
-        public GameService(Game game)
+        private readonly IUnitOfWork _db;
+        public GameService(IUnitOfWork db)
         {
-            _game = game;
+            _db = db;
         }
 
-        public void NormalizeCastle(Castle castle)
+        public void NormalizeCastle(Castle castle)//todo
         {
             if (castle.Quarry < 1) castle.Quarry = 1;
             if (castle.Magic < 1) castle.Magic = 1;
