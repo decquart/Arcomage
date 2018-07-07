@@ -16,9 +16,9 @@ namespace TwoCastles.GameLogic.Services
             ApplyCardAction(card, currentPlayer, enemyPlayer);
         }
 
-        void PayCardPrice(Card card, Player currentPlayer)
+        private void PayCardPrice(Card card, Player currentPlayer)
         {
-            bool isEnoughRes = isEnoughResources(card, currentPlayer);
+            bool isEnoughRes = IsEnoughResources(card, currentPlayer);
             if (!isEnoughRes)
                 throw new Exception($"Player {currentPlayer} doesn't have enought resources to apply {card.Name}");
             if (card.BrickCost > 0)
@@ -29,7 +29,7 @@ namespace TwoCastles.GameLogic.Services
                 currentPlayer.Castle.Gems -= card.RecruitCost;
         }
 
-        void ApplyCardAction(Card card, Player currentPlayer, Player oppPlayer)
+        private void ApplyCardAction(Card card, Player currentPlayer, Player oppPlayer)
         {
             switch (card.Method)
             {
@@ -67,7 +67,7 @@ namespace TwoCastles.GameLogic.Services
         }
 
 
-        bool isEnoughResources(Card card, Player currentPlayer)
+        public bool IsEnoughResources(Card card, Player currentPlayer)
         {
             if (card.BrickCost > currentPlayer.Castle.Bricks ||
                 card.GemCost > currentPlayer.Castle.Gems ||
@@ -78,7 +78,7 @@ namespace TwoCastles.GameLogic.Services
 
 
 
-        void Damage(int amount, Player user)
+        private void Damage(int amount, Player user)
         {
             if (user.Castle.Wall >= amount)
                 user.Castle.Wall -= amount;
@@ -93,47 +93,47 @@ namespace TwoCastles.GameLogic.Services
             }
         }
 
-        void AddWall(int amount, Player user)
+        private void AddWall(int amount, Player user)
         {
             user.Castle.Wall += amount;
         }
 
-        void AddMagic(int amount, Player user)
+        private void AddMagic(int amount, Player user)
         {
             user.Castle.Magic += amount;
         }
 
-        void AddDungeon(int amount, Player user)
+        private void AddDungeon(int amount, Player user)
         {
             user.Castle.Dungeon += amount;
         }
 
-        void AddQuarry(int amount, Player user)
+        private void AddQuarry(int amount, Player user)
         {
             user.Castle.Quarry += amount;
         }
 
-        void AddBricks(int amount, Player user)
+        private void AddBricks(int amount, Player user)
         {
             user.Castle.Bricks += amount;
         }
 
-        void AddGems(int amount, Player user)
+        private void AddGems(int amount, Player user)
         {
             user.Castle.Gems += amount;
         }
 
-        void AddRecruits(int amount, Player user)
+        private void AddRecruits(int amount, Player user)
         {
             user.Castle.Recruits += amount;
         }
 
-        void AddCastle(int amount, Player user)
+        private void AddCastle(int amount, Player user)
         {
             user.Castle.Height += amount;
         }
 
-        void Discard()
+        private void Discard()
         {
             return;
         }

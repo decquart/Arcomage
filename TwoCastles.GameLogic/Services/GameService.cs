@@ -40,7 +40,6 @@ namespace TwoCastles.GameLogic.Services
                 return _game.SecondPlayer.Id;
 
             return string.Empty;
-
         }
 
         public void IncreasePlayerResource(Player player)

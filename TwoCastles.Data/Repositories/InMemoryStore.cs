@@ -9,36 +9,36 @@ namespace TwoCastles.Data.Repositories
 {
     internal static class InMemoryStore
     {
-        private static Game Game = new Game();
+        private static Game _game = new Game();
 
         public static Game GetGame()
         {
-            return Game;
+            return _game;
         }
 
         public static Game GetNewGame()
         {
             Init();
-            return Game;
+            return _game;
         }
 
         public static bool Update(Game game)
         {
             if (game == null)
                 throw new ArgumentException("Update isn't possible, invalid game argument");
-            Game = game;
+            _game = game;
             return true;
         }
 
         static Game Init()
         {
-            Game.CurrentDeck = new Deck { Cards = new JsonParser().GetCardsFromJson() };
-            Game.FirstPlayer = new Player();
-            Game.SecondPlayer = new Player();
-            CastleInit(Game.FirstPlayer.Castle = new Castle());
-            CastleInit(Game.SecondPlayer.Castle = new Castle());
+            _game.CurrentDeck = new Deck { Cards = new JsonParser().GetCardsFromJson() };
+            _game.FirstPlayer = new Player();
+            _game.SecondPlayer = new Player();
+            CastleInit(_game.FirstPlayer.Castle = new Castle());
+            CastleInit(_game.SecondPlayer.Castle = new Castle());
 
-            return Game;
+            return _game;
         }
 
         static void CastleInit(Castle castle)

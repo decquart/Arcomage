@@ -11,9 +11,7 @@ namespace TwoCastles.Data.Helper
     {
         public List<Card> GetCardsFromJson()
         {
-            var cards = JsonConvert.DeserializeObject<List<Card>>(File.ReadAllText("Configs/Cards.json"));
-
-            return cards;
+            return JsonConvert.DeserializeObject<List<Card>>(File.ReadAllText("Configs/Cards.json"));
         }
     }
 }
