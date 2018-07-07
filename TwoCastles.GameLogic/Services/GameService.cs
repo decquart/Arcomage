@@ -42,5 +42,12 @@ namespace TwoCastles.GameLogic.Services
             return string.Empty;
 
         }
+
+        public void IncreasePlayerResource(Player player)
+        {
+            player.Castle.Bricks += player.Castle.Quarry;
+            player.Castle.Gems += player.Castle.Magic;
+            player.Castle.Recruits += player.Castle.Dungeon;
+        }
     }
 }
