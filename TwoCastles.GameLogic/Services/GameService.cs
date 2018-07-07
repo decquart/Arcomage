@@ -26,5 +26,21 @@ namespace TwoCastles.GameLogic.Services
             if (castle.Wall < 0)
                 castle.Wall = 0;
         }
+
+
+        // TODO Change this method
+        public string CheckWinner()
+        {
+            if (_game.FirstPlayer.Castle.Height >= 50 ||
+                _game.SecondPlayer.Castle.Height <= 0)
+                return _game.FirstPlayer.Id;
+
+            else if (_game.SecondPlayer.Castle.Height >= 50 ||
+                     _game.FirstPlayer.Castle.Height <= 0)
+                return _game.SecondPlayer.Id;
+
+            return string.Empty;
+
+        }
     }
 }
