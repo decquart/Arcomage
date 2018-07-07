@@ -27,7 +27,7 @@ namespace BLL.Services
 
         public bool AddScore(string _userId, int _gameId, int _value)
         {
-            var user = _userManager.FindByIdAsync(_userId);
+            var user = _userManager.FindByIdAsync(_userId).GetAwaiter().GetResult();
             if (user == null)
                 throw new ArgumentException($"User with id {_userId} does not exist!");
 
