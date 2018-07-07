@@ -15,6 +15,28 @@ namespace TwoCastles.GameLogic.Services
             _db = db;
         }
 
+
+        #region db
+        public Game Get()
+        {
+            return _db.Game.GetGame();
+        }
+
+        public Game GetNewGame()
+        {
+            return _db.Game.GetNewGame();
+        }
+
+        public bool UpdateGameStats(Game game)
+        {
+            if (game == null)
+                throw new ArgumentException("Game is not valid");
+            var result = _db.Game.Update(game);
+            return result ? true : false;
+        }
+
+        #endregion
+
         public void NormalizeCastle(Castle castle)//todo
         {
             if (castle.Quarry < 1) castle.Quarry = 1;
