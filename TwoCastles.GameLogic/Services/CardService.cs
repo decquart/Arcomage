@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using TwoCastles.Entities;
+using TwoCastles.GameLogic.Interfaces;
 
 namespace TwoCastles.GameLogic.Services
 {
-    public class CardService
+    public class CardService : ICardService
     {
         public void Play(Card card, Player currentPlayer, Player enemyPlayer)
         {

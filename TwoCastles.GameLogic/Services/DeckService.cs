@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TwoCastles.Entities;
+using TwoCastles.GameLogic.Interfaces;
 
 namespace TwoCastles.GameLogic.Services
 {
-    public class DeckService
+    public class DeckService : IDeckService
     {
         private readonly Game _game;
         private static Random rnd;
