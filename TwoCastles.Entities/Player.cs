@@ -4,6 +4,7 @@ namespace TwoCastles.Entities
 {
     public class Player
     {
+        public string Id { get; set; }
         public Castle Castle { get; set; }
         public List<Card> Hand;
 

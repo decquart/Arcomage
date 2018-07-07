@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="bin\Debug\netcoreapp2.1\Configs\Cards.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TwoCastles.Data\TwoCastles.Data.csproj" />
+    <ProjectReference Include="..\TwoCastles.GameLogic\TwoCastles.GameLogic.csproj" />
   </ItemGroup>
 
 </Project>

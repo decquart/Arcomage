@@ -10,7 +10,6 @@ namespace TwoCastles.GameLogic.Services
     {
         private readonly Game _game;
         private static Random rnd;
-
         public DeckService(Game game)
         {
             _game = game;
