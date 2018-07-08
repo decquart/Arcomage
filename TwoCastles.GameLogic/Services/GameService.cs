@@ -17,7 +17,7 @@ namespace TwoCastles.GameLogic.Services
 
 
         #region db
-        public Game Get()
+        public Game GetCurrentGame()
         {
             return _db.Game.GetGame();
         }
