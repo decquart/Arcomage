@@ -40,10 +40,11 @@ namespace BLL.Services
             return _mapper.Map<IEnumerable<User>, List<UserDTO>>(users);
         }
 
-        public async Task<IdentityResult> Register(UserDTO userDTO)
+        public async Task<IdentityResult> Register(UserDtoForRegister userDTO)
         {
-            var user = _mapper.Map<UserDTO, User>(userDTO);
+            var user = _mapper.Map<UserDtoForRegister, User>(userDTO);
             user.UserName = userDTO.Email;
+            user.Name = userDTO.Email;
             var res = await _userManager.CreateAsync(user, userDTO.Password);
 
             if (res.Succeeded)
@@ -54,7 +55,7 @@ namespace BLL.Services
             return IdentityResult.Failed();
         }
 
-        public async Task<IdentityResult> Login(UserDTO userDTO)
+        public async Task<IdentityResult> Login(UserDtoForRegister userDTO)
         {
             var result =
                 await _signInManager.PasswordSignInAsync(userDTO.Email, userDTO.Password, false, false);

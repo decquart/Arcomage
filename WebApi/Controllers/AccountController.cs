@@ -53,7 +53,7 @@ namespace WebApi.Controllers
             {
                 if (!ModelState.IsValid)
                     return BadRequest();
-                var usr = new UserDTO { Email = user.Email, Password = user.Password, Name = user.Email };
+                var usr = new UserDtoForRegister { Email = user.Email, Password = user.Password };
                 var result = await _userService.Register(usr);
 
                 if (result == null)
@@ -77,7 +77,7 @@ namespace WebApi.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest();
 
-                var usr = new UserDTO { Email = user.Email, Password = user.Password, Name = user.Email };
+                var usr = new UserDtoForRegister { Email = user.Email, Password = user.Password,};
                 var result = await _userService.Login(usr);
 
                 if (result == null)

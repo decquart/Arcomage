@@ -9,8 +9,8 @@ namespace BLL.Interfaces
     public interface IUserService
     {
         //create
-        Task<IdentityResult> Register(UserDTO userDTO);
-        Task<IdentityResult> Login(UserDTO userDTO);
+        Task<IdentityResult> Register(UserDtoForRegister userDTO);
+        Task<IdentityResult> Login(UserDtoForRegister userDTO);
         Task<IdentityResult> Logout();
 
         //read

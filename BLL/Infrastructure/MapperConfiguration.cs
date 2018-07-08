@@ -16,6 +16,8 @@ namespace BLL.Infrastructure
             {
                 cfg.CreateMap<User, UserDTO>();
                 cfg.CreateMap<UserDTO, User>();
+                cfg.CreateMap<UserDtoForRegister, User>();
+                cfg.CreateMap<User, UserDtoForRegister>();
 
                 cfg.CreateMap<Game, GameDto>();
                 cfg.CreateMap<GameDto, Game>();
