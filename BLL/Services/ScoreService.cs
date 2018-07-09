@@ -89,11 +89,13 @@ namespace BLL.Services
                 {
                     sumScore += scr.Value;
                 }
-                newUniqAverageScoreEmail[count].Value = sumScore;
+
+                //this line calculate averae user score
+                newUniqAverageScoreEmail[count].Value = sumScore/gr.Count();
                 count++;
             }
 
-            return newUniqAverageScoreEmail;            
+            return newUniqAverageScoreEmail.OrderByDescending(s => s.Value).Take(10);            
         }
     }
 }
