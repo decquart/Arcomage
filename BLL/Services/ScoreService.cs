@@ -93,7 +93,8 @@ namespace BLL.Services
                 count++;
             }
 
-            return newUniqAverageScoreEmail;            
+            return newUniqAverageScoreEmail.OrderByDescending(s => s.Value)
+                .Take(10).ToList();            
         }
     }
 }

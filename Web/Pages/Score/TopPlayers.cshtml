@@ -1,0 +1,22 @@
+﻿@page
+@model TopPlayersModel
+@{
+    ViewData["Title"] = "Top Players";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr><th>Nickname</th><th>Score</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (var score in Model.Scores)
+        {
+            <tr>
+                <td>@score.Email</td>
+                <td>@score.Value</td>
+            </tr>
+        }
+    </tbody>
+</table>

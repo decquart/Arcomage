@@ -30,8 +30,16 @@ namespace Web.Pages.Account
         {
             if (ModelState.IsValid)
             {
-                var user = new UserDtoForRegister{ Email = LogModel.Email, Password = LogModel.Password };
-                await _userService.Login(user);                
+                try
+                {
+                    var user = new UserDtoForRegister { Email = LogModel.Email, Password = LogModel.Password };
+                    await _userService.Login(user);
+                    return RedirectToPage("/Index");
+                }
+                catch (Exception e)
+                {
+                    return BadRequest(e.ToString());
+                }              
             }
             return Page();
         }
