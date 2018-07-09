@@ -1,0 +1,28 @@
+﻿@page
+@model ListModel
+@{
+    ViewData["Title"] = "Games";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr><th>Name</th><th>Description</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (var game in Model.Games)
+        {
+        <tr>
+            <td>@game.Name</td>
+            <td>@game.Description</td>
+            <td>
+                <a href="https://www.google.com/">Play</a>
+            </td>
+            <td>               
+                <a asp-page="/Score/TopByGame" asp-route-id="@game.Id">Top players</a>                    
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
