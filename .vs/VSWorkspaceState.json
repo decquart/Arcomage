@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\WEB",
-    "\\WEB\\Controllers"
+    "\\Web",
+    "\\Web\\Pages"
   ],
-  "SelectedNode": "\\BLL",
+  "SelectedNode": "\\Web\\Pages\\Score",
   "PreviewInSolutionExplorer": false
 }

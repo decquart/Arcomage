@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using BLL.DTO;
 using BLL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Web.Pages.Game
 {
+    [Authorize]
     public class ListModel : PageModel
     {
         [BindProperty]
