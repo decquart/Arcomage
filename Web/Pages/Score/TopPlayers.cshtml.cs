@@ -25,6 +25,6 @@ namespace Web.Pages.Score
         public void OnGet()
         {
             Scores = _scoreService.GetTotalAverageScore().ToList();
-        }
+        }        
     }
 }
