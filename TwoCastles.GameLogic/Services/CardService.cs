@@ -32,39 +32,43 @@ namespace TwoCastles.GameLogic.Services
 
         private void ApplyCardAction(Card card, Player currentPlayer, Player oppPlayer)
         {
-            switch (card.Method)
+            for (int i = 0; i < card.Method.Count; i++)
             {
-                case "AddQuarry":
-                    AddQuarry(card.Argument, currentPlayer);
-                    break;
-                case "AddMagic":
-                    AddMagic(card.Argument, currentPlayer);
-                    break;
-                case "AddDungeon":
-                    AddDungeon(card.Argument, currentPlayer);
-                    break;
-                case "AddWall":
-                    AddWall(card.Argument, currentPlayer);
-                    break;
-                case "AddCastle":
-                    AddCastle(card.Argument, currentPlayer);
-                    break;
-                case "Damage":
-                    Damage(card.Argument, oppPlayer);
-                    break;
-                case "AddBricks":
-                    AddBricks(card.Argument, currentPlayer);
-                    break;
-                case "AddGems":
-                    AddGems(card.Argument, currentPlayer);
-                    break;
-                case "AddRecruits":
-                    AddRecruits(card.Argument, currentPlayer);
-                    break;
-                default:
-                    Discard();
-                    break;
+                switch (card.Method[i])
+                {
+                    case "AddQuarry":
+                        AddQuarry(card.Argument[i], currentPlayer);
+                        break;
+                    case "AddMagic":
+                        AddMagic(card.Argument[i], currentPlayer);
+                        break;
+                    case "AddDungeon":
+                        AddDungeon(card.Argument[i], currentPlayer);
+                        break;
+                    case "AddWall":
+                        AddWall(card.Argument[i], currentPlayer);
+                        break;
+                    case "AddCastle":
+                        AddCastle(card.Argument[i], currentPlayer);
+                        break;
+                    case "Damage":
+                        Damage(card.Argument[i], oppPlayer);
+                        break;
+                    case "AddBricks":
+                        AddBricks(card.Argument[i], currentPlayer);
+                        break;
+                    case "AddGems":
+                        AddGems(card.Argument[i], currentPlayer);
+                        break;
+                    case "AddRecruits":
+                        AddRecruits(card.Argument[i], currentPlayer);
+                        break;
+                    default:
+                        Discard();
+                        break;
+                }
             }
+          
         }
 
 
