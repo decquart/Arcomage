@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TwoCastles.Entities
 {
@@ -12,7 +13,7 @@ namespace TwoCastles.Entities
         public int RecruitCost { get; set; }
         public string Colour { get; set; }
         public bool IsPlayAgain { get; set; }
-        public string Method { get; set; }
-        public int Argument { get; set; }
+        public List<string> Method { get; set; }
+        public List<int> Argument { get; set; }
     }
 }
