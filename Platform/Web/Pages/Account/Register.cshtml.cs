@@ -32,6 +32,7 @@ namespace Web.Pages.Account
             {
                 var usr = new UserDtoForRegister { Email = SignupModel.Email, Password = SignupModel.Password };
                 var result = await _userService.Register(usr);
+                return RedirectToPage("/Index");
             }
 
             return Page();
