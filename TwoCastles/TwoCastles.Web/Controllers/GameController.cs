@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using TwoCastles.Entities;
 using TwoCastles.GameLogic.Interfaces;
 
 namespace TwoCastles.Web.Controllers
 {
-    [Route("api/Game")]
+    [Route("api/[controller]")]
     [ApiController]
     public class GameController : Controller
     {
@@ -17,19 +18,19 @@ namespace TwoCastles.Web.Controllers
         private readonly ICardService _cardService;
         private Game game;
 
-        public GameController(IGameService gameService, ICardService cardService, IDeckService deckService)
+        public GameController(IGameService gameService, ICardService cardService, IDeckService deckService, Game game)
         {
             _gameService = gameService;
             _deckService = deckService;
             _cardService = cardService;
-            game = _gameService.GetNewGame();
-
+            this.game = game;
         }
-        [HttpGet("play")]
-        public IActionResult Play()
+        [HttpGet("play/{cardName}")]
+        public IActionResult Play(string cardName)
         {
+            game = _gameService.GetCurrentGame();
+
             _gameService.IncreasePlayerResource(game.FirstPlayer);
-            _deckService.Deal(game);
             var firstPlayerCard = game.FirstPlayer.Hand.FirstOrDefault();
             game.FirstPlayer.Hand.Remove(firstPlayerCard);
             _deckService.PushCard(game, firstPlayerCard);
@@ -43,8 +44,22 @@ namespace TwoCastles.Web.Controllers
             return Ok();
         }
 
+        [HttpGet("start")]
+        public IActionResult Start()
+        {
+            game = _gameService.GetNewGame();
+            _deckService.Deal(game);
+            return Ok();
+        }
 
+
+        // api/game/cards
+        [HttpGet("cards")]
+        public IActionResult GetUserCards()
+        {
+            game = _gameService.GetCurrentGame();
+            var cards = game.FirstPlayer.Hand.ToList();
+            return Ok(cards);
+        }
     }
-
 }
-
