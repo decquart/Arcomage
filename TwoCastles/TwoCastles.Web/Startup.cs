@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TwoCastles.Data.Interfaces;
 using TwoCastles.Data.Repositories;
+using TwoCastles.Entities;
 using TwoCastles.GameLogic.Interfaces;
 using TwoCastles.GameLogic.Services;
 
@@ -33,6 +34,7 @@ namespace TwoCastles.Web
             services.AddTransient<IGameService, GameService>();
             services.AddTransient<ICardService, CardService>();
             services.AddTransient<IDeckService, DeckService>();
+            services.AddScoped<Game>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -49,6 +51,7 @@ namespace TwoCastles.Web
                 app.UseHsts();
             }
 
+            app.UseCors(builder => builder.AllowAnyOrigin());
             app.UseHttpsRedirection();
             app.UseMvc();
         }

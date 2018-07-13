@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoCastles.GameLogic", "Two
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoCastles.Data", "TwoCastles.Data\TwoCastles.Data.csproj", "{9A7DDB2C-80BB-4BA1-B04A-4A09115533D3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoCastles.Web", "TwoCastles.Web\TwoCastles.Web.csproj", "{23C60189-C419-481F-BA1E-7151801C1B31}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoCastles.Web", "TwoCastles.Web\TwoCastles.Web.csproj", "{FABAEB99-6821-4F99-A5F9-AA3D36E5BB72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{9A7DDB2C-80BB-4BA1-B04A-4A09115533D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A7DDB2C-80BB-4BA1-B04A-4A09115533D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A7DDB2C-80BB-4BA1-B04A-4A09115533D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23C60189-C419-481F-BA1E-7151801C1B31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23C60189-C419-481F-BA1E-7151801C1B31}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23C60189-C419-481F-BA1E-7151801C1B31}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23C60189-C419-481F-BA1E-7151801C1B31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FABAEB99-6821-4F99-A5F9-AA3D36E5BB72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FABAEB99-6821-4F99-A5F9-AA3D36E5BB72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FABAEB99-6821-4F99-A5F9-AA3D36E5BB72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FABAEB99-6821-4F99-A5F9-AA3D36E5BB72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
