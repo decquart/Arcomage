@@ -8,6 +8,7 @@ import { HttpService } from './services/http.service'
 
 import { AppComponent } from './app.component'
 import { LoginComponent } from './login/login.component'
+import { CardListComponent } from './card/card-list.component';
 
 
 
