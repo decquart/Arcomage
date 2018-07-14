@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Miners",
+        "description": "+1 Qarry",            
+        "colour": "Red"
+    },
+    {
+        "name": "Spell Weavers",
+        "description": "+1 Magic",            
+        "colour": "Blue"
+    }
+]
