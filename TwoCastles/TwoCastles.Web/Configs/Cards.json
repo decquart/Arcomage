@@ -7,9 +7,9 @@
     "RecruitCost": "0",
     "Colour": "Red",
     "IsPlayAgain": "false",
-    "Method": [ "AddQuarry", "AddWall" ],
-    "Argument": [ 1, 5 ]
-
+    "Method": [ "AddQuarry" ],
+    "Argument": [ 1 ],
+    "Url": "https://image.ibb.co/en8NK8/Miners.png"
   },
   {
     "Name": "Spell Weavers",
@@ -20,7 +20,8 @@
     "Colour": "Blue",
     "IsPlayAgain": "false",
     "Method": [ "AddMagic" ],
-    "Argument": [ 1 ]
+    "Argument": [ 1 ],
+    "Url": "https://image.ibb.co/iYxzz8/Spell_Weavers.png"
   },
   {
     "Name": "Minotaur",
@@ -30,8 +31,9 @@
     "RecruitCost": "3",
     "Colour": "Green",
     "IsPlayAgain": "false",
-    "Method": [ "AddDungeon", "Damage" ],
-    "Argument": [ 1 , 10]
+    "Method": [ "AddDungeon" ],
+    "Argument": [ 1 ],
+    "Url": "https://image.ibb.co/kqnA6o/Minotaur.png"
   },
   {
     "Name": "Big Wall",
@@ -42,7 +44,8 @@
     "Colour": "Red",
     "IsPlayAgain": "false",
     "Method": [ "AddWall" ],
-    "Argument": [ 6 ]
+    "Argument": [ 6 ],
+    "Url": ""
   },
   {
     "Name": "Sapphire",
@@ -53,7 +56,8 @@
     "Colour": "Blue",
     "IsPlayAgain": "false",
     "Method": [ "AddCastle" ],
-    "Argument": [11]
+    "Argument": [ 11 ],
+    "Url": ""
   },
   {
     "Name": "Slasher",
@@ -64,6 +68,7 @@
     "Colour": "Green",
     "IsPlayAgain": "false",
     "Method": [ "Damage" ],
-    "Argument": [ 6 ]
+    "Argument": [ 6 ],
+    "Url": ""
   }
 ]

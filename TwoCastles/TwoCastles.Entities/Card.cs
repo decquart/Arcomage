@@ -15,5 +15,6 @@ namespace TwoCastles.Entities
         public bool IsPlayAgain { get; set; }
         public List<string> Method { get; set; }
         public List<int> Argument { get; set; }
+        public string Url { get; set; }
     }
 }
