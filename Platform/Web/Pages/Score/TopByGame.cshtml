@@ -1,7 +1,7 @@
 ﻿@page "{id}"
 @model TopByGameModel
 @{
-    ViewData["Title"] = $"Top Players";
+    ViewData["Title"] = $"Top {Model.Game.Name} Players";
 }
 
 <h2>@ViewData["Title"]</h2>
