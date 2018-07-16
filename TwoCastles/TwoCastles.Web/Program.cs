@@ -18,7 +18,7 @@ namespace TwoCastles.Web
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+            WebHost.CreateDefaultBuilder(args).UseUrls("https://localhost:44347")
                 .UseStartup<Startup>();
     }
 }
