@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,6 +16,8 @@ using TwoCastles.Data.Repositories;
 using TwoCastles.Entities;
 using TwoCastles.GameLogic.Interfaces;
 using TwoCastles.GameLogic.Services;
+using TwoCastles.Web.Configs;
+using TwoCastles.Web.DTO;
 
 namespace TwoCastles.Web
 {
@@ -30,6 +33,7 @@ namespace TwoCastles.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.LoadMapperConfiguration();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IGameService, GameService>();
             services.AddTransient<ICardService, CardService>();

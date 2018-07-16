@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TwoCastles.Entities;
 using TwoCastles.GameLogic.Interfaces;
+using AutoMapper;
+using TwoCastles.Web.DTO;
 
 namespace TwoCastles.Web.Controllers
 {
@@ -16,15 +18,19 @@ namespace TwoCastles.Web.Controllers
         private readonly IGameService _gameService;
         private readonly IDeckService _deckService;
         private readonly ICardService _cardService;
+        private readonly IMapper _mapper;
         private Game game;
 
-        public GameController(IGameService gameService, ICardService cardService, IDeckService deckService, Game game)
+        public GameController(IGameService gameService, ICardService cardService, 
+            IDeckService deckService, Game game, IMapper mapper)
         {
             _gameService = gameService;
             _deckService = deckService;
             _cardService = cardService;
+            _mapper = mapper;
             this.game = game;
         }
+
         [HttpGet("play/{cardName}")]
         public IActionResult Play(string cardName)
         {
@@ -99,7 +105,8 @@ namespace TwoCastles.Web.Controllers
             {
                 game = _gameService.GetCurrentGame();
                 var cards = game.FirstPlayer.Hand.ToList();
-                return Ok(cards);
+                var uiCards = _mapper.Map<IEnumerable<Card>, List<CardDto>>(cards);
+                return Ok(uiCards);
             }
             catch (Exception e)
             {
