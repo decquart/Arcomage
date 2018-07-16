@@ -25,12 +25,20 @@ export class CardListComponent{
             selCard => this.selectedCard = selCard,
             error => this.errorMessage = <any>error
         )
-    };
-
-    ngOnInit(): void{
         this.cardService.getCards().subscribe(
             cards => this.cards = cards,
             error => this.errorMessage = <any>error
         );
+    }
+    
+    getPlayerCards(){
+        this.cardService.getCards().subscribe(
+            cards => this.cards = cards,
+            error => this.errorMessage = <any>error
+        );
+    }
+ 
+    ngOnInit(): void{
+        this.getPlayerCards();
     }
 }
