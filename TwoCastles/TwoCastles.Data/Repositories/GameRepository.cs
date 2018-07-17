@@ -8,20 +8,29 @@ namespace TwoCastles.Data.Repositories
 {
     public class GameRepository : IGameRepository
     {
-        public Game GetGame()
+        public Game CreateNewGame(string key)
         {
-            return InMemoryStore.GetGame();
+            return InMemoryStore.CreateNewGame(key);
         }
 
-        public Game GetNewGame()
+        public bool Exist(string key)
         {
-            return InMemoryStore.GetNewGame();
+            return InMemoryStore.Exist(key);
         }
 
-
-        public bool Update(Game game)
+        public Game GetGame(string key)
         {
-            return InMemoryStore.Update(game);
+            return InMemoryStore.Get(key);
+        }
+
+        public bool Remove(string key)
+        {
+            return InMemoryStore.Remove(key);
+        }
+
+        public bool Update(string key, Game game)
+        {
+            return InMemoryStore.Update(key, game);
         }
     }
 }

@@ -7,8 +7,10 @@ namespace TwoCastles.Data.Interfaces
 {
     public interface IGameRepository
     {
-        Game GetGame();
-        Game GetNewGame();
-        bool Update(Game game);
+        bool Exist(string key);
+        Game GetGame(string key);
+        Game CreateNewGame(string key);
+        bool Update(string key, Game game);
+        bool Remove(string key);
     }
 }
