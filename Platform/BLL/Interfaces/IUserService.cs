@@ -1,7 +1,9 @@
 ﻿using BLL.DTO;
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BLL.Interfaces
@@ -18,7 +20,7 @@ namespace BLL.Interfaces
         Task<User> GetUserByEmail(string userEmail);
         IEnumerable<UserDTO> GetUsers();
 
-
+        string GetUserId(ClaimsPrincipal claims);
         ////update
         //bool UpdateUserInformation(UserDTO userDTO);
 

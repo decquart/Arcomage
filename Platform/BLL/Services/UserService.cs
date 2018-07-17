@@ -3,8 +3,8 @@ using BLL.DTO;
 using BLL.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -88,5 +88,10 @@ namespace BLL.Services
             return user;
         }
 
+        public string GetUserId(ClaimsPrincipal claims)
+        {
+            var userId = _userManager.GetUserId(claims);
+            return userId;
+        }
     }
 }
