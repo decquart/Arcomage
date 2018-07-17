@@ -45,7 +45,7 @@
     "IsPlayAgain": "false",
     "Method": [ "AddWall" ],
     "Argument": [ 6 ],
-    "Url": ""
+    "Url": "https://image.ibb.co/fjxzOd/BigWall.png"
   },
   {
     "Name": "Sapphire",
@@ -57,7 +57,7 @@
     "IsPlayAgain": "false",
     "Method": [ "AddCastle" ],
     "Argument": [ 11 ],
-    "Url": ""
+    "Url": "https://image.ibb.co/gkmb3d/Sapphire.png"
   },
   {
     "Name": "Slasher",
@@ -69,6 +69,90 @@
     "IsPlayAgain": "false",
     "Method": [ "Damage" ],
     "Argument": [ 6 ],
-    "Url": ""
-  }
+    "Url": "https://image.ibb.co/jQWyGy/Slasher.png"
+  },
+  {
+    "Name": "Work Overtime",
+    "Description": "+5 Wall, -6 Gems",
+    "BrickCost": "2",
+    "GemCost": "0",
+    "RecruitCost": "0",
+    "Colour": "Red",
+    "IsPlayAgain": "false",
+    "Method": [ "AddWall", "ReduceGems" ],
+    "Argument": [ 6, 5 ],
+    "Url": "https://image.ibb.co/iXRFwy/Work_Overtime.png"
+  },
+  {
+    "Name": "Werewolf",
+    "Description": "9 Damage",
+    "BrickCost": "0",
+    "GemCost": "0",
+    "RecruitCost": "9",
+    "Colour": "Green",
+    "IsPlayAgain": "false",
+    "Method": [ "Damage" ],
+    "Argument": [ 9 ],
+    "Url": "https://image.ibb.co/cEam3d/Werewolf.png"
+  },
+  {
+    "Name": "Warlord",
+    "Description": "13 Damage, -3 Gems",
+    "BrickCost": "0",
+    "GemCost": "0",
+    "RecruitCost": "13",
+    "Colour": "Green",
+    "IsPlayAgain": "false",
+    "Method": [ "Damage", "ReduceGems" ],
+    "Argument": [ 13, 3 ],
+    "Url": "https://image.ibb.co/c4KDid/Warlord.png"
+  },
+  {
+    "Name": "Vampire",
+    "Description": "10 Damage, enemy loses 5 recruits and 1 dungeon",
+    "BrickCost": "0",
+    "GemCost": "0",
+    "RecruitCost": "17",
+    "Colour": "Green",
+    "IsPlayAgain": "false",
+    "Method": [ "Damage", "ReduceEnemyRecruits", "ReduceEnemyDungeon" ],
+    "Argument": [ 10, 5, 1 ],
+    "Url": "https://image.ibb.co/geqawy/Vampire.png"
+  },
+  {
+    "Name": "Troll Trainer",
+    "Description": "+2 Dungeon",
+    "BrickCost": "0",
+    "GemCost": "0",
+    "RecruitCost": "7",
+    "Colour": "Green",
+    "IsPlayAgain": "false",
+    "Method": [ "AddDungeon" ],
+    "Argument": [ 2 ],
+    "Url": "https://image.ibb.co/igjPpJ/Troll_Trainer.png"
+  },
+  {
+    "Name": "Tower Gremlin",
+    "Description": "2 damage, +4 wall, +2 tower",
+    "BrickCost": "0",
+    "GemCost": "0",
+    "RecruitCost": "8",
+    "Colour": "Green",
+    "IsPlayAgain": "false",
+    "Method": [ "Damage", "AddWall", "AddCastle" ],
+    "Argument": [ 2, 4, 2 ],
+    "Url": "https://image.ibb.co/mcM9Od/Tower_Gremlin.png"
+  },
+  {
+    "Name": "SturdyWall",
+    "Description": "+4 Wall",
+    "BrickCost": "3",
+    "GemCost": "0",
+    "RecruitCost": "0",
+    "Colour": "Red",
+    "IsPlayAgain": "false",
+    "Method": [ "AddWall" ],
+    "Argument": [ 4 ],
+    "Url": "https://image.ibb.co/i8ffUJ/Sturdy_Wall.png"
+  }  
 ]
