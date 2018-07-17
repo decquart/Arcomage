@@ -33,12 +33,9 @@ namespace TwoCastles.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.LoadMapperConfiguration();
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<IGameService, GameService>();
-            services.AddTransient<ICardService, CardService>();
-            services.AddTransient<IDeckService, DeckService>();
-            services.AddScoped<Game>();
+            services.LoadMapperConfiguration().
+                LoadServicesConfiguration();
+           
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
