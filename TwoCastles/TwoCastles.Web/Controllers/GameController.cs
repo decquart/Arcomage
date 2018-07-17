@@ -87,6 +87,7 @@ namespace TwoCastles.Web.Controllers
             try
             {
                 game = _gameService.GetNewGame();
+
                 _deckService.Deal(game);                
             }
             catch (Exception e)
@@ -111,8 +112,28 @@ namespace TwoCastles.Web.Controllers
             catch (Exception e)
             {
                 return BadRequest(e.ToString());
+            }          
+        }
+
+        [HttpGet("castles")]
+        public IActionResult GetCastles()
+        {
+            try
+            {
+                game = _gameService.GetCurrentGame();
+                if (game == null)
+                    return BadRequest("Game is not valid");
+
+                var castles = new List<Castle>();
+                castles.Add(game.FirstPlayer.Castle);
+                castles.Add(game.SecondPlayer.Castle);
+
+                return Ok(castles);
             }
-          
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+            }
         }
     }
 }
