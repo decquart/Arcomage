@@ -1,8 +1,10 @@
 
-<div class="card-container">
-    <div *ngFor='let card of cards' (click)='useCard(card)' class="card">    
-            <img src= {{card.url}}  alt="{{card.name}} \n {{card.description}} "> 
-    </div>
-</div>
 <!-- <img src="https://image.ibb.co/bKHvnT/image_part_002.png" alt="cant "> -->
 
+<div class="game-field">    
+    <div class="card-container">
+        <div *ngFor='let card of cards' (click)='useCard(card)' class="card">    
+                <img src= {{card.url}}  alt="{{card.name}} \n {{card.description}} "> 
+        </div>
+    </div>
+</div>

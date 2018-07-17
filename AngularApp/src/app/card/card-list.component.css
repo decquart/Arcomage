@@ -1,5 +1,5 @@
 .card {
-  flex-wrap: wrap;  
+  
   }
   
   .card-container{
@@ -7,4 +7,7 @@
     justify-content: space-around;
     align-items: flex-end;
   }
- 
+ .game-field{
+    flex-wrap: wrap;  
+
+ }
