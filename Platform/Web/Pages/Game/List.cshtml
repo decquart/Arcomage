@@ -17,7 +17,7 @@
             <td>@game.Name</td>
             <td>@game.Description</td>
             <td>
-                <a href="http://localhost:4200/">Play</a>
+                <a href="http://localhost:4200/">Play</a>@*get game link from database*@
             </td>
             <td>               
                 <a asp-page="/Score/TopByGame" asp-route-id="@game.Id">Top players</a>                    
