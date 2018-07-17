@@ -25,6 +25,13 @@ export class CardService{
         );             
     }
 
+    discard(cardName: string): Observable<Card>{
+      return this.http.get(this.cardUrl + 'discard/' + cardName).pipe(
+        tap(data => console.log('All: ' + JSON.stringify(data))),
+          catchError(this.handleError)
+        );             
+    }
+
     private handleError(err: HttpErrorResponse) {
         // in a real world app, we may send the server to some remote logging infrastructure
         // instead of just logging it to the console

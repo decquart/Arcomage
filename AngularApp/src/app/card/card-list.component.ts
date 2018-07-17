@@ -1,6 +1,7 @@
 import { Card } from "../models/card";
 import { Component } from '@angular/core';
 import { CardService } from "./card.service";
+import { CastleService } from '../castle/castle.service';
 
 @Component({
     selector: 'my-card-list',
@@ -13,7 +14,7 @@ export class CardListComponent{
     selectedCard: Card;
     errorMessage: string;
 
-    constructor(private cardService: CardService){
+    constructor(private cardService: CardService, private castleService: CastleService){
     }
 
     select(card: Card){
@@ -30,6 +31,11 @@ export class CardListComponent{
             error => this.errorMessage = <any>error
         );
     }
+
+    // discardCard(card: Card){
+    //     this.cardService.discard(card.name).
+    // }
+
     
     getPlayerCards(){
         this.cardService.getCards().subscribe(
