@@ -7,9 +7,9 @@ namespace TwoCastles.GameLogic.Interfaces
 {
     public interface IGameService
     {
-        Game GetCurrentGame();
-        Game GetNewGame();
-        bool UpdateGameStats(Game game);
+        Game GetCurrentGame(string key);
+        Game GetNewGame(string key);
+        bool UpdateGameStats(string key, Game game);
         void NormalizeCastle(Castle castle);
         string CheckWinner(Game game);
         void IncreasePlayerResource(Player player);

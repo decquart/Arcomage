@@ -17,21 +17,21 @@ namespace TwoCastles.GameLogic.Services
 
 
         #region db
-        public Game GetCurrentGame()
+        public Game GetCurrentGame(string key)
         {
-            return _db.Game.GetGame();
+            return _db.Game.GetGame(key);
         }
 
-        public Game GetNewGame()
+        public Game GetNewGame(string key)
         {
-            return _db.Game.GetNewGame();
+            return _db.Game.CreateNewGame(key);
         }
 
-        public bool UpdateGameStats(Game game)
+        public bool UpdateGameStats(string key, Game game)
         {
             if (game == null)
                 throw new ArgumentException("Game is not valid");
-            var result = _db.Game.Update(game);
+            var result = _db.Game.Update(key, game);
             return result ? true : false;
         }
 
