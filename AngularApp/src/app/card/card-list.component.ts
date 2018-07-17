@@ -32,9 +32,16 @@ export class CardListComponent{
         );
     }
 
-    // discardCard(card: Card){
-    //     this.cardService.discard(card.name).
-    // }
+    discardCard(card: Card){
+        this.cardService.discard(card.name).subscribe(
+            selCard => this.selectedCard = selCard,
+            error => this.errorMessage = <any>error
+        )
+        this.cardService.getCards().subscribe(
+            cards => this.cards = cards,
+            error => this.errorMessage = <any>error
+        );
+    }
 
     
     getPlayerCards(){
