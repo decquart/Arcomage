@@ -27,7 +27,7 @@ namespace TwoCastles.GameLogic.Services
             if (card.GemCost > 0)
                 currentPlayer.Castle.Gems -= card.GemCost;
             if (card.RecruitCost > 0)
-                currentPlayer.Castle.Gems -= card.RecruitCost;
+                currentPlayer.Castle.Recruits -= card.RecruitCost;
         }
 
         private void ApplyCardAction(Card card, Player currentPlayer, Player oppPlayer)
@@ -62,6 +62,9 @@ namespace TwoCastles.GameLogic.Services
                         break;
                     case "AddRecruits":
                         AddRecruits(card.Argument[i], currentPlayer);
+                        break;
+                    case "ReduceGems":
+                        ReduceGems(card.Argument[i], currentPlayer);
                         break;
                     default:
                         Discard();
@@ -136,6 +139,11 @@ namespace TwoCastles.GameLogic.Services
         private void AddCastle(int amount, Player user)
         {
             user.Castle.Height += amount;
+        }
+
+        private void ReduceGems(int amount, Player user)
+        {
+            user.Castle.Gems -= amount;
         }
 
         private void Discard()
