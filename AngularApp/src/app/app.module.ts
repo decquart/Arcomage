@@ -5,15 +5,17 @@ import { AppComponent } from './app.component';
 import { CardListComponent } from './card/card-list.component';
 import { CardService } from './card/card.service';
 import {HttpClientModule} from '@angular/common/http';
+import { CastleComponent } from './castle/castle.component';
+import { CastleService } from './castle/castle.service';
 
 @NgModule({
   declarations: [
-      CardListComponent, AppComponent
+      CardListComponent, AppComponent, CastleComponent
   ],
   imports: [
     BrowserModule, HttpClientModule
   ],
-  providers: [CardService],
+  providers: [CardService, CastleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
