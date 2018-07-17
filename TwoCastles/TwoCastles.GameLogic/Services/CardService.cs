@@ -63,17 +63,24 @@ namespace TwoCastles.GameLogic.Services
                     case "AddRecruits":
                         AddRecruits(card.Argument[i], currentPlayer);
                         break;
+                    case "DamageEnemyCastle":
+                        DamageCastle(card.Argument[i], oppPlayer);
+                        break;
                     case "ReduceGems":
                         ReduceGems(card.Argument[i], currentPlayer);
+                        break;
+                    case "ReduceEnemyRecruits":
+                        ReduceRecruits(card.Argument[i], oppPlayer);
+                        break;
+                    case "ReduceEnemyDungeon":
+                        ReduceDungeon(card.Argument[i], oppPlayer);
                         break;
                     default:
                         Discard();
                         break;
                 }
             }
-          
         }
-
 
         public bool IsEnoughResources(Card card, Player currentPlayer)
         {
@@ -83,9 +90,7 @@ namespace TwoCastles.GameLogic.Services
                 return false;
             return true;
         }
-
-
-
+        
         private void Damage(int amount, Player user)
         {
             if (user.Castle.Wall >= amount)
@@ -141,9 +146,24 @@ namespace TwoCastles.GameLogic.Services
             user.Castle.Height += amount;
         }
 
+        private void DamageCastle(int amount, Player user)
+        {
+            user.Castle.Height -= amount;
+        }
+
         private void ReduceGems(int amount, Player user)
         {
             user.Castle.Gems -= amount;
+        }
+
+        private void ReduceRecruits(int amount, Player user)
+        {
+            user.Castle.Recruits -= amount;
+        }
+
+        private void ReduceDungeon(int amount, Player user)
+        {
+            user.Castle.Dungeon -= amount;
         }
 
         private void Discard()

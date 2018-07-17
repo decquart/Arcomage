@@ -36,17 +36,17 @@ namespace TwoCastles.Web.Controllers
         {
             try
             {
-                game = _gameService.GetCurrentGame();
-
-                _gameService.IncreasePlayerResource(game.FirstPlayer);
+                game = _gameService.GetCurrentGame();                
                 var playerCard = game.FirstPlayer.Hand.FirstOrDefault(c => c.Name.Equals(cardName));
                 if (playerCard == null)
-                    return BadRequest();
+                    return BadRequest("Card not found");
 
+                _gameService.IncreasePlayerResource(game.FirstPlayer);
                 game.FirstPlayer.Hand.Remove(playerCard);
                 _deckService.PushCard(game, playerCard);
                 _cardService.Play(playerCard, game.FirstPlayer, game.SecondPlayer);
                 _deckService.GiveCardToPlayer(game, game.FirstPlayer);
+                return Ok(playerCard);
             }
             catch (Exception e)
             {
@@ -56,8 +56,6 @@ namespace TwoCastles.Web.Controllers
             //_gameService.IncreasePlayerResource(game.SecondPlayer);
             //var secondPlayerCard = game.SecondPlayer.Hand.FirstOrDefault();
             //_cardService.Play(secondPlayerCard, game.SecondPlayer, game.FirstPlayer);
-
-            return Ok();
         }
 
         [HttpGet("discard/{cardName}")]
@@ -87,7 +85,7 @@ namespace TwoCastles.Web.Controllers
             try
             {
                 game = _gameService.GetNewGame();
-
+                _deckService.Shuffle(game);
                 _deckService.Deal(game);                
             }
             catch (Exception e)
