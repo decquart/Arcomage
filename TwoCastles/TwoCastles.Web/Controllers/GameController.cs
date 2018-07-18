@@ -1,12 +1,10 @@
-﻿using System;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using TwoCastles.Entities;
 using TwoCastles.GameLogic.Interfaces;
-using AutoMapper;
 using TwoCastles.Web.DTO;
 
 namespace TwoCastles.Web.Controllers
@@ -19,16 +17,15 @@ namespace TwoCastles.Web.Controllers
         private readonly IDeckService _deckService;
         private readonly ICardService _cardService;
         private readonly IMapper _mapper;
-        private Game game;
+        private string id = "9dc26954-2041-4369-874e-bfc47f1517d3"; //test variable
 
-        public GameController(IGameService gameService, ICardService cardService, 
-            IDeckService deckService, Game game, IMapper mapper)
+        public GameController(IGameService gameService, ICardService cardService,
+            IDeckService deckService, IMapper mapper)
         {
             _gameService = gameService;
             _deckService = deckService;
             _cardService = cardService;
             _mapper = mapper;
-            this.game = game;
         }
 
         [HttpGet("play/{cardName}")]
@@ -36,7 +33,7 @@ namespace TwoCastles.Web.Controllers
         {
             try
             {
-                game = _gameService.GetCurrentGame();                
+                var game = _gameService.GetCurrentGame(id);
                 var playerCard = game.FirstPlayer.Hand.FirstOrDefault(c => c.Name.Equals(cardName));
                 if (playerCard == null)
                     return BadRequest("Card not found");
@@ -52,7 +49,7 @@ namespace TwoCastles.Web.Controllers
             {
                 return BadRequest(e.ToString());
             }
-            
+
             //_gameService.IncreasePlayerResource(game.SecondPlayer);
             //var secondPlayerCard = game.SecondPlayer.Hand.FirstOrDefault();
             //_cardService.Play(secondPlayerCard, game.SecondPlayer, game.FirstPlayer);
@@ -63,7 +60,7 @@ namespace TwoCastles.Web.Controllers
         {
             try
             {
-                var game = _gameService.GetCurrentGame();
+                var game = _gameService.GetCurrentGame(id);
                 _gameService.IncreasePlayerResource(game.FirstPlayer);
                 var playerCard = game.FirstPlayer.Hand.FirstOrDefault(c => c.Name.Equals(cardName));
                 if (playerCard == null)
@@ -79,14 +76,20 @@ namespace TwoCastles.Web.Controllers
             return Ok();
         }
 
-        [HttpGet("start")]
-        public IActionResult Start()
+        [HttpGet("start/{userId}")]
+        public IActionResult Start(string userId)
         {
             try
             {
-                game = _gameService.GetNewGame();
+                Game game;
+                var isExist = _gameService.Exist(userId);
+                if (isExist)
+                    game = _gameService.GetCurrentGame(userId);
+                else
+                    game = _gameService.GetNewGame(userId);
+
                 _deckService.Shuffle(game);
-                _deckService.Deal(game);                
+                _deckService.Deal(game);
             }
             catch (Exception e)
             {
@@ -102,7 +105,7 @@ namespace TwoCastles.Web.Controllers
         {
             try
             {
-                game = _gameService.GetCurrentGame();
+                var game = _gameService.GetCurrentGame(id);
                 var cards = game.FirstPlayer.Hand.ToList();
                 var uiCards = _mapper.Map<IEnumerable<Card>, List<CardDto>>(cards);
                 return Ok(uiCards);
@@ -110,15 +113,15 @@ namespace TwoCastles.Web.Controllers
             catch (Exception e)
             {
                 return BadRequest(e.ToString());
-            }          
+            }
         }
 
         [HttpGet("castles")]
         public IActionResult GetCastles()
         {
             try
-            {
-                game = _gameService.GetCurrentGame();
+            {                
+                var game = _gameService.GetCurrentGame(id);
                 if (game == null)
                     return BadRequest("Game is not valid");
 
