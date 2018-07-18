@@ -2,6 +2,8 @@ import { Card } from "../models/card";
 import { Component } from '@angular/core';
 import { CardService } from "./card.service";
 import { CastleService } from '../castle/castle.service';
+import { CastleComponent } from "../castle/castle.component";
+import {flatMap} from 'rxjs/operators';
 
 @Component({
     selector: 'my-card-list',
@@ -11,41 +13,41 @@ import { CastleService } from '../castle/castle.service';
 
 export class CardListComponent{
     cards: Card[];
-    selectedCard: Card;
     errorMessage: string;
 
     constructor(private cardService: CardService, private castleService: CastleService){
     }
 
-    select(card: Card){
-        this.selectedCard = card;
-    }
-
+   
+    // useCard(card: Card){
+    //     this.cardService.applyCard(card.name).subscribe(
+    //         selCard => this.selectedCard = selCard,
+    //         error => this.errorMessage = <any>error
+    //     )
+    //     this.getPlayerCards();  
+    // }
+      
     useCard(card: Card){
-        this.cardService.applyCard(card.name).subscribe(
-            selCard => this.selectedCard = selCard,
-            error => this.errorMessage = <any>error
-        )
-        this.cardService.getCards().subscribe(
+        this.cardService.applyCard(card.name).pipe(flatMap(() => {
+            return this.cardService.getCards();
+        })).subscribe(
             cards => this.cards = cards,
             error => this.errorMessage = <any>error
-        );
+        )
     }
 
     discardCard(card: Card){
-        this.cardService.discard(card.name).subscribe(
-            selCard => this.selectedCard = selCard,
-            error => this.errorMessage = <any>error
-        )
-        this.cardService.getCards().subscribe(
+        this.cardService.discard(card.name).pipe(flatMap(() => {
+            return this.cardService.getCards();
+        })).subscribe(
             cards => this.cards = cards,
             error => this.errorMessage = <any>error
-        );
+        )
     }
 
     
     getPlayerCards(){
-        this.cardService.getCards().subscribe(
+        return this.cardService.getCards().subscribe(
             cards => this.cards = cards,
             error => this.errorMessage = <any>error
         );
