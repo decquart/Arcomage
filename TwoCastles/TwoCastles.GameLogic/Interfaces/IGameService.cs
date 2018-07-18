@@ -10,6 +10,9 @@ namespace TwoCastles.GameLogic.Interfaces
         Game GetCurrentGame(string key);
         Game GetNewGame(string key);
         bool UpdateGameStats(string key, Game game);
+        bool DeleteGame(string key);
+        bool Exist(string key);
+
         void NormalizeCastle(Castle castle);
         string CheckWinner(Game game);
         void IncreasePlayerResource(Player player);
