@@ -17,6 +17,11 @@ namespace TwoCastles.GameLogic.Services
 
 
         #region db
+        public bool Exist(string key)
+        {
+            return _db.Game.Exist(key);
+        }
+
         public Game GetCurrentGame(string key)
         {
             return _db.Game.GetGame(key);
@@ -33,6 +38,11 @@ namespace TwoCastles.GameLogic.Services
                 throw new ArgumentException("Game is not valid");
             var result = _db.Game.Update(key, game);
             return result ? true : false;
+        }
+
+        public bool DeleteGame(string key)
+        {
+            return _db.Game.Remove(key);
         }
 
         #endregion
