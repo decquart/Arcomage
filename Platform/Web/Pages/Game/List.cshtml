@@ -2,6 +2,7 @@
 @model ListModel
 @{
     ViewData["Title"] = "Games";
+    
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -17,7 +18,7 @@
             <td>@game.Name</td>
             <td>@game.Description</td>
             <td>
-                <a href="http://localhost:4200/">Play</a>@*get game link from database*@
+                <a href=@(game.Url+Model.CurrentUserId)>Play</a>
             </td>
             <td>               
                 <a asp-page="/Score/TopByGame" asp-route-id="@game.Id">Top players</a>                    
