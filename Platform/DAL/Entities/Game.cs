@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Entities
 {
+    [Table("Games")]
     public class Game
     {
         [Key]
@@ -16,8 +17,10 @@ namespace DAL.Entities
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(500)]
         public string Description { get; set; }
+
+        [Required]
+        public string Url { get; set; }
 
         public virtual ICollection<Score> Scores { get; set; }
                  = new List<Score>();

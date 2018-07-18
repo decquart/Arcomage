@@ -6,6 +6,7 @@ using System.Text;
 
 namespace DAL.Entities
 {
+    [Table("Scores")]
     public class Score
     {
         [Key]
