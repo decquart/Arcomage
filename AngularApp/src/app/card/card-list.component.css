@@ -1,13 +1,17 @@
-.card {
-  
-  }
-  
+
   .card-container{
     display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
+    justify-content: space-around; 
+    
   }
- .game-field{
-    flex-wrap: wrap;  
 
+ .discard-container{
+    display: flex;
+    justify-content: space-around; 
+     
+ }
+
+ .list-container{
+  flex-wrap: wrap;
+  align-items: flex-end;
  }

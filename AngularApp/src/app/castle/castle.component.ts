@@ -6,7 +6,8 @@ import { CastleService } from "./castle.service";
 
 @Component({
     selector: 'castle',
-    templateUrl: './castle.component.html'
+    templateUrl: './castle.component.html',
+    styleUrls: ['./castle.component.css']
 })
 
 export class CastleComponent{
