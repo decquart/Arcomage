@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using TwoCastles.Entities;
 using TwoCastles.GameLogic.Interfaces;
 using TwoCastles.Web.DTO;
@@ -17,7 +19,7 @@ namespace TwoCastles.Web.Controllers
         private readonly IDeckService _deckService;
         private readonly ICardService _cardService;
         private readonly IMapper _mapper;
-        private string id = "9dc26954-2041-4369-874e-bfc47f1517d3"; //test variable
+        private string id = "7d59be7e-5731-470e-b2c3-8e6bc4a2525e"; //test variable
 
         public GameController(IGameService gameService, ICardService cardService,
             IDeckService deckService, IMapper mapper)
@@ -90,12 +92,15 @@ namespace TwoCastles.Web.Controllers
 
                 _deckService.Shuffle(game);
                 _deckService.Deal(game);
+
+                string url = "http://localhost:4200";
+
+                return Redirect(url);
             }
             catch (Exception e)
             {
                 return BadRequest(e.ToString());
             }
-            return Ok();
         }
 
 
