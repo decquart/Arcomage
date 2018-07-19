@@ -18,15 +18,6 @@ export class CardListComponent{
     constructor(private cardService: CardService, private castleService: CastleService){
     }
 
-   
-    // useCard(card: Card){
-    //     this.cardService.applyCard(card.name).subscribe(
-    //         selCard => this.selectedCard = selCard,
-    //         error => this.errorMessage = <any>error
-    //     )
-    //     this.getPlayerCards();  
-    // }
-      
     useCard(card: Card){
         this.cardService.applyCard(card.name).pipe(flatMap(() => {
             return this.cardService.getCards();
