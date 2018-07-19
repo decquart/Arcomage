@@ -10,11 +10,12 @@ namespace TwoCastles.GameLogic.Services
     public class GameService : IGameService
     {
         private readonly IUnitOfWork _db;
+        private readonly Random _rnd;
         public GameService(IUnitOfWork db)
         {
             _db = db;
+            _rnd = new Random();
         }
-
 
         #region db
         public bool Exist(string key)
@@ -81,6 +82,12 @@ namespace TwoCastles.GameLogic.Services
             player.Castle.Bricks += player.Castle.Quarry;
             player.Castle.Gems += player.Castle.Magic;
             player.Castle.Recruits += player.Castle.Dungeon;
+        }
+
+        public Card GetRandomCard(Player player)
+        {
+            int randomIndex = _rnd.Next(player.Hand.Count);
+            return player.Hand[randomIndex];
         }
     }
 }

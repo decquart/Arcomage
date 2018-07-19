@@ -16,5 +16,6 @@ namespace TwoCastles.GameLogic.Interfaces
         void NormalizeCastle(Castle castle);
         string CheckWinner(Game game);
         void IncreasePlayerResource(Player player);
+        Card GetRandomCard(Player player);
     }
 }
