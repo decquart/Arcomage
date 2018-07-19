@@ -37,7 +37,7 @@ namespace TwoCastles.GameLogic.Services
         {
             var card = game.CurrentDeck.Cards.FirstOrDefault();
             //if (card != null)
-            //    throw new ArgumentException("Deck doesn't have enought cards");
+            //    throw new ArgumentException("Deck doesn't have enough cards");
             if (card != null)
             {
                 game.CurrentDeck.Cards.Remove(card);

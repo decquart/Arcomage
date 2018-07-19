@@ -19,9 +19,6 @@ namespace TwoCastles.GameLogic.Services
 
         private void PayCardPrice(Card card, Player currentPlayer)
         {
-            bool isEnoughRes = IsEnoughResources(card, currentPlayer);
-            if (!isEnoughRes)
-                throw new Exception($"Player {currentPlayer} doesn't have enought resources to apply {card.Name}");
             if (card.BrickCost > 0)
                 currentPlayer.Castle.Bricks -= card.BrickCost;
             if (card.GemCost > 0)
