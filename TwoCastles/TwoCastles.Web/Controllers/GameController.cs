@@ -19,7 +19,6 @@ namespace TwoCastles.Web.Controllers
         private readonly IDeckService _deckService;
         private readonly ICardService _cardService;
         private readonly IMapper _mapper;
-        private string id = "7d59be7e-5731-470e-b2c3-8e6bc4a2525e"; //test variable
 
         public GameController(IGameService gameService, ICardService cardService,
             IDeckService deckService, IMapper mapper)
@@ -30,12 +29,12 @@ namespace TwoCastles.Web.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("play/{cardName}")]
-        public IActionResult Play(string cardName)
+        [HttpGet("play/{cardName}/{userId}")]
+        public IActionResult Play(string cardName, string userId)
         {
             try
             {
-                var game = _gameService.GetCurrentGame(id);
+                var game = _gameService.GetCurrentGame(userId);
                 var playerCard = game.FirstPlayer.Hand.FirstOrDefault(c => c.Name.Equals(cardName));
                 if (playerCard == null)
                     return BadRequest("Card not found");
@@ -48,8 +47,7 @@ namespace TwoCastles.Web.Controllers
                 _deckService.PushCard(game, playerCard);
                 _cardService.Play(playerCard, game.FirstPlayer, game.SecondPlayer);
                 _deckService.GiveCardToPlayer(game, game.FirstPlayer);
-                return Ok(playerCard);
-                
+                return Ok(playerCard);                
             }
             catch (Exception e)
             {
@@ -61,12 +59,12 @@ namespace TwoCastles.Web.Controllers
             //_cardService.Play(secondPlayerCard, game.SecondPlayer, game.FirstPlayer);
         }
 
-        [HttpGet("discard/{cardName}")]
-        public IActionResult Discard(string cardName)
+        [HttpGet("discard/{cardName}/{userId}")]
+        public IActionResult Discard(string cardName, string userId)
         {
             try
             {
-                var game = _gameService.GetCurrentGame(id);
+                var game = _gameService.GetCurrentGame(userId);
                 _gameService.IncreasePlayerResource(game.FirstPlayer);
                 var playerCard = game.FirstPlayer.Hand.FirstOrDefault(c => c.Name.Equals(cardName));
                 if (playerCard == null)
@@ -88,6 +86,7 @@ namespace TwoCastles.Web.Controllers
             try
             {
                 Game game;
+
                 var isExist = _gameService.Exist(userId);
                 if (isExist)
                     game = _gameService.GetCurrentGame(userId);
@@ -97,12 +96,7 @@ namespace TwoCastles.Web.Controllers
                 _deckService.Shuffle(game);
                 _deckService.Deal(game);
 
-
-
                 string url = "http://localhost:4200/" + userId;
-
-
-
                 return Redirect(url);
             }
             catch (Exception e)
@@ -111,14 +105,12 @@ namespace TwoCastles.Web.Controllers
             }
         }
 
-
-        // api/game/cards
-        [HttpGet("cards")]
-        public IActionResult GetUserCards()
+        [HttpGet("cards/{userId}")]
+        public IActionResult GetUserCards(string userId)
         {
             try
             {
-                var game = _gameService.GetCurrentGame(id);
+                var game = _gameService.GetCurrentGame(userId);
                 var cards = game.FirstPlayer.Hand.ToList();
                 var uiCards = _mapper.Map<IEnumerable<Card>, List<CardDto>>(cards);
                 return Ok(uiCards);
@@ -129,12 +121,12 @@ namespace TwoCastles.Web.Controllers
             }
         }
 
-        [HttpGet("castles")]
-        public IActionResult GetCastles()
+        [HttpGet("castles/{userId}")]
+        public IActionResult GetCastles(string userId)
         {
             try
             {                
-                var game = _gameService.GetCurrentGame(id);
+                var game = _gameService.GetCurrentGame(userId);
                 if (game == null)
                     return BadRequest("Game is not valid");
 
