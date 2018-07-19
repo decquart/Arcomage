@@ -10,13 +10,12 @@ export class AppComponent implements OnInit {
   private id: string;
 
   constructor(private route: ActivatedRoute){ 
-    this.id = location.pathname.slice(1,location.pathname.length);
-    localStorage.setItem('id', this.id);
-    console.log(localStorage.getItem('id'));
+    
   }
 
   ngOnInit(): void{
-  
-  }  
- 
+    this.id = location.pathname.slice(1,location.pathname.length);
+    localStorage.setItem('id', this.id);
+    console.log(localStorage.getItem('id'));
+  }   
 }

@@ -14,7 +14,8 @@ export class CastleService{
     }
 
     getCastles(): Observable<Castle[]>{
-        return this.http.get<Castle[]>(this.castleUrl + 'castles').pipe(
+        return this.http.get<Castle[]>(this.castleUrl + 'castles/' + 
+      localStorage.getItem('id')).pipe(
           tap(data => console.log('All: ' + JSON.stringify(data))),
             catchError(this.handleError)
           );             

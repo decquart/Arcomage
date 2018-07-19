@@ -12,21 +12,24 @@ export class CardService{
 
     }
     getCards(): Observable<Card[]>{
-      return this.http.get<Card[]>(this.cardUrl + "cards").pipe(
+      return this.http.get<Card[]>(this.cardUrl + "cards/" +
+        localStorage.getItem('id')).pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
           catchError(this.handleError)
         );             
     }
 
     applyCard(cardName: string): Observable<any>{
-      return this.http.get(this.cardUrl + 'play/' + cardName).pipe(
+      return this.http.get(this.cardUrl + 'play/' + cardName + '/' +
+        localStorage.getItem('id')).pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
           catchError(this.handleError)
         );             
     }
 
     discard(cardName: string): Observable<any>{
-      return this.http.get(this.cardUrl + 'discard/' + cardName).pipe(
+      return this.http.get(this.cardUrl + 'discard/' + cardName + '/' +
+      localStorage.getItem('id')).pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
           catchError(this.handleError)
         );             
