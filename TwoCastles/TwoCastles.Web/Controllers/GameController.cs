@@ -47,16 +47,24 @@ namespace TwoCastles.Web.Controllers
                 _deckService.PushCard(game, playerCard);
                 _cardService.Play(playerCard, game.FirstPlayer, game.SecondPlayer);
                 _deckService.GiveCardToPlayer(game, game.FirstPlayer);
-                return Ok(playerCard);                
+
+                //enemy player part
+                // should to replace similar code to module
+                var enemyPlayerCard = _gameService.GetRandomCard(game.SecondPlayer);
+                _gameService.IncreasePlayerResource(game.SecondPlayer);
+                game.SecondPlayer.Hand.Remove(enemyPlayerCard);
+                _deckService.PushCard(game, enemyPlayerCard);
+                isEnoughRes = _cardService.IsEnoughResources(enemyPlayerCard, game.SecondPlayer);
+                if (isEnoughRes)
+                    _cardService.Play(enemyPlayerCard, game.SecondPlayer, game.FirstPlayer);
+                _deckService.GiveCardToPlayer(game, game.SecondPlayer);
+
+                return Ok(new {playerCard, enemyPlayerCard });                
             }
             catch (Exception e)
             {
                 return BadRequest(e.ToString());
             }
-
-            //_gameService.IncreasePlayerResource(game.SecondPlayer);
-            //var secondPlayerCard = game.SecondPlayer.Hand.FirstOrDefault();
-            //_cardService.Play(secondPlayerCard, game.SecondPlayer, game.FirstPlayer);
         }
 
         [HttpGet("discard/{cardName}/{userId}")]
