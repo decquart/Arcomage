@@ -46,6 +46,7 @@ namespace TwoCastles.Web.Controllers
                 game.FirstPlayer.Hand.Remove(playerCard);
                 _deckService.PushCard(game, playerCard);
                 _cardService.Play(playerCard, game.FirstPlayer, game.SecondPlayer);
+                _gameService.NormalizeCastles(game);
                 _deckService.GiveCardToPlayer(game, game.FirstPlayer);
 
                 //enemy player part
@@ -57,8 +58,9 @@ namespace TwoCastles.Web.Controllers
                 isEnoughRes = _cardService.IsEnoughResources(enemyPlayerCard, game.SecondPlayer);
                 if (isEnoughRes)
                     _cardService.Play(enemyPlayerCard, game.SecondPlayer, game.FirstPlayer);
-                _deckService.GiveCardToPlayer(game, game.SecondPlayer);
 
+                _deckService.GiveCardToPlayer(game, game.SecondPlayer);
+                _gameService.NormalizeCastles(game);
                 return Ok(new {playerCard, enemyPlayerCard });                
             }
             catch (Exception e)
