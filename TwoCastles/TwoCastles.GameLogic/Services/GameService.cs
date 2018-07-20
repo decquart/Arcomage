@@ -48,18 +48,27 @@ namespace TwoCastles.GameLogic.Services
 
         #endregion
 
-        public void NormalizeCastle(Castle castle)//todo
+        public void NormalizeCastles(Game game)
         {
-            if (castle.Quarry < 1) castle.Quarry = 1;
-            if (castle.Magic < 1) castle.Magic = 1;
-            if (castle.Dungeon < 1) castle.Dungeon = 1;
+            var castles = new List<Castle>()
+            {
+                game.FirstPlayer.Castle,
+                game.SecondPlayer.Castle
+            };
+            
+            foreach(var castle in castles)
+            {
+                if (castle.Quarry < 0) castle.Quarry = 0;
+                if (castle.Magic < 0) castle.Magic = 0;
+                if (castle.Dungeon < 0) castle.Dungeon = 0;
 
-            if (castle.Bricks < 0) castle.Bricks = 0;
-            if (castle.Gems < 0) castle.Gems = 0;
-            if (castle.Recruits < 0) castle.Recruits = 0;
+                if (castle.Bricks < 0) castle.Bricks = 0;
+                if (castle.Gems < 0) castle.Gems = 0;
+                if (castle.Recruits < 0) castle.Recruits = 0;
 
-            if (castle.Wall < 0)
-                castle.Wall = 0;
+                if (castle.Wall < 0)
+                    castle.Wall = 0;
+            }
         }
 
 

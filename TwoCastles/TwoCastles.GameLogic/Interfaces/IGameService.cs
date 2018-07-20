@@ -13,7 +13,7 @@ namespace TwoCastles.GameLogic.Interfaces
         bool DeleteGame(string key);
         bool Exist(string key);
 
-        void NormalizeCastle(Castle castle);
+        void NormalizeCastles(Game game);
         string CheckWinner(Game game);
         void IncreasePlayerResource(Player player);
         Card GetRandomCard(Player player);
