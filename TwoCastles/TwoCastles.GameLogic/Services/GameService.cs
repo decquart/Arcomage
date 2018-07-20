@@ -73,17 +73,27 @@ namespace TwoCastles.GameLogic.Services
 
 
         // TODO Change this method
-        public string CheckWinner(Game game)
+        public void CheckWinner(Game game)
         {
             if (game.FirstPlayer.Castle.Height >= 50 ||
                 game.SecondPlayer.Castle.Height <= 0)
-                return game.FirstPlayer.Id;
+            {
+                SendScoreToDatabase();
+                //send game over message
+            }
 
-            else if (game.SecondPlayer.Castle.Height >= 50 ||
+            if (game.SecondPlayer.Castle.Height >= 50 ||
                      game.FirstPlayer.Castle.Height <= 0)
-                return game.SecondPlayer.Id;
+            {
+                SendScoreToDatabase();
+                //send game over message
+            }
+        }
 
-            return string.Empty;
+        private void SendScoreToDatabase()
+        {
+            //send data to database
+            throw new NotImplementedException();
         }
 
         public void IncreasePlayerResource(Player player)
