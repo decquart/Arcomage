@@ -10,22 +10,22 @@
     <div class="validation" asp-validation-summary="All" />
     <div>
         <div>
-            <label asp-for="SignupModel.Email">Введіть Email</label><br />
+            <label asp-for="SignupModel.Email">Email</label><br />
             <input type="text" asp-for="SignupModel.Email" />
             <span asp-validation-for="SignupModel.Email" />
         </div>
         <div>
-            <label asp-for="SignupModel.Password">Введіть пароль</label><br />
+            <label asp-for="SignupModel.Password">Password</label><br />
             <input asp-for="SignupModel.Password" />
             <span asp-validation-for="SignupModel.Password" />
         </div>
         <div>
-            <label asp-for="SignupModel.ConfirmPassword">Повторіть пароль</label><br />
+            <label asp-for="SignupModel.ConfirmPassword">Confirm password</label><br />
             <input asp-for="SignupModel.ConfirmPassword" />
             <span asp-validation-for="SignupModel.ConfirmPassword" />
         </div>
         <div>
-            <input type="submit" value="Реєстрація" />
+            <input type="submit" value="Sign up" />
         </div>
     </div>
 </form>
