@@ -11,10 +11,14 @@ namespace TwoCastles.GameLogic.Services
     {
         private readonly IUnitOfWork _db;
         private readonly Random _rnd;
-        public GameService(IUnitOfWork db)
+        private readonly IApiService _apiService;
+
+
+        public GameService(IUnitOfWork db, IApiService apiService)
         {
             _db = db;
             _rnd = new Random();
+            _apiService = apiService;
         }
 
         #region db
@@ -78,22 +82,34 @@ namespace TwoCastles.GameLogic.Services
             if (game.FirstPlayer.Castle.Height >= 50 ||
                 game.SecondPlayer.Castle.Height <= 0)
             {
-                SendScoreToDatabase();
+                game.FirstPlayer.Score = 100501;// should to write calculate score method 
+                SendScoreToDatabase(game);
                 //send game over message
             }
 
             if (game.SecondPlayer.Castle.Height >= 50 ||
                      game.FirstPlayer.Castle.Height <= 0)
             {
-                SendScoreToDatabase();
+                game.FirstPlayer.Score = -100501;
+                SendScoreToDatabase(game);
                 //send game over message
             }
         }
 
-        private void SendScoreToDatabase()
+        private void SendScoreToDatabase(Game game)
         {
-            //send data to database
-            throw new NotImplementedException();
+            //send data to database https://localhost:44364/api/scores/create
+            //todo: replace url to another place
+            var url = "https://localhost:44364/api/scores/create";
+
+            var model = new
+            {
+                Value = game.FirstPlayer.Score,
+                GameId = game.Id,
+                UserId = game.FirstPlayer.Id
+            };
+
+            _apiService.Post(url, model);
         }
 
         public void IncreasePlayerResource(Player player)
