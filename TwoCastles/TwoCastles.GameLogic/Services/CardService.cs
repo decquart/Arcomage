@@ -66,6 +66,9 @@ namespace TwoCastles.GameLogic.Services
                     case "ReduceGems":
                         ReduceGems(card.Argument[i], currentPlayer);
                         break;
+                    case "ReduceQuarry":
+                        ReduceQuarry(card.Argument[i], currentPlayer);
+                        break;                        
                     case "ReduceEnemyRecruits":
                         ReduceRecruits(card.Argument[i], oppPlayer);
                         break;
@@ -151,6 +154,11 @@ namespace TwoCastles.GameLogic.Services
         private void ReduceGems(int amount, Player user)
         {
             user.Castle.Gems -= amount;
+        }
+
+        private void ReduceQuarry(int amount, Player user)
+        {
+            user.Castle.Quarry -= amount;
         }
 
         private void ReduceRecruits(int amount, Player user)
