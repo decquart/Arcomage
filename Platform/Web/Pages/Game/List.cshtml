@@ -18,7 +18,7 @@
             <td>@game.Name</td>
             <td>@game.Description</td>
             <td>
-                <a href=@(game.Url+Model.CurrentUserId)>Play</a>
+                <a href=@(game.Url+Model.CurrentUserId+"/"+game.Id)>Play</a>
             </td>
             <td>               
                 <a asp-page="/Score/TopByGame" asp-route-id="@game.Id">Top players</a>                    
