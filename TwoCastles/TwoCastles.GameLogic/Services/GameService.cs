@@ -75,14 +75,12 @@ namespace TwoCastles.GameLogic.Services
             }
         }
 
-
         // TODO Change this method
         public void CheckWinner(Game game)
         {
             if (game.FirstPlayer.Castle.Height >= 50 ||
                 game.SecondPlayer.Castle.Height <= 0)
             {
-                game.FirstPlayer.Score = 100501;// should to write calculate score method 
                 SendScoreToDatabase(game);
                 //send game over message
             }
@@ -90,7 +88,6 @@ namespace TwoCastles.GameLogic.Services
             if (game.SecondPlayer.Castle.Height >= 50 ||
                      game.FirstPlayer.Castle.Height <= 0)
             {
-                game.FirstPlayer.Score = -100501;
                 SendScoreToDatabase(game);
                 //send game over message
             }
@@ -104,12 +101,17 @@ namespace TwoCastles.GameLogic.Services
 
             var model = new
             {
-                Value = game.FirstPlayer.Score,
+                Value = CountPlayerScore(game), 
                 GameId = game.Id,
                 UserId = game.FirstPlayer.Id
             };
 
             _apiService.Post(url, model);
+        }
+
+        private int CountPlayerScore(Game game)
+        {
+            return game.FirstPlayer.Score - game.SecondPlayer.Score;
         }
 
         public void IncreasePlayerResource(Player player)
@@ -124,5 +126,13 @@ namespace TwoCastles.GameLogic.Services
             int randomIndex = _rnd.Next(player.Hand.Count);
             return player.Hand[randomIndex];
         }
+
+        public void IncreasePlayerScore(Player player, Card currentCard)
+        {
+            player.Score += currentCard.BrickCost;
+            player.Score += currentCard.GemCost;
+            player.Score += currentCard.RecruitCost;
+        }
+
     }
 }
