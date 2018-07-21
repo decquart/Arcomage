@@ -46,8 +46,10 @@ namespace TwoCastles.Web.Controllers
                 game.FirstPlayer.Hand.Remove(playerCard);
                 _deckService.PushCard(game, playerCard);
                 _cardService.Play(playerCard, game.FirstPlayer, game.SecondPlayer);
-                _gameService.NormalizeCastles(game);
+                _gameService.CheckWinner(game);
                 _deckService.GiveCardToPlayer(game, game.FirstPlayer);
+                _gameService.NormalizeCastles(game);
+                _gameService.CheckWinner(game);
 
                 //enemy player part
                 // should to replace similar code to module
@@ -61,6 +63,7 @@ namespace TwoCastles.Web.Controllers
 
                 _deckService.GiveCardToPlayer(game, game.SecondPlayer);
                 _gameService.NormalizeCastles(game);
+                _gameService.CheckWinner(game);
                 return Ok(new {playerCard, enemyPlayerCard });                
             }
             catch (Exception e)
@@ -90,8 +93,8 @@ namespace TwoCastles.Web.Controllers
             }           
         }
 
-        [HttpGet("start/{userId}")]
-        public IActionResult Start(string userId)
+        [HttpGet("start/{userId}/{gameId}")]
+        public IActionResult Start(string userId, int gameId)
         {
             try
             {
@@ -102,6 +105,7 @@ namespace TwoCastles.Web.Controllers
                     game = _gameService.GetCurrentGame(userId);
                 else
                     game = _gameService.GetNewGame(userId);
+                game.Id = gameId;
 
                 _deckService.Shuffle(game);
                 _deckService.Deal(game);
