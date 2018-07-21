@@ -144,7 +144,7 @@
     "Url": "https://image.ibb.co/mcM9Od/Tower_Gremlin.png"
   },
   {
-    "Name": "SturdyWall",
+    "Name": "Sturdy Wall",
     "Description": "+4 Wall",
     "BrickCost": "3",
     "GemCost": "0",
@@ -154,5 +154,29 @@
     "Method": [ "AddWall" ],
     "Argument": [ 4 ],
     "Url": "https://image.ibb.co/i8ffUJ/Sturdy_Wall.png"
-  }  
+  },
+  {
+    "Name": "Strip Mine",
+    "Description": "-1 Qarry, +10 Wall, +5 Gems",
+    "BrickCost": "0",
+    "GemCost": "0",
+    "RecruitCost": "0",
+    "Colour": "Red",
+    "IsPlayAgain": "false",
+    "Method": [ "ReduceQuarry", "AddWall", "AddGems" ],
+    "Argument": [ 1, 10, 5 ],
+    "Url": "https://image.ibb.co/iFbLUJ/Strip_Mine.png"
+  },
+  {
+    "Name": "Stone Giant",
+    "Description": "10 Damage, +4 Wall",
+    "BrickCost": "0",
+    "GemCost": "0",
+    "RecruitCost": "15",
+    "Colour": "Green",
+    "IsPlayAgain": "false",
+    "Method": [ "Damage", "AddWall" ],
+    "Argument": [ 10, 4 ],
+    "Url": "https://image.ibb.co/kQ0Qwy/Stone_Giant.png"
+  }
 ]
