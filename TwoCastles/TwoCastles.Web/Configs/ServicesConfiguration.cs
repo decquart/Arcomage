@@ -15,6 +15,7 @@ namespace TwoCastles.Web.Configs
             services.AddTransient<IGameService, GameService>();
             services.AddTransient<ICardService, CardService>();
             services.AddTransient<IDeckService, DeckService>();
+            services.AddTransient<IApiService, ApiService>();
             services.AddScoped<Game>();
             return services;
         }
