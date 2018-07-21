@@ -4,10 +4,10 @@
     ViewData["Title"] = "Sign up Page";
 }
 
-<h2>Регистрация</h2>
+<h2>Create your account</h2>
 
 <form method="post">
-    <div class="validation" asp-validation-summary="All" />
+    <div class="validation" asp-validation-summary="All" >
     <div>
         <div>
             <label asp-for="SignupModel.Email">Email</label><br />
@@ -24,8 +24,9 @@
             <input asp-for="SignupModel.ConfirmPassword" />
             <span asp-validation-for="SignupModel.ConfirmPassword" />
         </div>
-        <div>
-            <input type="submit" value="Sign up" />
+        <div class="form-group">
+            <input type="submit" value="Sign up" class="btn" />
         </div>
+    </div>
     </div>
 </form>
