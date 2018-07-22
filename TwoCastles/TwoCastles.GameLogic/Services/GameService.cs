@@ -75,22 +75,26 @@ namespace TwoCastles.GameLogic.Services
             }
         }
 
-        // TODO Change this method
-        public void CheckWinner(Game game)
+        public string CheckWinner(Game game)
         {
             if (game.FirstPlayer.Castle.Height >= 50 ||
                 game.SecondPlayer.Castle.Height <= 0)
             {
                 SendScoreToDatabase(game);
-                //send game over message
+                var winnerId = game.FirstPlayer.Id;
+                DeleteGame(game.FirstPlayer.Id);
+                return winnerId;
             }
 
             if (game.SecondPlayer.Castle.Height >= 50 ||
                      game.FirstPlayer.Castle.Height <= 0)
             {
                 SendScoreToDatabase(game);
-                //send game over message
+                var winnerId = game.SecondPlayer.Id;
+                DeleteGame(game.FirstPlayer.Id);
+                return winnerId;
             }
+            return string.Empty;
         }
 
         private void SendScoreToDatabase(Game game)
