@@ -40,16 +40,18 @@ namespace TwoCastles.Web.Controllers
                     return BadRequest("Card not found");
                 var isEnoughRes = _cardService.IsEnoughResources(playerCard, game.FirstPlayer);
                 if (!isEnoughRes)
-                    return BadRequest($"Player doesn't have enought resources to apply {playerCard.Name}");
+                    return BadRequest($"Player doesn't have enough resources to apply {playerCard.Name}");
 
                 _gameService.IncreasePlayerResource(game.FirstPlayer);
                 game.FirstPlayer.Hand.Remove(playerCard);
                 _deckService.PushCard(game, playerCard);
                 _cardService.Play(playerCard, game.FirstPlayer, game.SecondPlayer);
-                _gameService.CheckWinner(game);
                 _deckService.GiveCardToPlayer(game, game.FirstPlayer);
                 _gameService.NormalizeCastles(game);
-                _gameService.CheckWinner(game);
+                _gameService.IncreasePlayerScore(game.FirstPlayer, playerCard);
+                var winnerId = _gameService.CheckWinner(game);
+                if (winnerId != string.Empty)
+                    return Redirect("http://localhost:4200/gameover");    
 
                 //enemy player part
                 // should to replace similar code to module
@@ -63,7 +65,11 @@ namespace TwoCastles.Web.Controllers
 
                 _deckService.GiveCardToPlayer(game, game.SecondPlayer);
                 _gameService.NormalizeCastles(game);
+                _gameService.IncreasePlayerScore(game.SecondPlayer, enemyPlayerCard);
                 _gameService.CheckWinner(game);
+                winnerId = _gameService.CheckWinner(game);
+                if (winnerId != string.Empty)
+                    return Redirect("http://localhost:4200/gameover");
                 return Ok(new {playerCard, enemyPlayerCard });                
             }
             catch (Exception e)
