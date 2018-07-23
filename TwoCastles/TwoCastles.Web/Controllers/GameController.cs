@@ -18,14 +18,16 @@ namespace TwoCastles.Web.Controllers
         private readonly IGameService _gameService;
         private readonly IDeckService _deckService;
         private readonly ICardService _cardService;
+        private readonly IGamePipelineService _gamePipelineService;
         private readonly IMapper _mapper;
 
         public GameController(IGameService gameService, ICardService cardService,
-            IDeckService deckService, IMapper mapper)
+            IDeckService deckService, IGamePipelineService gamePipelineService, IMapper mapper)
         {
             _gameService = gameService;
             _deckService = deckService;
             _cardService = cardService;
+            _gamePipelineService = gamePipelineService;
             _mapper = mapper;
         }
 
@@ -38,40 +40,16 @@ namespace TwoCastles.Web.Controllers
                 var playerCard = game.FirstPlayer.Hand.FirstOrDefault(c => c.Name.Equals(cardName));
                 if (playerCard == null)
                     return BadRequest("Card not found");
-                var isEnoughRes = _cardService.IsEnoughResources(playerCard, game.FirstPlayer);
-                if (!isEnoughRes)
-                    return BadRequest($"Player doesn't have enough resources to apply {playerCard.Name}");
 
-                _gameService.IncreasePlayerResource(game.FirstPlayer);
-                game.FirstPlayer.Hand.Remove(playerCard);
-                _deckService.PushCard(game, playerCard);
-                _cardService.Play(playerCard, game.FirstPlayer, game.SecondPlayer);
-                _deckService.GiveCardToPlayer(game, game.FirstPlayer);
-                _gameService.NormalizeCastles(game);
-                _gameService.IncreasePlayerScore(game.FirstPlayer, playerCard);
-                var winnerId = _gameService.CheckWinner(game);
-                if (winnerId != string.Empty)
-                    return Redirect("http://localhost:4200/gameover");
-                
+                var winnerId = _gamePipelineService.PlayerTurn(game, playerCard, game.FirstPlayer, game.SecondPlayer);
 
                 //enemy player part
                 // should to replace similar code to module
-                var enemyPlayerCard = _gameService.GetRandomCard(game.SecondPlayer);
-                _gameService.IncreasePlayerResource(game.SecondPlayer);
-                game.SecondPlayer.Hand.Remove(enemyPlayerCard);
-                _deckService.PushCard(game, enemyPlayerCard);
-                isEnoughRes = _cardService.IsEnoughResources(enemyPlayerCard, game.SecondPlayer);
-                if (isEnoughRes)
-                    _cardService.Play(enemyPlayerCard, game.SecondPlayer, game.FirstPlayer);
+                var computerPlayerCard = _gameService.GetRandomCard(game.SecondPlayer);
+                winnerId = _gamePipelineService.ComputerTurn(game, computerPlayerCard, game.SecondPlayer, 
+                    game.FirstPlayer);
 
-                _deckService.GiveCardToPlayer(game, game.SecondPlayer);
-                _gameService.NormalizeCastles(game);
-                _gameService.IncreasePlayerScore(game.SecondPlayer, enemyPlayerCard);
-                _gameService.CheckWinner(game);
-                winnerId = _gameService.CheckWinner(game);
-                if (winnerId != string.Empty)
-                    return Redirect("http://localhost:4200/gameover");
-                return Ok(new {playerCard, enemyPlayerCard });                
+                return Ok(new {playerCard, computerPlayerCard });                
             }
             catch (Exception e)
             {
@@ -79,6 +57,7 @@ namespace TwoCastles.Web.Controllers
             }
         }
 
+       
         [HttpGet("discard/{cardName}/{userId}")]
         public IActionResult Discard(string cardName, string userId)
         {
