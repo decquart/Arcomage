@@ -21,10 +21,6 @@ namespace BLL.Infrastructure
 
                 cfg.CreateMap<Game, GameDto>();
                 cfg.CreateMap<GameDto, Game>();
-
-                //cfg.CreateMap<Score, ScoreDto>();
-                // cfg.CreateMap<User, ArcomageUserDTO>();
-
             });
 
             services.AddSingleton(mapperConfiguration);

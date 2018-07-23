@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DAL.Repositories
 {
@@ -37,7 +36,7 @@ namespace DAL.Repositories
 
         public Score Get(int id)
         {
-            throw new NotImplementedException();
+            return _db.Scores.Find(id);
         }
 
         public IEnumerable<Score> GetAll()

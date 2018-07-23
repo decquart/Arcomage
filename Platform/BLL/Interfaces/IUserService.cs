@@ -1,7 +1,6 @@
 ﻿using BLL.DTO;
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
-using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -21,12 +20,5 @@ namespace BLL.Interfaces
         IEnumerable<UserDTO> GetUsers();
 
         string GetUserId(ClaimsPrincipal claims);
-        ////update
-        //bool UpdateUserInformation(UserDTO userDTO);
-
-        //Task<ClaimsIdentity> OAuthIdentity(string userName, string password);
-        //Task<ClaimsIdentity> CookiesIdentity(string userName, string password);
-
-        //void Dispose();
     }
 }

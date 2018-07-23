@@ -1,7 +1,5 @@
 ﻿using BLL.DTO;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BLL.Interfaces
 {
@@ -13,9 +11,5 @@ namespace BLL.Interfaces
         //read
         IEnumerable<ScoreDtoWithEmail> GetScoresByGame(int gameId);
         IEnumerable<ScoreDtoWithEmail> GetTotalAverageScore();
-
-        //delete
-
-
     }
 }
