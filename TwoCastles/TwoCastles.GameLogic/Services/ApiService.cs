@@ -13,9 +13,10 @@ namespace TwoCastles.GameLogic.Services
         public void Post<T>(string url, T model)
         {
             var client = new RestClient(url);
-            var request = new RestRequest(Method.POST);
-
-            request.RequestFormat = DataFormat.Json;
+            var request = new RestRequest(Method.POST)
+            {
+                RequestFormat = DataFormat.Json
+            };
             request.AddBody(model);
             IRestResponse response = client.Execute(request);
         }
