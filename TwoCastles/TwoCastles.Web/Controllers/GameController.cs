@@ -116,7 +116,7 @@ namespace TwoCastles.Web.Controllers
                 _deckService.Shuffle(game);
                 _deckService.Deal(game);
 
-                string url = "http://localhost:4200/" + userId;
+                string url = "http://localhost:4200/game/" + userId;
                 return Redirect(url);
             }
             catch (Exception e)

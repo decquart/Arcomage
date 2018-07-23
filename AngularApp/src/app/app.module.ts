@@ -9,16 +9,18 @@ import { CastleComponent } from './castle/castle.component';
 import { CastleService } from './castle/castle.service';
 import {RouterModule} from '@angular/router';
 import { GameOverComponent } from './game/game-over.component';
+import { GameComponent } from './game/game.component';
 
 @NgModule({
   declarations: [
-      CardListComponent, AppComponent, CastleComponent, GameOverComponent
+      CardListComponent, AppComponent, CastleComponent, GameOverComponent, 
+      GameComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
     RouterModule.forRoot([
-      {path: ':id', component: AppComponent},
       {path: 'gameover', component: GameOverComponent},
+      {path: 'game/:id', component: GameComponent},
       {path: '**', redirectTo:'', pathMatch: 'full'}
     ])
   ],

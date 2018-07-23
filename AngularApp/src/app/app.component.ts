@@ -1,21 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'root',
   templateUrl: './app.component.html' , 
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Arcomage';
-  private id: string;
 
-  constructor(private route: ActivatedRoute){ 
-    
-  }
+  constructor(){}
 
-  ngOnInit(): void{
-    this.id = location.pathname.slice(1,location.pathname.length);
-    localStorage.setItem('id', this.id);
-    console.log(localStorage.getItem('id'));
-  }   
 }
