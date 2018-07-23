@@ -2,3 +2,7 @@
     display: flex;
     justify-content: space-between; 
 }
+.game-icon{
+    width: 65px;
+    margin: 2px;
+}
