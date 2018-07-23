@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Castle } from '../models/castle';
 import { CastleService } from "./castle.service";
 
@@ -11,11 +11,9 @@ import { CastleService } from "./castle.service";
 })
 
 export class CastleComponent{
-    // playerCastle: Castle;
-    // enemyCastle: Castle;
     castles: Castle[];
     errorMessage: string;
-
+   
     constructor(private castleService: CastleService){
         
     }
@@ -29,5 +27,5 @@ export class CastleComponent{
 
     ngOnInit(): void{
         this.getCastles();
-    }
+    } 
 }
