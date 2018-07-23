@@ -51,7 +51,8 @@ namespace TwoCastles.Web.Controllers
                 _gameService.IncreasePlayerScore(game.FirstPlayer, playerCard);
                 var winnerId = _gameService.CheckWinner(game);
                 if (winnerId != string.Empty)
-                    return Redirect("http://localhost:4200/gameover");    
+                    return Redirect("http://localhost:4200/gameover");
+                
 
                 //enemy player part
                 // should to replace similar code to module
@@ -155,6 +156,23 @@ namespace TwoCastles.Web.Controllers
                 castles.Add(game.SecondPlayer.Castle);
 
                 return Ok(castles);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+            }
+        }
+
+        [HttpGet("scores/{userId}")]
+        public IActionResult GetCurrentScore(string userId)
+        {
+            try
+            {
+                var game = _gameService.GetCurrentGame(userId);
+                if (game == null)
+                    return BadRequest("Game is not valid");
+                var scores = _gameService.CountPlayerScore(game);
+                return Ok(scores);
             }
             catch (Exception e)
             {
