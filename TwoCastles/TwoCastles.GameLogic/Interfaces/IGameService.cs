@@ -18,5 +18,6 @@ namespace TwoCastles.GameLogic.Interfaces
         void IncreasePlayerResource(Player player);
         Card GetRandomCard(Player player);
         void IncreasePlayerScore(Player player, Card currentCard);
+        int CountPlayerScore(Game game);
     }
 }

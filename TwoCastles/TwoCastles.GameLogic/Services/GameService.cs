@@ -113,9 +113,9 @@ namespace TwoCastles.GameLogic.Services
             _apiService.Post(url, model);
         }
 
-        private int CountPlayerScore(Game game)
+        public int CountPlayerScore(Game game)
         {
-            return game.FirstPlayer.Score - game.SecondPlayer.Score;
+            return game.FirstPlayer.Score - game.SecondPlayer.Score;            
         }
 
         public void IncreasePlayerResource(Player player)
