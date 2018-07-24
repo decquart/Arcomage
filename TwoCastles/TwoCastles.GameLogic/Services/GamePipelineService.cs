@@ -52,5 +52,19 @@ namespace TwoCastles.GameLogic.Services
             _gameService.CheckWinner(game);
             return _gameService.CheckWinner(game);
         }
+
+        public string DiscardTurn(Game game, Card playerCard, Player currentPlayer)
+        {
+            var isEnoughRes = _cardService.IsEnoughResources(playerCard, currentPlayer);
+            if (!isEnoughRes)
+                throw new ApplicationException($"Player doesn't have enough resources to apply {playerCard.Name}");
+
+            _gameService.IncreasePlayerResource(game.FirstPlayer);           
+            currentPlayer.Hand.Remove(playerCard);
+            _deckService.PushCard(game, playerCard);
+            _deckService.GiveCardToPlayer(game, currentPlayer);
+            _gameService.NormalizeCastles(game);
+            return _gameService.CheckWinner(game);
+        }
     }
 }

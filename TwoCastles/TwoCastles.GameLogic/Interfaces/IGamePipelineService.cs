@@ -9,5 +9,6 @@ namespace TwoCastles.GameLogic.Interfaces
     {
         string PlayerTurn(Game game, Card playerCard, Player currentPlayer, Player enemyPlayer);
         string ComputerTurn(Game game, Card computerPlayerCard, Player computerPlayer, Player humanPlayer);
+        string DiscardTurn(Game game, Card playerCard, Player currentPlayer);
     }
 }
