@@ -17,16 +17,14 @@ namespace TwoCastles.Web.Controllers
     {
         private readonly IGameService _gameService;
         private readonly IDeckService _deckService;
-        private readonly ICardService _cardService;
         private readonly IGamePipelineService _gamePipelineService;
         private readonly IMapper _mapper;
 
-        public GameController(IGameService gameService, ICardService cardService,
-            IDeckService deckService, IGamePipelineService gamePipelineService, IMapper mapper)
+        public GameController(IGameService gameService, IDeckService deckService,
+            IGamePipelineService gamePipelineService, IMapper mapper)
         {
             _gameService = gameService;
             _deckService = deckService;
-            _cardService = cardService;
             _gamePipelineService = gamePipelineService;
             _mapper = mapper;
         }
@@ -37,17 +35,19 @@ namespace TwoCastles.Web.Controllers
             try
             {
                 var game = _gameService.GetCurrentGame(userId);
-                var playerCard = game.FirstPlayer.Hand.FirstOrDefault(c => c.Name.Equals(cardName));
+                var humanPlayer = game.FirstPlayer;
+                var computerPlayer = game.SecondPlayer;
+
+                var playerCard = humanPlayer.Hand.FirstOrDefault(c => c.Name.Equals(cardName));
                 if (playerCard == null)
                     return BadRequest("Card not found");
 
-                var winnerId = _gamePipelineService.PlayerTurn(game, playerCard, game.FirstPlayer, game.SecondPlayer);
+                var winnerId = _gamePipelineService.PlayerTurn(game, playerCard, humanPlayer, computerPlayer);
 
                 //enemy player part
-                // should to replace similar code to module
-                var computerPlayerCard = _gameService.GetRandomCard(game.SecondPlayer);
-                winnerId = _gamePipelineService.ComputerTurn(game, computerPlayerCard, game.SecondPlayer, 
-                    game.FirstPlayer);
+                var computerPlayerCard = _gameService.GetRandomCard(computerPlayer);
+                winnerId = _gamePipelineService.ComputerTurn(game, computerPlayerCard, computerPlayer, 
+                    humanPlayer);
 
                 return Ok(new {playerCard, computerPlayerCard });                
             }
@@ -64,14 +64,21 @@ namespace TwoCastles.Web.Controllers
             try
             {
                 var game = _gameService.GetCurrentGame(userId);
-                _gameService.IncreasePlayerResource(game.FirstPlayer);
-                var playerCard = game.FirstPlayer.Hand.FirstOrDefault(c => c.Name.Equals(cardName));
+                var humanPlayer = game.FirstPlayer;
+                var computerPlayer = game.SecondPlayer;
+
+                var playerCard = humanPlayer.Hand.FirstOrDefault(c => c.Name.Equals(cardName));
                 if (playerCard == null)
-                    return BadRequest();
-                game.FirstPlayer.Hand.Remove(playerCard);
-                _deckService.PushCard(game, playerCard);
-                _deckService.GiveCardToPlayer(game, game.FirstPlayer);
-                return Ok(playerCard);
+                    return BadRequest("Card not found");
+
+                var winnerId = _gamePipelineService.DiscardTurn(game, playerCard, humanPlayer);
+
+                //enemy player part
+                var computerPlayerCard = _gameService.GetRandomCard(computerPlayer);
+                winnerId = _gamePipelineService.ComputerTurn(game, computerPlayerCard, computerPlayer,
+                    humanPlayer);
+
+                return Ok(new { playerCard, computerPlayer});
             }
             catch (Exception e)
             {
