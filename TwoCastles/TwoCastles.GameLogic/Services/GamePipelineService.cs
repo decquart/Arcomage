@@ -24,30 +24,24 @@ namespace TwoCastles.GameLogic.Services
             if (!isEnoughRes)
                 throw new ApplicationException($"Player doesn't have enough resources to apply {playerCard.Name}");
 
-            _gameService.IncreasePlayerResource(currentPlayer);
-            currentPlayer.Hand.Remove(playerCard);
-            _deckService.PushCard(game, playerCard);
+            StartTurnPart(game, currentPlayer, playerCard);
             _cardService.Play(playerCard, currentPlayer, enemyPlayer);
-            _deckService.GiveCardToPlayer(game, currentPlayer);
-            _gameService.NormalizeCastles(game);
+
+            EndTurnPart(game, currentPlayer);
             _gameService.IncreasePlayerScore(currentPlayer, playerCard);
             return _gameService.CheckWinner(game);      //return winner id
         }
 
         public string ComputerTurn(Game game, Card computerPlayerCard, Player computerPlayer, Player humanPlayer)
         {
-            _gameService.IncreasePlayerResource(computerPlayer);
-            computerPlayer.Hand.Remove(computerPlayerCard);
-            _deckService.PushCard(game, computerPlayerCard);
+            StartTurnPart(game, computerPlayer, computerPlayerCard);
             var isEnoughRes = _cardService.IsEnoughResources(computerPlayerCard, computerPlayer);
             //apply card if enough resources
             if (isEnoughRes)
                 _cardService.Play(computerPlayerCard, computerPlayer, humanPlayer);
 
-            _deckService.GiveCardToPlayer(game, computerPlayer);
-            _gameService.NormalizeCastles(game);
+            EndTurnPart(game, computerPlayer);
             _gameService.IncreasePlayerScore(computerPlayer, computerPlayerCard);
-            _gameService.CheckWinner(game);
             return _gameService.CheckWinner(game);
         }
 
@@ -57,12 +51,22 @@ namespace TwoCastles.GameLogic.Services
             if (!isEnoughRes)
                 throw new ApplicationException($"Player doesn't have enough resources to apply {playerCard.Name}");
 
-            _gameService.IncreasePlayerResource(game.FirstPlayer);           
-            currentPlayer.Hand.Remove(playerCard);
-            _deckService.PushCard(game, playerCard);
-            _deckService.GiveCardToPlayer(game, currentPlayer);
-            _gameService.NormalizeCastles(game);
+            StartTurnPart(game, currentPlayer, playerCard);
+            EndTurnPart(game, currentPlayer);
             return _gameService.CheckWinner(game);
+        }
+
+        private void StartTurnPart(Game game, Player player, Card card)
+        {
+            _gameService.IncreasePlayerResource(player);
+            player.Hand.Remove(card);
+            _deckService.PushCard(game, card);
+        }
+
+        private void EndTurnPart(Game game, Player player)
+        {
+            _deckService.GiveCardToPlayer(game, player);
+            _gameService.NormalizeCastles(game);
         }
     }
 }
