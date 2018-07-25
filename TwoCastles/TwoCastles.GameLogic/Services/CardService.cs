@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using TwoCastles.Entities;
 using TwoCastles.GameLogic.Interfaces;
 
@@ -76,7 +74,7 @@ namespace TwoCastles.GameLogic.Services
                         ReduceDungeon(card.Argument[i], oppPlayer);
                         break;
                     default:
-                       return;
+                        break;
                 }
             }
         }

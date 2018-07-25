@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using TwoCastles.Data.Constants;
 using TwoCastles.Data.Interfaces;
 using TwoCastles.Entities;
 using TwoCastles.GameLogic.Interfaces;
@@ -99,9 +99,7 @@ namespace TwoCastles.GameLogic.Services
 
         private void SendScoreToDatabase(Game game)
         {
-            //send data to database https://localhost:44364/api/scores/create
-            //todo: replace url to another place
-            var url = "https://localhost:44364/api/scores/create";
+            var url = ConstantsList.scoreCreateUrl;
 
             var model = new
             {
@@ -137,6 +135,5 @@ namespace TwoCastles.GameLogic.Services
             player.Score += currentCard.GemCost;
             player.Score += currentCard.RecruitCost;
         }
-
     }
 }

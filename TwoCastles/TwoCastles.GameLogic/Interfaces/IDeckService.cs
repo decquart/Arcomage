@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TwoCastles.Entities;
+﻿using TwoCastles.Entities;
 
 namespace TwoCastles.GameLogic.Interfaces
 {

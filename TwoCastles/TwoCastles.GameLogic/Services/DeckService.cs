@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TwoCastles.Entities;
 using TwoCastles.GameLogic.Interfaces;
 
@@ -37,8 +35,7 @@ namespace TwoCastles.GameLogic.Services
         public void GiveCardToPlayer(Game game, Player player)
         {
             var card = game.CurrentDeck.Cards.FirstOrDefault();
-            //if (card != null)
-            //    throw new ArgumentException("Deck doesn't have enough cards");
+            
             if (card != null)
             {
                 game.CurrentDeck.Cards.Remove(card);

@@ -54,7 +54,7 @@ namespace TwoCastles.Data.Repositories
         }
 
 
-        static Game Init(this Game _game, string key)
+        private static Game Init(this Game _game, string key)
         {
             _game.CurrentDeck = new Deck { Cards = new JsonParser().GetCardsFromJson() };
             _game.FirstPlayer = new Player()  { Id = key };
@@ -65,7 +65,7 @@ namespace TwoCastles.Data.Repositories
             return _game;
         }
 
-        static void CastleInit(Castle castle)
+        private static void CastleInit(Castle castle)
         {
             castle.Height = ConstantsList.castle;
             castle.Wall = ConstantsList.wall;

@@ -8,6 +8,7 @@ namespace TwoCastles.Data.Constants
     {
         public const int maxPlayerCards = 6;
         public const string gameStartUrl = "http://localhost:4200/game/";
+        public const string scoreCreateUrl = "https://localhost:44364/api/scores/create/";
         public const string computerId = "AI";
 
         public const int castle = 20;
