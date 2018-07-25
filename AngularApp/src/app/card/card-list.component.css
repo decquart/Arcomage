@@ -12,6 +12,9 @@
  }
 
  .list-container{
-  flex-wrap: wrap;
-  align-items: flex-end;
+    flex-wrap: wrap;
+    align-items: flex-end;
+ }
+ .card:hover{
+    border: 1px solid red;
  }

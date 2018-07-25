@@ -8,5 +8,4 @@ export class AppComponent {
   title = 'Arcomage';
 
   constructor(){}
-
 }

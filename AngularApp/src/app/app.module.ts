@@ -10,6 +10,7 @@ import { CastleService } from './castle/castle.service';
 import {RouterModule} from '@angular/router';
 import { GameOverComponent } from './game/game-over.component';
 import { GameComponent } from './game/game.component';
+import { SharedService } from './card/shared.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { GameComponent } from './game/game.component';
       {path: '**', redirectTo:'', pathMatch: 'full'}
     ])
   ],
-  providers: [CardService, CastleService],
+  providers: [CardService, CastleService, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
