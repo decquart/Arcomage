@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using TwoCastles.Data.Constants;
 using TwoCastles.Entities;
 using TwoCastles.GameLogic.Interfaces;
 using TwoCastles.Web.DTO;
@@ -43,11 +44,15 @@ namespace TwoCastles.Web.Controllers
                     return BadRequest("Card not found");
 
                 var winnerId = _gamePipelineService.PlayerTurn(game, playerCard, humanPlayer, computerPlayer);
+                if (winnerId != string.Empty)
+                    return Ok(winnerId);
 
                 //enemy player part
                 var computerPlayerCard = _gameService.GetRandomCard(computerPlayer);
                 winnerId = _gamePipelineService.ComputerTurn(game, computerPlayerCard, computerPlayer, 
                     humanPlayer);
+                if (winnerId != string.Empty)
+                    return Ok(winnerId);
 
                 return Ok(new {playerCard, computerPlayerCard });                
             }
@@ -72,11 +77,15 @@ namespace TwoCastles.Web.Controllers
                     return BadRequest("Card not found");
 
                 var winnerId = _gamePipelineService.DiscardTurn(game, playerCard, humanPlayer);
+                if (winnerId != string.Empty)
+                    return Ok(winnerId);
 
                 //enemy player part
                 var computerPlayerCard = _gameService.GetRandomCard(computerPlayer);
                 winnerId = _gamePipelineService.ComputerTurn(game, computerPlayerCard, computerPlayer,
                     humanPlayer);
+                if (winnerId != string.Empty)
+                    return Ok(winnerId);
 
                 return Ok(new { playerCard, computerPlayer});
             }
@@ -101,7 +110,7 @@ namespace TwoCastles.Web.Controllers
                 game.Id = gameId;
 
                 _deckService.Shuffle(game);
-                _deckService.Deal(game);
+                _deckService.Deal(game, Constants.maxPlayerCards);
 
                 string url = "http://localhost:4200/game/" + userId;
                 return Redirect(url);
