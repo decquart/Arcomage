@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Castle } from '../models/castle';
 import { CastleService } from "./castle.service";
+import { SharedService } from '../card/shared.service';
 
 
 
@@ -14,8 +15,12 @@ export class CastleComponent{
     castles: Castle[];
     errorMessage: string;
    
-    constructor(private castleService: CastleService){
-        
+    constructor(private castleService: CastleService, private sharedService: SharedService){
+        sharedService.onCastleEvent.subscribe(
+            (onCastle) => {
+              this.castles = onCastle;
+            }
+        );
     }
 
     getCastles(){
