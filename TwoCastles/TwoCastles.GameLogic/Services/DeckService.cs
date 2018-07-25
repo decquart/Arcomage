@@ -15,7 +15,7 @@ namespace TwoCastles.GameLogic.Services
             rnd = new Random();
         }
 
-        public void Deal(Game game)
+        public void Deal(Game game, int amountPlayerCards)
         {
             var firstUser = game.FirstPlayer;
             var secondUser = game.SecondPlayer;
@@ -23,10 +23,11 @@ namespace TwoCastles.GameLogic.Services
             if (firstUser == null || secondUser == null)
                 throw new ArgumentException($"Player is not valid");
 
-            // amount of cards, which player'll be have
-            //TODO: should to change hardcode value!!!
-            var length = 6;
-            for (int i = 0; i < length; i++)
+            if (firstUser.Hand.Count >= amountPlayerCards ||
+                secondUser.Hand.Count >= amountPlayerCards)
+                throw new ApplicationException($"Players alredy have {amountPlayerCards} cards");
+
+            for (int i = 0; i < amountPlayerCards; i++)
             {
                 GiveCardToPlayer(game, firstUser);
                 GiveCardToPlayer(game, secondUser);
