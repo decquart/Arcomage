@@ -1,12 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'game',
     templateUrl: './game.component.html',
+    styleUrls: ['./game.component.css']
 })
 
-export class GameComponent{
+export class GameComponent implements OnInit{
     private id: string;
 
     constructor(private route: ActivatedRoute){
