@@ -110,9 +110,9 @@ namespace TwoCastles.Web.Controllers
                 game.Id = gameId;
 
                 _deckService.Shuffle(game);
-                _deckService.Deal(game, Constants.maxPlayerCards);
+                _deckService.Deal(game, ConstantsList.maxPlayerCards);
 
-                string url = Constants.gameStartUrl + userId;
+                string url = ConstantsList.gameStartUrl + userId;
                 return Redirect(url);
             }
             catch (Exception e)

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using TwoCastles.Data.Constants;
 using TwoCastles.Data.Helper;
-using TwoCastles.Data.Interfaces;
 using TwoCastles.Entities;
 
 namespace TwoCastles.Data.Repositories
@@ -59,7 +58,7 @@ namespace TwoCastles.Data.Repositories
         {
             _game.CurrentDeck = new Deck { Cards = new JsonParser().GetCardsFromJson() };
             _game.FirstPlayer = new Player()  { Id = key };
-            _game.SecondPlayer = new Player() { Id = "AI"};
+            _game.SecondPlayer = new Player() { Id = ConstantsList.computerId};
             CastleInit(_game.FirstPlayer.Castle = new Castle());
             CastleInit(_game.SecondPlayer.Castle = new Castle());
 
@@ -68,16 +67,16 @@ namespace TwoCastles.Data.Repositories
 
         static void CastleInit(Castle castle)
         {
-            castle.Height = 20;
-            castle.Wall = 5;
+            castle.Height = ConstantsList.castle;
+            castle.Wall = ConstantsList.wall;
 
-            castle.Bricks = 5;
-            castle.Gems = 5;
-            castle.Recruits = 5;
+            castle.Bricks = ConstantsList.bricks;
+            castle.Gems = ConstantsList.gems;
+            castle.Recruits = ConstantsList.recruits;
 
-            castle.Quarry = 2;
-            castle.Magic = 2;
-            castle.Dungeon = 2;
+            castle.Quarry = ConstantsList.quarry;
+            castle.Magic = ConstantsList.magic;
+            castle.Dungeon = ConstantsList.dungeon;
         }
     }
 }

@@ -76,8 +76,7 @@ namespace TwoCastles.GameLogic.Services
                         ReduceDungeon(card.Argument[i], oppPlayer);
                         break;
                     default:
-                        Discard();
-                        break;
+                       return;
                 }
             }
         }
@@ -169,11 +168,6 @@ namespace TwoCastles.GameLogic.Services
         private void ReduceDungeon(int amount, Player user)
         {
             user.Castle.Dungeon -= amount;
-        }
-
-        private void Discard()
-        {
-            return;
         }
     }
 }
