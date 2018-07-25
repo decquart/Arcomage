@@ -25,7 +25,7 @@ namespace BLL.Services
             _mapper = mapper;
         }
 
-        public bool AddScore(string _userId, int _gameId, int _value)
+        public void AddScore(string _userId, int _gameId, int _value)
         {
             var user = _userManager.FindByIdAsync(_userId).GetAwaiter().GetResult();
             if (user == null)
@@ -41,7 +41,6 @@ namespace BLL.Services
 
             _db.Scores.Create(score);
             _db.Save();
-            return true;
         }
 
         public IEnumerable<ScoreDtoWithEmail> GetScoresByGame(int gameId)

@@ -6,7 +6,7 @@ namespace BLL.Interfaces
     public interface IScoreService
     {
         //create
-        bool AddScore(string userId, int gameId, int value);
+        void AddScore(string userId, int gameId, int value);
 
         //read
         IEnumerable<ScoreDtoWithEmail> GetScoresByGame(int gameId);
