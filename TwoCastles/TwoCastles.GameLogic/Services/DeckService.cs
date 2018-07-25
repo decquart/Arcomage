@@ -25,7 +25,7 @@ namespace TwoCastles.GameLogic.Services
 
             if (firstUser.Hand.Count >= amountPlayerCards ||
                 secondUser.Hand.Count >= amountPlayerCards)
-                throw new ApplicationException($"Players alredy have {amountPlayerCards} cards");
+                return;
 
             for (int i = 0; i < amountPlayerCards; i++)
             {

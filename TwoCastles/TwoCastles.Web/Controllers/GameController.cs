@@ -112,7 +112,7 @@ namespace TwoCastles.Web.Controllers
                 _deckService.Shuffle(game);
                 _deckService.Deal(game, Constants.maxPlayerCards);
 
-                string url = "http://localhost:4200/game/" + userId;
+                string url = Constants.gameStartUrl + userId;
                 return Redirect(url);
             }
             catch (Exception e)
