@@ -8,4 +8,6 @@
 }
 .stat{
     color: white;
+    list-style-type:none;
+    line-height: 3.4;
 }

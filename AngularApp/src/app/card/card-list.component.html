@@ -1,13 +1,13 @@
 
 <div class="list-container">
     <div class="card-container">
-        <div *ngFor='let card of cards' (click)='useCard(card)' class="card">    
-                <img src= {{card.url}}  alt="{{card.name}}: {{card.description}} "> 
+        <div *ngFor='let card of cards' (click)='useCard(card)' >    
+                <img src= {{card.url}}  alt="{{card.name}}: {{card.description}}" class="card"> 
         </div>
     </div>
     <div class="discard-container">
-        <div *ngFor='let card of cards' (click)='discardCard(card)' class="discard-button">    
-            <button>discard </button> 
+        <div *ngFor='let card of cards' (click)='discardCard(card)'>    
+            <button class="discard-button">discard </button> 
         </div>
     </div>
 </div>

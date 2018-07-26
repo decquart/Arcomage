@@ -11,10 +11,36 @@
      
  }
 
- .list-container{
+ /* .list-container{
     flex-wrap: wrap;
     align-items: flex-end;
- }
+ } */
  .card:hover{
-    border: 1px solid red;
+    border: 2px solid green;
+    cursor: pointer;
+ }
+ .card{
+    border-radius: 8%;
+    border: 2px solid gray;
+ }
+
+ .card:active{
+  transform: translateY(-140px);
+  transform: translateX(center);
+ }
+
+ .discard-button{
+  border: 0;
+  border-radius: 0.5rem;
+  color: white;
+  background: #1E88E5;
+  border: #1E88E5 solid 2px;
+ }
+ .discard-button:hover{
+   border: white solid 2px;
+ }
+
+ .discard-button:active{
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
  }
