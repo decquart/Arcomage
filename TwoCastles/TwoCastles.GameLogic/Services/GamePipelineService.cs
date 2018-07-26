@@ -47,10 +47,6 @@ namespace TwoCastles.GameLogic.Services
 
         public string DiscardTurn(Game game, Card playerCard, Player currentPlayer)
         {
-            var isEnoughRes = _cardService.IsEnoughResources(playerCard, currentPlayer);
-            if (!isEnoughRes)
-                throw new ApplicationException($"Player doesn't have enough resources to apply {playerCard.Name}");
-
             StartTurnPart(game, currentPlayer, playerCard);
             EndTurnPart(game, currentPlayer);
             return _gameService.CheckWinner(game);

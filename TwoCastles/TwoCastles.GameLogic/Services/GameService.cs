@@ -77,8 +77,8 @@ namespace TwoCastles.GameLogic.Services
 
         public string CheckWinner(Game game)
         {
-            if (game.FirstPlayer.Castle.Height >= 50 ||
-                game.SecondPlayer.Castle.Height <= 0)
+            if (game.FirstPlayer.Castle.Height >= ConstantsList.maxCastleHeight ||
+                game.SecondPlayer.Castle.Height <= ConstantsList.minCastleHeight)
             {
                 SendScoreToDatabase(game);
                 var winnerId = game.FirstPlayer.Id;
@@ -86,8 +86,8 @@ namespace TwoCastles.GameLogic.Services
                 return winnerId;
             }
 
-            if (game.SecondPlayer.Castle.Height >= 50 ||
-                     game.FirstPlayer.Castle.Height <= 0)
+            if (game.SecondPlayer.Castle.Height >= ConstantsList.maxCastleHeight ||
+                     game.FirstPlayer.Castle.Height <= ConstantsList.minCastleHeight)
             {
                 SendScoreToDatabase(game);
                 var winnerId = game.SecondPlayer.Id;
