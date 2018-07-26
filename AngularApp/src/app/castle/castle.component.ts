@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Castle } from '../models/castle';
-import { CastleService } from "./castle.service";
-import { SharedService } from '../card/shared.service';
+import { SharedService } from '../services/shared.service';
+import { CastleService } from '../services/castle.service';
 
 
 
@@ -32,5 +32,5 @@ export class CastleComponent{
 
     ngOnInit(): void{
         this.getCastles();
-    } 
+    }
 }

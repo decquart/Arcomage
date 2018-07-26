@@ -3,14 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CardListComponent } from './card/card-list.component';
-import { CardService } from './card/card.service';
 import {HttpClientModule} from '@angular/common/http';
 import { CastleComponent } from './castle/castle.component';
-import { CastleService } from './castle/castle.service';
-import {RouterModule} from '@angular/router';
+import {RouterModule} from '@angular/router'; 
 import { GameOverComponent } from './game/game-over.component';
 import { GameComponent } from './game/game.component';
-import { SharedService } from './card/shared.service';
+import { HttpService } from './services/http.services';
+import { SharedService } from './services/shared.service';
+import { CardService } from './services/card.service';
+import { CastleService } from './services/castle.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { SharedService } from './card/shared.service';
       {path: '**', redirectTo:'', pathMatch: 'full'}
     ])
   ],
-  providers: [CardService, CastleService, SharedService],
+  providers: [CardService, CastleService, SharedService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

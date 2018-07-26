@@ -1,11 +1,9 @@
 import { Card } from "../models/card";
 import { Component } from '@angular/core';
-import { CardService } from "./card.service";
-import { CastleService } from '../castle/castle.service';
-import { CastleComponent } from "../castle/castle.component";
 import {flatMap} from 'rxjs/operators';
-import { Castle } from "../models/castle";
-import { SharedService } from "./shared.service";
+import { SharedService } from '../services/shared.service';
+import { CardService } from '../services/card.service';
+import { CastleService } from '../services/castle.service';
 
 @Component({
     selector: 'my-card-list',

@@ -11,10 +11,6 @@
      
  }
 
- /* .list-container{
-    flex-wrap: wrap;
-    align-items: flex-end;
- } */
  .card:hover{
     border: 2px solid green;
     cursor: pointer;
@@ -26,7 +22,6 @@
 
  .card:active{
   transform: translateY(-140px);
-  transform: translateX(center);
  }
 
  .discard-button{
