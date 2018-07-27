@@ -77,15 +77,15 @@ namespace TwoCastles.Web.Controllers
                     return BadRequest("Card not found");
 
                 var winnerId = _gamePipelineService.DiscardTurn(game, playerCard, humanPlayer);
-                if (winnerId != string.Empty)
-                    return Ok(winnerId);
+                //if (winnerId != string.Empty)
+                //    return Ok(winnerId);
 
                 //enemy player part
                 var computerPlayerCard = _gameService.GetRandomCard(computerPlayer);
                 winnerId = _gamePipelineService.ComputerTurn(game, computerPlayerCard, computerPlayer,
                     humanPlayer);
-                if (winnerId != string.Empty)
-                    return Ok(winnerId);
+                //if (winnerId != string.Empty)
+                //    return Ok(winnerId);
 
                 return Ok(new { playerCard, computerPlayer});
             }
@@ -165,9 +165,26 @@ namespace TwoCastles.Web.Controllers
             {
                 var game = _gameService.GetCurrentGame(userId);
                 if (game == null)
-                    return BadRequest("Game is not valid");
+                    return BadRequest("Game does not exist");
                 var scores = _gameService.CountPlayerScore(game);
                 return Ok(scores);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+            }
+        }
+
+        [HttpGet("stats/{gameId}")]
+        public IActionResult CheckWinner(string gameId)
+        {
+            try
+            {
+                var game = _gameService.GetCurrentGame(gameId);
+                if (game == null)
+                    return BadRequest("Game does not exist");
+                var res = _gameService.CheckWinner(game);
+                return Ok(res);
             }
             catch (Exception e)
             {
