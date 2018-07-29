@@ -1,23 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators/catchError';
 import { tap } from 'rxjs/operators/tap';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable()
 
 export class HttpService{
-
     constructor(private http: HttpClient){}
 
     get(url: string): Observable<any>{
-        return this.http.get<any>(url).
-        pipe(tap(data => console.log('All: ' + JSON.stringify(data))),
-            catchError(this.handleError)
-          );             
+        return this.http.get<any>(url).pipe(
+        tap(data => console.log('All: ' + JSON.stringify(data))),
+          catchError(this.handleError)
+        );             
       }
 
-
+    delete(url: string){
+      this.http.delete<any>(url, httpOptions).pipe(
+      tap(data => console.log('All: ' + JSON.stringify(data))),
+        catchError(this.handleError)
+      );     
+    }
 
     private handleError(err: HttpErrorResponse) {
         // in a real world app, we may send the server to some remote logging infrastructure
