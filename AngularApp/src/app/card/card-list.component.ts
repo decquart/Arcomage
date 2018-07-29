@@ -6,7 +6,6 @@ import { CardService } from '../services/card.service';
 import { CastleService } from '../services/castle.service';
 import { GameService } from '../services/game.service';
 import { Router } from '@angular/router';
-import { HttpService } from '../services/http.services';
 
 @Component({
     selector: 'my-card-list',

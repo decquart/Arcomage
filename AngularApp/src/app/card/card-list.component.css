@@ -12,16 +12,17 @@
  }
 
  .card:hover{
-    border: 2px solid green;
+    border: 4px solid #00FF33;
     cursor: pointer;
  }
  .card{
     border-radius: 8%;
-    border: 2px solid gray;
+    border: 4px solid gray;
+    transition-duration: 0.3s;
  }
 
  .card:active{
-  transform: translateY(-140px);
+  transform: translateY(-300px);
  }
 
  .discard-button{

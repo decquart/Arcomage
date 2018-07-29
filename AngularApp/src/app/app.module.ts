@@ -12,6 +12,7 @@ import { HttpService } from './services/http.services';
 import { SharedService } from './services/shared.service';
 import { CardService } from './services/card.service';
 import { CastleService } from './services/castle.service';
+import { GameService } from './services/game.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { CastleService } from './services/castle.service';
       {path: '**', redirectTo:'', pathMatch: 'full'}
     ])
   ],
-  providers: [CardService, CastleService, SharedService, HttpService],
+  providers: [CardService, CastleService, SharedService, HttpService, GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

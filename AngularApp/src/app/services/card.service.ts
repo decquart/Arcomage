@@ -1,7 +1,7 @@
 import { Card } from '../models/card';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpService } from '../services/http.services';
+import { HttpService } from './http.services';
 
 @Injectable()
 
