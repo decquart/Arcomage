@@ -1,0 +1,26 @@
+.field{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%); 
+    
+}
+.home-button{
+    background-color: white; 
+    color: black; 
+    border: 4px solid #008CBA;
+    padding: 32px 16px;
+    border-radius: 12px;
+    font-size: 25px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+.home-button:hover{
+    background-color: #008CBA; 
+    color: white;
+}
+.text{
+    color: red;
+    font-size: 500%;   
+}
