@@ -41,8 +41,7 @@ namespace TwoCastles.GameLogic.Services
         {
             if (game == null)
                 throw new ArgumentException("Game is not valid");
-            var result = _db.Game.Update(key, game);
-            return result ? true : false;
+            return _db.Game.Update(key, game);
         }
 
         public bool DeleteGame(string key)
@@ -93,6 +92,7 @@ namespace TwoCastles.GameLogic.Services
                 var winnerId = game.SecondPlayer.Id;
                 DeleteGame(game.FirstPlayer.Id);
                 return winnerId;
+
             }
             return string.Empty;
         }

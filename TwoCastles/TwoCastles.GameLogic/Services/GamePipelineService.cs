@@ -18,7 +18,7 @@ namespace TwoCastles.GameLogic.Services
             _cardService = cardService;
         }
 
-        public string PlayerTurn(Game game, Card playerCard, Player currentPlayer, Player enemyPlayer)
+        public void PlayerTurn(Game game, Card playerCard, Player currentPlayer, Player enemyPlayer)
         {
             var isEnoughRes = _cardService.IsEnoughResources(playerCard, game.FirstPlayer);
             if (!isEnoughRes)
@@ -29,10 +29,9 @@ namespace TwoCastles.GameLogic.Services
 
             EndTurnPart(game, currentPlayer);
             _gameService.IncreasePlayerScore(currentPlayer, playerCard);
-            return _gameService.CheckWinner(game);      //return winner id
         }
 
-        public string ComputerTurn(Game game, Card computerPlayerCard, Player computerPlayer, Player humanPlayer)
+        public void ComputerTurn(Game game, Card computerPlayerCard, Player computerPlayer, Player humanPlayer)
         {
             StartTurnPart(game, computerPlayer, computerPlayerCard);
             var isEnoughRes = _cardService.IsEnoughResources(computerPlayerCard, computerPlayer);
@@ -42,14 +41,12 @@ namespace TwoCastles.GameLogic.Services
 
             EndTurnPart(game, computerPlayer);
             _gameService.IncreasePlayerScore(computerPlayer, computerPlayerCard);
-            return _gameService.CheckWinner(game);
         }
 
-        public string DiscardTurn(Game game, Card playerCard, Player currentPlayer)
+        public void DiscardTurn(Game game, Card playerCard, Player currentPlayer)
         {
             StartTurnPart(game, currentPlayer, playerCard);
             EndTurnPart(game, currentPlayer);
-            return _gameService.CheckWinner(game);
         }
 
         private void StartTurnPart(Game game, Player player, Card card)

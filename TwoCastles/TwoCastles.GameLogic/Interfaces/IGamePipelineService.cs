@@ -7,8 +7,8 @@ namespace TwoCastles.GameLogic.Interfaces
 {
     public interface IGamePipelineService
     {
-        string PlayerTurn(Game game, Card playerCard, Player currentPlayer, Player enemyPlayer);
-        string ComputerTurn(Game game, Card computerPlayerCard, Player computerPlayer, Player humanPlayer);
-        string DiscardTurn(Game game, Card playerCard, Player currentPlayer);
+        void PlayerTurn(Game game, Card playerCard, Player currentPlayer, Player enemyPlayer);
+        void ComputerTurn(Game game, Card computerPlayerCard, Player computerPlayer, Player humanPlayer);
+        void DiscardTurn(Game game, Card playerCard, Player currentPlayer);
     }
 }

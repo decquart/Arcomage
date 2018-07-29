@@ -90,8 +90,7 @@ namespace BLL.Services
 
         public string GetUserId(ClaimsPrincipal claims)
         {
-            var userId = _userManager.GetUserId(claims);
-            return userId;
+            return _userManager.GetUserId(claims);
         }
     }
 }
