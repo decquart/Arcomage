@@ -1,0 +1,7 @@
+.score{
+    color: white;
+    font-size: large;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
