@@ -40,6 +40,9 @@ namespace TwoCastles.GameLogic.Services
                     case "AddDungeon":
                         AddDungeon(card.Argument[i], currentPlayer);
                         break;
+                    case "AddEnemyDungeon":
+                        AddDungeon(card.Argument[i], oppPlayer);
+                        break;
                     case "AddWall":
                         AddWall(card.Argument[i], currentPlayer);
                         break;
@@ -51,6 +54,9 @@ namespace TwoCastles.GameLogic.Services
                         break;
                     case "Damage":
                         Damage(card.Argument[i], oppPlayer);
+                        break;
+                    case "TakeDamage":
+                        Damage(card.Argument[i], currentPlayer);
                         break;
                     case "AddBricks":
                         AddBricks(card.Argument[i], currentPlayer);
@@ -67,11 +73,17 @@ namespace TwoCastles.GameLogic.Services
                     case "DamageEnemyCastle":
                         DamageCastle(card.Argument[i], oppPlayer);
                         break;
+                    case "DamageWall":
+                        DamageWall(card.Argument[i], currentPlayer);
+                        break;
                     case "Parity":
                         Parity(currentPlayer, oppPlayer);
                         break;
                     case "ReduceBricks":
                         ReduceBricks(card.Argument[i], currentPlayer);
+                        break;
+                    case "ReduceEnemyBricks":
+                        ReduceBricks(card.Argument[i], oppPlayer);
                         break;
                     case "ReduceGems":
                         ReduceGems(card.Argument[i], currentPlayer);
@@ -79,8 +91,14 @@ namespace TwoCastles.GameLogic.Services
                     case "ReduceQuarry":
                         ReduceQuarry(card.Argument[i], currentPlayer);
                         break;
+                    case "ReduceRecruits":
+                        ReduceRecruits(card.Argument[i], currentPlayer);
+                        break;
                     case "ReduceEnemyQuarry":
                         ReduceQuarry(card.Argument[i], oppPlayer);
+                        break;
+                    case "ReduceEnemyGems":
+                        ReduceGems(card.Argument[i], oppPlayer);
                         break;
                     case "ReduceEnemyRecruits":
                         ReduceRecruits(card.Argument[i], oppPlayer);
@@ -90,6 +108,9 @@ namespace TwoCastles.GameLogic.Services
                         break;
                     case "ReduceMagic":
                         ReduceMagic(card.Argument[i], currentPlayer);
+                        break;
+                    case "ReduceEnemyMagic":
+                        ReduceMagic(card.Argument[i], oppPlayer);
                         break;
                     case "SwapWall":
                         SwapWall(currentPlayer, oppPlayer);
@@ -167,6 +188,11 @@ namespace TwoCastles.GameLogic.Services
         private void DamageCastle(int amount, Player user)
         {
             user.Castle.Height -= amount;
+        }
+
+        private void DamageWall(int amount, Player user)
+        {
+            user.Castle.Wall -= amount;
         }
 
         private void Parity(Player currentPlayer, Player enemyPlayer)
