@@ -183,19 +183,5 @@ namespace TwoCastles.Web.Controllers
                 return BadRequest(e.ToString());
             }
         }
-
-        [HttpDelete("remove/{gameId}")]
-        public IActionResult RemoveGame(string gameId)
-        {
-            try
-            {
-                _gameService.DeleteGame(gameId);
-                return NoContent();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.ToString());
-            }
-        }
     }
 }
