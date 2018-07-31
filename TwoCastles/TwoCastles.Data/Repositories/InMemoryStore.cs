@@ -27,7 +27,7 @@ namespace TwoCastles.Data.Repositories
         {
             if (Games.ContainsKey(key))
                 throw new ApplicationException($"A game with key: '{key}' already exist");
-            Game game = new Game().Init(key);
+            Game game = new Game();
 
             Games.Add(key, game);
             return game;
@@ -51,32 +51,6 @@ namespace TwoCastles.Data.Repositories
                 throw new ApplicationException($"A game with key: '{key}' doesn't exist");
 
             return Games.Remove(key);
-        }
-
-
-        private static Game Init(this Game _game, string key)
-        {
-            _game.CurrentDeck = new Deck { Cards = new JsonParser().GetCardsFromJson() };
-            _game.FirstPlayer = new Player()  { Id = key };
-            _game.SecondPlayer = new Player() { Id = ConstantsList.computerId};
-            CastleInit(_game.FirstPlayer.Castle = new Castle());
-            CastleInit(_game.SecondPlayer.Castle = new Castle());
-
-            return _game;
-        }
-
-        private static void CastleInit(Castle castle)
-        {
-            castle.Height = ConstantsList.castle;
-            castle.Wall = ConstantsList.wall;
-
-            castle.Bricks = ConstantsList.bricks;
-            castle.Gems = ConstantsList.gems;
-            castle.Recruits = ConstantsList.recruits;
-
-            castle.Quarry = ConstantsList.quarry;
-            castle.Magic = ConstantsList.magic;
-            castle.Dungeon = ConstantsList.dungeon;
         }
     }
 }

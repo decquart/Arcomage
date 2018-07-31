@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TwoCastles.Data.Constants;
+using TwoCastles.Data.Helper;
 using TwoCastles.Data.Interfaces;
 using TwoCastles.Entities;
 using TwoCastles.GameLogic.Interfaces;
@@ -34,7 +35,8 @@ namespace TwoCastles.GameLogic.Services
 
         public Game GetNewGame(string key)
         {
-            return _db.Game.CreateNewGame(key);
+            var game = _db.Game.CreateNewGame(key);
+            return Init(game, key);
         }
 
         public bool UpdateGameStats(string key, Game game)
@@ -50,6 +52,8 @@ namespace TwoCastles.GameLogic.Services
         }
 
         #endregion
+
+
 
         public void NormalizeCastles(Game game)
         {
@@ -161,5 +165,33 @@ namespace TwoCastles.GameLogic.Services
             player.Score += currentCard.GemCost;
             player.Score += currentCard.RecruitCost;
         }
+
+
+        #region initGame
+        private Game Init(Game _game, string key)
+        {
+            _game.CurrentDeck = new Deck { Cards = new JsonParser().GetCardsFromJson() };
+            _game.FirstPlayer = new Player() { Id = key };
+            _game.SecondPlayer = new Player() { Id = ConstantsList.computerId };
+            CastleInit(_game.FirstPlayer.Castle = new Castle());
+            CastleInit(_game.SecondPlayer.Castle = new Castle());
+
+            return _game;
+        }
+
+        private void CastleInit(Castle castle)
+        {
+            castle.Height = ConstantsList.castle;
+            castle.Wall = ConstantsList.wall;
+
+            castle.Bricks = ConstantsList.bricks;
+            castle.Gems = ConstantsList.gems;
+            castle.Recruits = ConstantsList.recruits;
+
+            castle.Quarry = ConstantsList.quarry;
+            castle.Magic = ConstantsList.magic;
+            castle.Dungeon = ConstantsList.dungeon;
+        }
+        #endregion
     }
 }
