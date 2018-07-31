@@ -158,7 +158,7 @@ namespace TwoCastles.Web.Controllers
                 var game = _gameService.GetCurrentGame(userId);
                 if (game == null)
                     return BadRequest("Game does not exist");
-                var scores = _gameService.CountPlayerScore(game);
+                var scores = _gameService.CalculateCurrentPlayerScore(game);
                 return Ok(scores);
             }
             catch (Exception e)

@@ -101,7 +101,7 @@ namespace TwoCastles.GameLogic.Services
 
             var model = new
             {
-                Value = CountPlayerScore(game), 
+                Value = CalculateCurrentPlayerScore(game), 
                 GameId = game.Id,
                 UserId = game.FirstPlayer.Id
             };
@@ -109,9 +109,33 @@ namespace TwoCastles.GameLogic.Services
             _apiService.Post(url, model);
         }
 
-        public int CountPlayerScore(Game game)
+        public int CalculateCurrentPlayerScore(Game game)
         {
-            return game.FirstPlayer.Score - game.SecondPlayer.Score;            
+            var additionalPlayerScore = 0;
+            //added building's values to score
+            additionalPlayerScore += (game.FirstPlayer.Castle.Wall -
+                                      game.SecondPlayer.Castle.Wall);
+            additionalPlayerScore += (game.FirstPlayer.Castle.Height -
+                                      game.SecondPlayer.Castle.Height);
+
+            //added resources to score 
+            additionalPlayerScore += (game.FirstPlayer.Castle.Bricks -
+                                      game.SecondPlayer.Castle.Bricks);
+            additionalPlayerScore += (game.FirstPlayer.Castle.Gems -
+                                      game.SecondPlayer.Castle.Gems);
+            additionalPlayerScore += (game.FirstPlayer.Castle.Recruits -
+                                      game.SecondPlayer.Castle.Recruits);
+
+            //added factory's values to score
+            additionalPlayerScore += (game.FirstPlayer.Castle.Quarry -
+                                      game.SecondPlayer.Castle.Quarry);
+            additionalPlayerScore += (game.FirstPlayer.Castle.Magic -
+                                      game.SecondPlayer.Castle.Magic);
+            additionalPlayerScore += (game.FirstPlayer.Castle.Dungeon -
+                                      game.SecondPlayer.Castle.Dungeon);
+
+            //return sum current and additional score
+            return game.FirstPlayer.Score + additionalPlayerScore;            
         }
 
         public void IncreasePlayerResource(Player player)
