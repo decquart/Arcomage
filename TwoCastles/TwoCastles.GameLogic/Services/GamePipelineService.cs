@@ -51,7 +51,6 @@ namespace TwoCastles.GameLogic.Services
 
         private void StartTurnPart(Game game, Player player, Card card)
         {
-            _gameService.IncreasePlayerResource(player);
             player.Hand.Remove(card);
             _deckService.PushCard(game, card);
         }
@@ -60,6 +59,7 @@ namespace TwoCastles.GameLogic.Services
         {
             _deckService.GiveCardToPlayer(game, player);
             _gameService.NormalizeCastles(game);
+            _gameService.IncreasePlayerResource(player);
         }
     }
 }
