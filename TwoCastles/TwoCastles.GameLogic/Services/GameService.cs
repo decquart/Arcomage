@@ -76,32 +76,36 @@ namespace TwoCastles.GameLogic.Services
 
         public string EndGameIfWinnerExist(Game game) //todo change  name
         {
+            var currentScore = CalculateCurrentPlayerScore(game);
+
             if (game.FirstPlayer.Castle.Height >= ConstantsList.maxCastleHeight ||
                 game.SecondPlayer.Castle.Height <= ConstantsList.minCastleHeight)
             {
-                SendScoreToDatabase(game);
+                SendScoreToDatabase(game, currentScore);
                 DeleteGame(game.FirstPlayer.Id);
-                return ConstantsList.winCaseMessage;
+                return ConstantsList.winCaseMessage + currentScore;
             }
 
+            //
             if (game.SecondPlayer.Castle.Height >= ConstantsList.maxCastleHeight ||
                      game.FirstPlayer.Castle.Height <= ConstantsList.minCastleHeight)
             {
-                SendScoreToDatabase(game);
+                currentScore /= ConstantsList.loseScoreСoefficient;
+                SendScoreToDatabase(game, currentScore);
                 DeleteGame(game.FirstPlayer.Id);
-                return ConstantsList.loseCaseMessage;
+                return ConstantsList.loseCaseMessage + currentScore;
 
             }
             return string.Empty;
         }
 
-        private void SendScoreToDatabase(Game game)
+        private void SendScoreToDatabase(Game game, int score)
         {
             var url = ConstantsList.scoreCreateUrl;
 
             var model = new
             {
-                Value = CalculateCurrentPlayerScore(game), 
+                Value = score, 
                 GameId = game.Id,
                 UserId = game.FirstPlayer.Id
             };
