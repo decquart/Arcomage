@@ -74,24 +74,22 @@ namespace TwoCastles.GameLogic.Services
             }
         }
 
-        public string CheckWinner(Game game)
+        public string EndGameIfWinnerExist(Game game) //todo change  name
         {
             if (game.FirstPlayer.Castle.Height >= ConstantsList.maxCastleHeight ||
                 game.SecondPlayer.Castle.Height <= ConstantsList.minCastleHeight)
             {
                 SendScoreToDatabase(game);
-                var winnerId = game.FirstPlayer.Id;
                 DeleteGame(game.FirstPlayer.Id);
-                return winnerId;
+                return ConstantsList.winCaseMessage;
             }
 
             if (game.SecondPlayer.Castle.Height >= ConstantsList.maxCastleHeight ||
                      game.FirstPlayer.Castle.Height <= ConstantsList.minCastleHeight)
             {
                 SendScoreToDatabase(game);
-                var winnerId = game.SecondPlayer.Id;
                 DeleteGame(game.FirstPlayer.Id);
-                return winnerId;
+                return ConstantsList.loseCaseMessage;
 
             }
             return string.Empty;

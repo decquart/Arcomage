@@ -4,12 +4,7 @@ using TwoCastles.GameLogic.Interfaces;
 namespace TwoCastles.GameLogic.Services
 {
     public class ApiService : IApiService
-    {
-        public void Get<T>(string url)
-        {
-
-        }
-
+    {       
         public void Post<T>(string url, T model)
         {
             var client = new RestClient(url);

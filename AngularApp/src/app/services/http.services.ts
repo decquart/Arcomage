@@ -20,13 +20,6 @@ export class HttpService{
         );             
       }
 
-    delete(url: string){
-      this.http.delete<any>(url, httpOptions).pipe(
-      tap(data => console.log('All: ' + JSON.stringify(data))),
-        catchError(this.handleError)
-      );     
-    }
-
     private handleError(err: HttpErrorResponse) {
         // in a real world app, we may send the server to some remote logging infrastructure
         // instead of just logging it to the console

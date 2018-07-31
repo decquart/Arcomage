@@ -167,7 +167,7 @@ namespace TwoCastles.Web.Controllers
             }
         }
 
-        [HttpGet("stats/{gameId}")]
+        [HttpGet("check/{gameId}")]
         public IActionResult CheckWinner(string gameId)
         {
             try
@@ -175,7 +175,7 @@ namespace TwoCastles.Web.Controllers
                 var game = _gameService.GetCurrentGame(gameId);
                 if (game == null)
                     return BadRequest("Game does not exist");
-                var res = _gameService.CheckWinner(game);
+                var res = _gameService.EndGameIfWinnerExist(game);
                 return Json(res);
             }
             catch (Exception e)

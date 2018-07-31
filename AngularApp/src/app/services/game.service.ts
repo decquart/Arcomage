@@ -6,18 +6,19 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 
 export class GameService{
-    private checkWinnerUrl = "https://localhost:44347/api/game/stats/";
-    private removeGameUrl = "https://localhost:44347/api/game/remove/";
+    private checkWinnerUrl = "https://localhost:44347/api/game/check/";
+    private getScoreUrl = "https://localhost:44347/api/game/scores/";
     constructor(private httpService: HttpService){
     }
 
-    getWinnerId(): Observable<string>{
+    getEndGameMessage(): Observable<string>{
         return this.httpService.get(this.checkWinnerUrl + 
             localStorage.getItem('id'));             
       };   
 
-    removeGame(){
-        this.httpService.delete(this.removeGameUrl + 
-        localStorage.getItem('id'));
-    };
+      getPlayerScore(): Observable<number>{
+        return this.httpService.get(this.getScoreUrl + 
+            localStorage.getItem('id'));
+      };
+
 }

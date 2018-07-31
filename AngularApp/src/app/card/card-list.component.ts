@@ -6,6 +6,7 @@ import { CardService } from '../services/card.service';
 import { CastleService } from '../services/castle.service';
 import { GameService } from '../services/game.service';
 import { Router } from '@angular/router';
+import { HttpClient } from "../../../node_modules/@angular/common/http";
 
 @Component({
     selector: 'my-card-list',
@@ -16,7 +17,7 @@ import { Router } from '@angular/router';
 export class CardListComponent{
     cards: Card[];
     errorMessage: string;
-    private winnerId: string;
+    private gameOverMessage: string;
 
     constructor(private cardService: CardService, private castleService: CastleService,
             private sharedService: SharedService, private gameService: GameService,
@@ -32,22 +33,24 @@ export class CardListComponent{
                 this.castleService.getCastles().subscribe(
                     castles =>{
                          this.sharedService.onCastleEvent.emit(castles);
-                         this.gameService.getWinnerId().subscribe(
-                            id =>{ 
-                                this.winnerId = id;
-                                if(this.winnerId.length > 0){
-                                    alert('Game Over');
-                                    this.router.navigate(['gameover']);
-                                } 
-                            });                       
+                         this.gameService.getPlayerScore().subscribe(
+                             score =>{
+                                this.sharedService.onScoreEvent.emit(score);
+                                this.gameService.getEndGameMessage().subscribe(
+                                    message =>{ 
+                                        this.gameOverMessage = message;
+                                        if(this.gameOverMessage != null && this.gameOverMessage.length > 0){
+                                            alert(this.gameOverMessage);
+                                            this.router.navigate(['gameover']);
+                                        } 
+                                    });  
+                             }
+                         )                     
                     }); 
             },
             error => this.errorMessage = <any>error
         );
-    }
-    // doSomething(){
-    //     this.gameService.removeGame();
-    // }
+    }   
    
     discardCard(card: Card){
         this.cardService.discard(card.name).pipe(flatMap(() => {
@@ -58,11 +61,11 @@ export class CardListComponent{
                 this.castleService.getCastles().subscribe(
                     castles =>{
                         this.sharedService.onCastleEvent.emit(castles);
-                        this.gameService.getWinnerId().subscribe(
-                            id =>{ 
-                                this.winnerId = id;
-                                if(this.winnerId.length > 0){
-                                    alert('Game Over');
+                        this.gameService.getEndGameMessage().subscribe(
+                            message =>{ 
+                                this.gameOverMessage = message;
+                                if(this.gameOverMessage != null && this.gameOverMessage.length > 0){
+                                    alert(this.gameOverMessage);
                                     this.router.navigate(['gameover']);
                                 } 
                             });

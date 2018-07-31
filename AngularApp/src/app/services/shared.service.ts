@@ -6,4 +6,5 @@ import { Castle } from '../models/castle';
 
 export class SharedService{
     onCastleEvent: EventEmitter<Castle[]> = new EventEmitter();
+    onScoreEvent: EventEmitter<number> = new EventEmitter();
 }

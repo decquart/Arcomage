@@ -13,6 +13,9 @@ namespace TwoCastles.Data.Constants
         public const string gameStartUrl = "http://localhost:4200/game/";
         public const string scoreCreateUrl = "https://localhost:44364/api/scores/create/";
         public const string computerId = "AI";
+        public const string winCaseMessage = "You won!";
+        public const string loseCaseMessage = "You lose!";
+
 
         public const int castle = 20;
         public const int wall = 5;

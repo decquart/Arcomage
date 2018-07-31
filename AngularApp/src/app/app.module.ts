@@ -13,11 +13,12 @@ import { SharedService } from './services/shared.service';
 import { CardService } from './services/card.service';
 import { CastleService } from './services/castle.service';
 import { GameService } from './services/game.service';
+import { ScoreComponent } from './game/score.component';
 
 @NgModule({
   declarations: [
       CardListComponent, AppComponent, CastleComponent, GameOverComponent, 
-      GameComponent
+      GameComponent,ScoreComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

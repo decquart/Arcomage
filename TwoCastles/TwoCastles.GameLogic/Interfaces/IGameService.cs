@@ -11,7 +11,7 @@ namespace TwoCastles.GameLogic.Interfaces
         bool Exist(string key);
 
         void NormalizeCastles(Game game);
-        string CheckWinner(Game game);
+        string EndGameIfWinnerExist(Game game);
         void IncreasePlayerResource(Player player);
         Card GetRandomCard(Player player);
         void IncreasePlayerScore(Player player, Card currentCard);
