@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using TwoCastles.Data.Constants;
-using TwoCastles.Data.Helper;
 using TwoCastles.Entities;
 
 namespace TwoCastles.Data.Repositories
