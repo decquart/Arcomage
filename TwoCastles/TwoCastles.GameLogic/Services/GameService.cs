@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TwoCastles.Data.Constants;
-using TwoCastles.Data.Helper;
 using TwoCastles.Data.Interfaces;
 using TwoCastles.Entities;
 using TwoCastles.GameLogic.Interfaces;
@@ -50,11 +50,10 @@ namespace TwoCastles.GameLogic.Services
         {
             return _db.Game.Remove(key);
         }
-
+        
         #endregion
 
-
-
+        
         public void NormalizeCastles(Game game)
         {
             var castles = new List<Castle>()
@@ -78,10 +77,11 @@ namespace TwoCastles.GameLogic.Services
             }
         }
 
-        public string EndGameIfWinnerExist(Game game) //todo change  name
+        public string EndGameIfWinnerExist(Game game)
         {
             var currentScore = CalculateCurrentPlayerScore(game);
 
+            //win case
             if (game.FirstPlayer.Castle.Height >= ConstantsList.maxCastleHeight ||
                 game.SecondPlayer.Castle.Height <= ConstantsList.minCastleHeight)
             {
@@ -90,10 +90,11 @@ namespace TwoCastles.GameLogic.Services
                 return ConstantsList.winCaseMessage + currentScore;
             }
 
-            //
+            //lose case
             if (game.SecondPlayer.Castle.Height >= ConstantsList.maxCastleHeight ||
                      game.FirstPlayer.Castle.Height <= ConstantsList.minCastleHeight)
             {
+                //divide by coefficient 
                 currentScore /= ConstantsList.loseScoreСoefficient;
                 SendScoreToDatabase(game, currentScore);
                 DeleteGame(game.FirstPlayer.Id);
@@ -170,7 +171,7 @@ namespace TwoCastles.GameLogic.Services
         #region initGame
         private Game Init(Game _game, string key)
         {
-            _game.CurrentDeck = new Deck { Cards = new JsonParser().GetCardsFromJson() };
+            _game.CurrentDeck = new Deck { Cards = _db.Cards.GetAll().ToList() };
             _game.FirstPlayer = new Player() { Id = key };
             _game.SecondPlayer = new Player() { Id = ConstantsList.computerId };
             CastleInit(_game.FirstPlayer.Castle = new Castle());

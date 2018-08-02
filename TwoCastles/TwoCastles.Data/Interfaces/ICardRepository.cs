@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TwoCastles.Entities;
 
 namespace TwoCastles.Data.Interfaces
 {
-    public interface IUnitOfWork
+    public interface ICardRepository
     {
-        IGameRepository Game { get; }
-        ICardRepository Cards { get; }
+        IEnumerable<Card> GetAll();
     }
 }
