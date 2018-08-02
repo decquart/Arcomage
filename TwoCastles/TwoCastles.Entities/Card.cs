@@ -1,11 +1,15 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 
 namespace TwoCastles.Entities
 {
-    [Serializable]
     public class Card
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int BrickCost { get; set; }

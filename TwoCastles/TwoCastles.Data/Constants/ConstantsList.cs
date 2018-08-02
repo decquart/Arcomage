@@ -16,6 +16,11 @@ namespace TwoCastles.Data.Constants
         public const string winCaseMessage = "You won!Your score: ";
         public const string loseCaseMessage = "You lost!Your score: ";
 
+        //mongodb constants
+        public const string connectionString = "mongodb://localhost:27017";
+        public const string cardCollectionName = "cards";
+        public const string mongodbName = "game";
+
         public const int loseScoreСoefficient = 10;
         
         public const int castle = 20;
