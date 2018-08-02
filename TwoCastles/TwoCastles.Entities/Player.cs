@@ -12,7 +12,6 @@ namespace TwoCastles.Entities
         public Player()
         {
             Hand = new List<Card>();
-        }
-        
+        }        
     }
 }

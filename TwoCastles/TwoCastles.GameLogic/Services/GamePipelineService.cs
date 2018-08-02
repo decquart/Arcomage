@@ -35,7 +35,8 @@ namespace TwoCastles.GameLogic.Services
         {
             StartTurnPart(game, computerPlayer, computerPlayerCard);
             var isEnoughRes = _cardService.IsEnoughResources(computerPlayerCard, computerPlayer);
-            //apply card if enough resources
+
+            //apply card if enough resources, otherwise - just discard without playing
             if (isEnoughRes)
                 _cardService.Play(computerPlayerCard, computerPlayer, humanPlayer);
 

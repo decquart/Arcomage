@@ -14,7 +14,6 @@ namespace TwoCastles.GameLogic.Services
         private readonly Random _rnd;
         private readonly IApiService _apiService;
 
-
         public GameService(IUnitOfWork db, IApiService apiService)
         {
             _db = db;
@@ -99,7 +98,6 @@ namespace TwoCastles.GameLogic.Services
                 SendScoreToDatabase(game, currentScore);
                 DeleteGame(game.FirstPlayer.Id);
                 return ConstantsList.loseCaseMessage + currentScore;
-
             }
             return string.Empty;
         }

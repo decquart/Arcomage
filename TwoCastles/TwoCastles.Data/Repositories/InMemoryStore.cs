@@ -20,7 +20,6 @@ namespace TwoCastles.Data.Repositories
             return Games[key];
         }
 
-        //create, init, add to dictionary and return game instance
         public static Game CreateNewGame(string key)
         {
             if (Games.ContainsKey(key))
@@ -42,7 +41,6 @@ namespace TwoCastles.Data.Repositories
             return true;
         }
         
-
         public static bool Remove(string key)
         {
             if(!Games.ContainsKey(key))
