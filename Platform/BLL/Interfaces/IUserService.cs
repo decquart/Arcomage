@@ -18,7 +18,6 @@ namespace BLL.Interfaces
         Task<User> GetUserById(string userId);
         Task<User> GetUserByEmail(string userEmail);
         IEnumerable<UserDTO> GetUsers();
-
         string GetUserId(ClaimsPrincipal claims);
     }
 }
