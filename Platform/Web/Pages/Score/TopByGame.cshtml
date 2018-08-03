@@ -2,18 +2,21 @@
 @model TopByGameModel
 @{
     ViewData["Title"] = $"Top {Model.Game.Name} Players";
+    int rowNum = 0;
 }
 
 <h2>@ViewData["Title"]</h2>
 
 <table class="table">
     <thead>
-        <tr><th>Nickname</th><th>Score</th><th></th></tr>
+        <tr><th>№</th><th>Nickname</th><th>Score</th></tr>
     </thead>
     <tbody>
         @foreach (var score in Model.Scores)
         {
             <tr>
+                @{ rowNum++;}
+                <td>@rowNum</td>
                 <td>@score.Email</td>
                 <td>@score.Value</td>
             </tr>

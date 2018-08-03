@@ -2,28 +2,32 @@
 @model ListModel
 @{
     ViewData["Title"] = "Games";
-    
+    int rowNum = 0;
+
 }
 
 <h2>@ViewData["Title"]</h2>
 
 <table class="table">
     <thead>
-        <tr><th>Name</th><th>Description</th><th></th></tr>
+        <tr><th>№</th><th>Name</th><th>Description</th><th></th><th></th></tr>
     </thead>
     <tbody>
         @foreach (var game in Model.Games)
         {
-        <tr>
-            <td>@game.Name</td>
-            <td>@game.Description</td>
-            <td>
-                <a href=@(game.Url+Model.CurrentUserId+"/"+game.Id)>Play</a>
-            </td>
-            <td>               
-                <a asp-page="/Score/TopByGame" asp-route-id="@game.Id">Top players</a>                    
-            </td>
-        </tr>
+            <tr>
+                @{ rowNum++;}
+                <td>@rowNum</td>
+                <td>@game.Name</td>
+                <td>@game.Description</td>
+                <td>                    
+                    <a href=@(game.Url+Model.CurrentUserId+"/"+game.Id) >Play</a>
+                </td>
+                <td>
+                    <a asp-page="/Score/TopByGame" asp-route-id="@game.Id">Top</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+
