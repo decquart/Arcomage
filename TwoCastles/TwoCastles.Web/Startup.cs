@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TwoCastles.Entities.Models;
 using TwoCastles.Web.Configs;
+using TwoCastles.Web.DTO;
 
 namespace TwoCastles.Web
 {
@@ -20,7 +22,12 @@ namespace TwoCastles.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.LoadMapperConfiguration().
-                LoadServicesConfiguration();           
+                LoadServicesConfiguration();
+
+            services.Configure<MongoSettings>(options => {
+                options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+                options.Database = Configuration.GetSection("MongoConnection:Database").Value;
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TwoCastles.Data.Constants;
 using TwoCastles.Data.Context;
 using TwoCastles.Data.Interfaces;
 using TwoCastles.Entities;
+using TwoCastles.Entities.Models;
 
 namespace TwoCastles.Data.Repositories
 {
@@ -14,9 +16,9 @@ namespace TwoCastles.Data.Repositories
         private CardRepository _cardRepository;
         private readonly ApplicationContext _db;
 
-        public UnitOfWork()
+        public UnitOfWork(IOptions<MongoSettings> settings)
         {
-            _db = new ApplicationContext(ConstantsList.connectionString);
+            _db = new ApplicationContext(settings.Value.ConnectionString, settings.Value.Database);
         }
 
         public IGameRepository Game

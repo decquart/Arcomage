@@ -5,11 +5,11 @@ namespace TwoCastles.Data.Context
 {
     public class ApplicationContext
     {
-        public ApplicationContext(string connectionString)
+        public ApplicationContext(string connectionString, string dbName)
         {
             var connection = new MongoUrlBuilder(connectionString);
             var client = new MongoClient(connectionString);
-            var database = client.GetDatabase(ConstantsList.mongodbName);
+            var database = client.GetDatabase(dbName);
 
             Database = database;
         }

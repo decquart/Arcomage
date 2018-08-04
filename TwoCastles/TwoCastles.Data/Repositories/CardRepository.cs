@@ -15,7 +15,7 @@ namespace TwoCastles.Data.Repositories
 
         public CardRepository(ApplicationContext context)
         {
-            _collection = context.Database.GetCollection<Card>(ConstantsList.cardCollectionName);
+            _collection = context.Database.GetCollection<Card>(typeof(Card).Name.ToLower());
         }
 
         public IEnumerable<Card> GetAll()
