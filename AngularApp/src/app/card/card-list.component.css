@@ -18,7 +18,7 @@
  .card{
     border-radius: 8%;
     border: 4px solid gray;
-    /* transition-duration: 0.3s; */
+    transition-duration: 0.3s;
  }
 
  .card:active{

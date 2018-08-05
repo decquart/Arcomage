@@ -1,7 +1,8 @@
 <div class="castles">
+       
     <div *ngFor='let castle of castles'>
         <ul class="stat">
-            <li>
+            <li >
                 Height: 
                 {{castle.height}}
                 <img src='https://image.ibb.co/bL9oTd/MM2fR.png' class="game-icon">
@@ -12,33 +13,33 @@
                 <img src='https://image.ibb.co/nfYxG8/great_wall.png' class="game-icon">
             </li>
             <br>
-            <li>
+            <li class="quarry-gr">
                 Bricks: 
                 {{castle.bricks}}
                 <img src='https://image.ibb.co/k9zTdd/bricks.png' class="game-icon">
             </li>
-            <li>
+            <li class="magic-gr">
                 Gems: 
                 {{castle.gems}}
                 <img src='https://image.ibb.co/bHHgyd/gems.png' class="game-icon">
             </li>
-            <li>
+            <li class="dungeon-gr">
                 Recruits: 
                 {{castle.recruits}}
                 <img src='https://image.ibb.co/bEBVry/beasts.png' class="game-icon">
-            </li>
+            </li> 
             <br>
-            <li>
+            <li class="quarry-gr">
                 Quarry 
                 + {{castle.quarry}}
                 <img src='https://image.ibb.co/ggA1yd/mine.png'class="game-icon">
             </li>
-            <li>
+            <li class="magic-gr">
                 Magic 
                 + {{castle.magic}}
                 <img src='https://image.ibb.co/giibWy/magic.png' class="game-icon">
             </li>
-            <li>
+            <li class="dungeon-gr">
                 Dungeon 
                 + {{castle.dungeon}}
                 <img src='https://image.ibb.co/kv1Vry/dungeon.png' class="game-icon">
