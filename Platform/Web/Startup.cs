@@ -2,7 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using BLL.Infrastructure;
+using BLL.Interfaces;
+using BLL.Services;
+using DAL.Interfaces;
+using DAL.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -23,16 +29,25 @@ namespace Web
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {            
             var connStr = Configuration.GetConnectionString("DefaultConnection");
+            var containerBuilder = new ContainerBuilder();
 
             services.LoadMapperConfiguration().
-                LoadServicesConfiguration().
                 LoadIdentityConfiguration().
                 LoadContextConfiguration(connStr);
 
+            containerBuilder.RegisterTypes();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            //Populates the Autofac container builder with the set of registered service 
+            containerBuilder.Populate(services);
+ 
+            // Build the container and return an IServiceProvider from Autofac
+            var container = containerBuilder.Build();
+            return container.Resolve<IServiceProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
-﻿using BLL.Interfaces;
+﻿using Autofac;
+using BLL.Interfaces;
 using BLL.Services;
 using DAL.Interfaces;
 using DAL.Repositories;
@@ -11,13 +12,14 @@ namespace BLL.Infrastructure
 {
     public static class ServicesConfiguration
     {
-        public static IServiceCollection LoadServicesConfiguration(this IServiceCollection services)
+        public static ContainerBuilder RegisterTypes(this ContainerBuilder containerBuilder)
         {
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<IScoreService, ScoreService>();
-            services.AddTransient<IGameService, GameService>();
-            services.AddTransient<IUserService, UserService>();
-            return services;
+            // Register your own services within Autofac
+            containerBuilder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+            containerBuilder.RegisterType<ScoreService>().As<IScoreService>();
+            containerBuilder.RegisterType<GameService>().As<IGameService>();
+            containerBuilder.RegisterType<UserService>().As<IUserService>();
+            return containerBuilder;
         }
     }
 }

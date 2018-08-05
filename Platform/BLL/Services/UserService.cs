@@ -15,7 +15,6 @@ namespace BLL.Services
 {
     public class UserService : IUserService
     {
-
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _db;
         private readonly UserManager<User> _userManager;
